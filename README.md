@@ -21,9 +21,9 @@ Sans JavaScript, le site reste utilisable : chaque action (panier, commande, con
 ## Structure
 
 ```
+.env.example             modèle de configuration → copier en .env (jamais dans Git)
 app/
-  bootstrap.php          démarrage : config, session, erreurs
-  config.example.php     modèle de configuration → copier en config.local.php
+  bootstrap.php          démarrage (« bootstrap ») : config, session, erreurs
   routes.php             toutes les URL du site
   helpers.php            fonctions des gabarits (e(), price(), icon()…)
   src/                   classes : Database, Cart, ProductRepository, OrderRepository…
@@ -63,11 +63,12 @@ tests/http_test.php      tests de bout en bout (42 vérifications)
 
    ```
    /home/votre-compte/
+   ├── .env
    ├── app/
    └── public_html/     (contenu de public/)
    ```
    Si l'hébergeur permet de choisir le dossier racine du domaine, envoyez tout le projet et pointez le domaine sur `public/`.
-4. **Configurer** : copier `app/config.example.php` en `app/config.local.php` et renseigner la base, le numéro WhatsApp et l'e-mail.
+4. **Configurer** : copier `.env.example` en `.env` (à côté de `app/`, jamais dans `public_html/`) et renseigner la base, le numéro WhatsApp et l'e-mail.
 5. **Activer HTTPS** (Let's Encrypt, gratuit chez la plupart des hébergeurs).
 
 Si `app/` est placé à côté de `public_html/`, le chemin `dirname(__DIR__) . '/app/…'` de `public/index.php` fonctionne tel quel.
@@ -90,13 +91,13 @@ mysql -u root dina_perles < database/schema.sql
 mysql -u root dina_perles < database/seed.sql
 
 # 2. Configuration
-cp app/config.example.php app/config.local.php   # puis éditer (mettre 'debug' => true en local)
+cp .env.example .env   # puis éditer (APP_DEBUG=true en local)
 
 # 3. Serveur PHP intégré
 php -S localhost:8000 -t public app/dev-router.php
 ```
 
-Les variables d'environnement `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `APP_DEBUG` et `BRAND_WHATSAPP` remplacent `config.local.php` si elles sont définies.
+Une variable d'environnement du serveur (ex. `DB_NAME=dina_test`) a priorité sur la même clé du `.env`.
 
 ### Modifier le style ou la 3D
 
@@ -126,11 +127,12 @@ php tests/http_test.php http://127.0.0.1:8080
 - Cookie de session `HttpOnly` + `SameSite=Lax` (+ `Secure` en HTTPS), en-têtes `nosniff`, `X-Frame-Options`, `Referrer-Policy`.
 - Champ piège anti-spam sur les formulaires de contact et de newsletter.
 - Les commandes ne sont **pas** consultables publiquement : ni `GET /api/orders` ni autre liste exposée.
+- `.env` hors du dossier web et ignoré par Git ; un `.htaccess` racine le bloque si le domaine pointe par erreur sur la racine du projet.
 - Les erreurs sont enregistrées dans le journal PHP, jamais affichées aux visiteurs (sauf `debug => true`).
 
 ## À faire
 
-- **Numéro WhatsApp réel** dans `app/config.local.php` (`brand.whatsapp`) : c'est encore un numéro fictif.
+- **Numéro WhatsApp réel** dans `.env` (`BRAND_WHATSAPP`) : c'est encore un numéro fictif.
 - **Photos** : elles sont hébergées chez Emergent (`static.prod-images.emergentagent.com`). Pour ne plus en dépendre, copiez-les dans `public/assets/img/` et mettez à jour les URL (table `product_images` et fonction `gallery()` dans `app/helpers.php`).
 - **Espace admin** : en attendant, les commandes, messages et inscriptions se consultent dans phpMyAdmin (tables `orders`, `order_items`, `contact_messages`, `newsletter_subscribers`).
 - **Notification** e-mail ou WhatsApp à Secondina pour chaque nouvelle commande.

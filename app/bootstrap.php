@@ -21,7 +21,7 @@ spl_autoload_register(static function (string $class): void {
 
 require APP_ROOT . '/helpers.php';
 
-App\Config::load(APP_ROOT . '/config.local.php');
+App\Config::load(dirname(APP_ROOT) . '/.env');
 
 date_default_timezone_set('Africa/Porto-Novo');
 mb_internal_encoding('UTF-8');

@@ -1,0 +1,6 @@
+# Filet de sécurité (Apache) : le domaine doit pointer sur public/.
+# Si la racine du projet est exposée par erreur, on bloque les fichiers sensibles.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/(app|database|resources|tests|node_modules)(/|$)

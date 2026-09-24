@@ -43,7 +43,7 @@ Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui conf
 - Tests : tests/http_test.php (42 vérifications)
 
 ## Backlog
-- P0 : numéro WhatsApp réel (`app/config.local.php` → brand.whatsapp)
+- P0 : numéro WhatsApp réel (`.env` → BRAND_WHATSAPP)
 - P0 : rapatrier les photos hébergées chez Emergent dans public/assets/img
 - P1 : espace admin pour ajouter produits/photos (upload), gestion des commandes
 - P1 : paiement en ligne (Wave / Orange Money / Stripe)

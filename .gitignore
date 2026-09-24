@@ -98,5 +98,5 @@ credentials.json
 *.key
 .credentials
 
-# PHP — configuration locale (mots de passe MySQL) : jamais dans Git
-app/config.local.php
+# Le modèle de configuration est versionné, pas le vrai .env
+!.env.example

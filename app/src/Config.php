@@ -4,19 +4,22 @@ declare(strict_types=1);
 namespace App;
 
 /**
- * Configuration : valeurs par défaut < app/config.local.php < variables d'environnement.
+ * Configuration lue dans le fichier `.env` à la racine du projet.
+ * Priorité : variable d'environnement du serveur > fichier .env > valeur par défaut.
  */
 final class Config
 {
+    /** Clé du .env => chemin dans la configuration. */
     private const ENV_MAP = [
-        'DB_HOST'      => 'db.host',
-        'DB_PORT'      => 'db.port',
-        'DB_NAME'      => 'db.name',
-        'DB_USER'      => 'db.user',
-        'DB_PASSWORD'  => 'db.password',
-        'APP_DEBUG'    => 'app.debug',
-        'APP_BASE_PATH' => 'app.base_path',
+        'APP_DEBUG'      => 'app.debug',
+        'APP_BASE_PATH'  => 'app.base_path',
+        'DB_HOST'        => 'db.host',
+        'DB_PORT'        => 'db.port',
+        'DB_NAME'        => 'db.name',
+        'DB_USER'        => 'db.user',
+        'DB_PASSWORD'    => 'db.password',
         'BRAND_WHATSAPP' => 'brand.whatsapp',
+        'BRAND_EMAIL'    => 'brand.email',
     ];
 
     private static array $values = [
@@ -25,18 +28,16 @@ final class Config
         'brand' => ['whatsapp' => '22990000000', 'email' => 'bonjour@dinaperles.com'],
     ];
 
-    public static function load(string $file): void
+    public static function load(string $envFile): void
     {
-        if (is_file($file)) {
-            $local = require $file;
-            if (is_array($local)) {
-                self::$values = array_replace_recursive(self::$values, $local);
+        $file = is_file($envFile) ? self::parseEnvFile($envFile) : [];
+        foreach (self::ENV_MAP as $name => $key) {
+            $value = getenv($name);
+            if ($value === false) {
+                $value = $file[$name] ?? null;
             }
-        }
-        foreach (self::ENV_MAP as $env => $key) {
-            $value = getenv($env);
-            if ($value !== false && $value !== '') {
-                self::set($key, $env === 'APP_DEBUG' ? filter_var($value, FILTER_VALIDATE_BOOLEAN) : $value);
+            if ($value !== null) {
+                self::set($key, $name === 'APP_DEBUG' ? filter_var($value, FILTER_VALIDATE_BOOLEAN) : $value);
             }
         }
     }
@@ -51,6 +52,30 @@ final class Config
             $node = $node[$part];
         }
         return $node;
+    }
+
+    /**
+     * Lecteur de .env minimal : lignes CLE=valeur, commentaires #, guillemets facultatifs.
+     *
+     * @return array<string, string>
+     */
+    private static function parseEnvFile(string $file): array
+    {
+        $values = [];
+        foreach (file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#') || !str_contains($line, '=')) {
+                continue;
+            }
+            [$name, $value] = array_map('trim', explode('=', $line, 2));
+            if (preg_match('/^(["\'])(.*?)\1/', $value, $m)) {
+                $value = $m[2]; // entre guillemets : # et espaces gardés, commentaire après ignoré
+            } else {
+                $value = trim(preg_replace('/\s+#.*$/', '', $value));
+            }
+            $values[$name] = $value;
+        }
+        return $values;
     }
 
     private static function set(string $key, mixed $value): void
