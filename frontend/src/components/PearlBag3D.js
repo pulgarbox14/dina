@@ -81,7 +81,7 @@ const Bag = () => {
 
 export const PearlBag3D = () => (
   <div className="absolute inset-0" data-testid="hero-3d-canvas">
-    <Canvas camera={{ position: [0, 0.4, 5.2], fov: 38 }} dpr={[1, 1.8]} gl={{ antialias: true, alpha: true }}>
+    <Canvas camera={{ position: [0, 0.3, 7.6], fov: 36 }} dpr={[1, 1.8]} gl={{ antialias: true, alpha: true }}>
       <ambientLight intensity={1.1} color="#FFF8F0" />
       <directionalLight position={[5, 8, 6]} intensity={2.6} />
       <directionalLight position={[-6, -3, -2]} intensity={0.9} color="#E2D5C3" />
