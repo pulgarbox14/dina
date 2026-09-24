@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { PageHero, SectionHeading } from "@/components/SectionHeading";
+import { SectionHeading } from "@/components/SectionHeading";
 import { Marquee } from "@/components/Marquee";
-import { ARTISAN_PHOTO, BRAND, GALLERY } from "@/lib/config";
+import { ArtisanHero } from "@/components/ArtisanHero";
+import { GALLERY } from "@/lib/config";
 
 const VALUES = [
   { t: "Tout à la main", d: "Aucune machine n'intervient. Le fil, l'aiguille et des milliers de gestes répétés." },
@@ -14,15 +15,16 @@ const VALUES = [
 export default function Artisane() {
   return (
     <div data-testid="artisane-page">
-      <PageHero eyebrow="L'artisane" title={<>{BRAND.artisan}, <em className="font-light">maître perlière.</em></>} text="Fondatrice de Perlae Atelier, elle conçoit, dessine et tisse chaque sac dans son atelier de Dakar." />
+      <ArtisanHero />
 
-      <section className="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
-        <Reveal className="lg:col-span-7">
-          <div className="aspect-[3/4] lg:aspect-[4/5] overflow-hidden">
-            <img src={ARTISAN_PHOTO} alt={BRAND.artisan} className="h-full w-full object-cover" data-testid="artisan-portrait" />
+      <section className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-28 grid lg:grid-cols-12 gap-12">
+        <Reveal className="lg:col-span-6">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="aspect-[3/4] overflow-hidden rounded-[24px] img-zoom bg-[var(--luster)]"><img src={GALLERY.lune} alt="Sac Lune Nacre" className="h-full w-full object-cover" data-testid="artisan-portrait" /></div>
+            <div className="aspect-[3/4] overflow-hidden rounded-[24px] img-zoom bg-[var(--luster)] mt-10"><img src={GALLERY.orangeTote} alt="Panier Soleil" className="h-full w-full object-cover" /></div>
           </div>
         </Reveal>
-        <div className="lg:col-span-5 lg:pt-24 space-y-8">
+        <div className="lg:col-span-5 lg:col-start-8 lg:pt-12 space-y-8">
           <Reveal>
             <p className="font-display text-3xl sm:text-4xl leading-snug">« J'ai commencé avec un sachet de perles et une idée : faire un sac que personne n'avait jamais vu. »</p>
           </Reveal>
@@ -31,7 +33,7 @@ export default function Artisane() {
             <p className="text-[var(--ink-2)] leading-relaxed mt-5">Aujourd'hui, ses créations voyagent de Dakar à Abidjan, Paris et Montréal. Chaque pièce porte sa signature discrète : une perle dorée cousue à l'intérieur.</p>
           </Reveal>
           <Reveal delay={0.15}>
-            <Link to="/boutique" data-testid="artisan-cta-boutique" className="btn-pill btn-dark">Voir ses créations <ArrowUpRight size={16} /></Link>
+            <Link to="/contact" data-testid="artisan-cta-contact" className="btn-pill btn-dark">Commander sur mesure <ArrowUpRight size={16} /></Link>
           </Reveal>
         </div>
       </section>

@@ -1,6 +1,6 @@
-import { Hero } from "@/components/home/Hero";
+import { HeroEditorial } from "@/components/home/HeroEditorial";
 import { Marquee } from "@/components/Marquee";
-import { StorySplit } from "@/components/home/StorySplit";
+import { Atelier3D } from "@/components/home/Atelier3D";
 import { FeaturedBento } from "@/components/home/FeaturedBento";
 import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
@@ -8,10 +8,10 @@ import { Testimonials } from "@/components/home/Testimonials";
 export default function Home() {
   return (
     <div data-testid="home-page">
-      <Hero />
+      <HeroEditorial />
       <Marquee />
       <FeaturedBento />
-      <StorySplit />
+      <Atelier3D />
       <Process />
       <Testimonials />
     </div>

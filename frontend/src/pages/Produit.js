@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Minus, Plus, MessageCircle, ShoppingBag } from "lucide-react";
+import { Minus, Plus, MessageCircle, ShoppingBag, Box, Image as ImageIcon } from "lucide-react";
+import { ProductViewer3D } from "@/components/ProductViewer3D";
 import { toast } from "sonner";
 import { api } from "@/lib/api";
 import { useCart } from "@/context/CartContext";
@@ -15,6 +16,7 @@ export default function Produit() {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [img, setImg] = useState(0);
+  const [mode, setMode] = useState("photo");
   const { data: p, isLoading } = useQuery({ queryKey: ["product", id], queryFn: () => api.product(id) });
   const { data: related = [] } = useQuery({ queryKey: ["products", "tous"], queryFn: () => api.products({}) });
 
@@ -37,10 +39,20 @@ export default function Produit() {
         </nav>
         <div className="grid lg:grid-cols-12 gap-12">
           <Reveal className="lg:col-span-7">
-            <div className="aspect-[4/5] overflow-hidden bg-[var(--luster)]">
-              <img data-testid="product-main-image" src={p.images[img]} alt={p.name} className="h-full w-full object-cover" />
+            <div className="relative">
+              {mode === "photo" ? (
+                <div className="aspect-[4/5] overflow-hidden rounded-[28px] bg-[var(--luster)]">
+                  <img data-testid="product-main-image" src={p.images[img]} alt={p.name} className="h-full w-full object-cover" />
+                </div>
+              ) : (
+                <ProductViewer3D product={p} />
+              )}
+              <div className="absolute top-5 right-5 glass rounded-full p-1 flex gap-1" data-testid="product-view-toggle">
+                <button data-testid="view-mode-photo" onClick={() => setMode("photo")} className={`h-9 px-4 rounded-full text-xs font-medium inline-flex items-center gap-2 transition-colors ${mode === "photo" ? "bg-[var(--ink)] text-white" : "hover:bg-white"}`}><ImageIcon size={13} /> Photo</button>
+                <button data-testid="view-mode-3d" onClick={() => setMode("3d")} className={`h-9 px-4 rounded-full text-xs font-medium inline-flex items-center gap-2 transition-colors ${mode === "3d" ? "bg-[var(--ink)] text-white" : "hover:bg-white"}`}><Box size={13} /> Vue 3D</button>
+              </div>
             </div>
-            {p.images.length > 1 && (
+            {p.images.length > 1 && mode === "photo" && (
               <div className="flex gap-3 mt-4">
                 {p.images.map((src, i) => (
                   <button key={src} data-testid={`product-thumb-${i}`} onClick={() => setImg(i)} className={`h-24 w-20 overflow-hidden border ${img === i ? "border-[var(--ink)]" : "border-transparent"}`}>

@@ -9,7 +9,9 @@ export const BRAND = {
 };
 
 export const ARTISAN_PHOTO =
-  "https://customer-assets-agu9un31.emergentagent.net/job_landing-3d-shop/artifacts/h8skiuzf_WhatsApp%20Image%202026-09-22%20at%2017.11.52%281%29.jpeg";
+  "https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/5b13992477cd37024403810ba3c8dc8810262c2257b146d9abe91afb4a41274c.jpeg";
+export const ARTISAN_PHOTO_ORIGINAL =
+  "https://customer-assets-cm19k8pv.emergentagent.net/job_7ee9dc22-104f-4f5f-bce4-68271cc60488/artifacts/9pj36h2y_WhatsApp%20Image%202026-09-22%20at%2017.11.51.jpeg";
 
 export const IMG =
   "https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/";

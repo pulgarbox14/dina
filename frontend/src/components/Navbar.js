@@ -29,11 +29,9 @@ export const Navbar = () => {
   return (
     <header
       data-testid="navbar"
-      className={`fixed top-0 inset-x-0 z-50 transition-[background-color,box-shadow] duration-500 ${
-        scrolled ? "glass shadow-[0_1px_0_0_var(--line)]" : "bg-transparent"
-      }`}
+      className="fixed top-3 sm:top-5 inset-x-3 sm:inset-x-5 z-50"
     >
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-[76px] flex items-center justify-between">
+      <div className={`max-w-[1400px] mx-auto px-4 sm:px-6 h-[64px] rounded-full flex items-center justify-between glass border border-white/60 transition-shadow duration-500 ${scrolled ? "shadow-[0_18px_50px_-24px_rgba(20,20,20,0.35)]" : "shadow-[0_10px_40px_-24px_rgba(20,20,20,0.25)]"}`}>
         <Link to="/" data-testid="nav-logo-link">
           <Logo />
         </Link>
@@ -54,7 +52,7 @@ export const Navbar = () => {
           <button
             data-testid="cart-drawer-toggle"
             onClick={() => setOpen(true)}
-            className="relative h-11 w-11 rounded-full border border-[var(--line)] flex items-center justify-center hover:bg-[var(--ink)] hover:text-[var(--pearl)] transition-colors duration-300"
+            className="relative h-11 w-11 rounded-full bg-white border border-[var(--line)] flex items-center justify-center hover:bg-[var(--ink)] hover:text-[var(--pearl)] transition-colors duration-300"
             aria-label="Panier"
           >
             <ShoppingBag size={18} strokeWidth={1.6} />
@@ -70,7 +68,7 @@ export const Navbar = () => {
           <button
             data-testid="mobile-menu-toggle"
             onClick={() => setMenu((m) => !m)}
-            className="md:hidden h-11 w-11 rounded-full border border-[var(--line)] flex items-center justify-center"
+            className="md:hidden h-11 w-11 rounded-full bg-white border border-[var(--line)] flex items-center justify-center"
             aria-label="Menu"
           >
             {menu ? <X size={18} /> : <Menu size={18} />}
@@ -84,7 +82,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="md:hidden glass border-t border-[var(--line)] px-6 py-8 flex flex-col gap-6"
+            className="md:hidden glass mt-3 rounded-[28px] border border-white/60 shadow-xl px-6 py-8 flex flex-col gap-6"
           >
             {LINKS.map((l) => (
               <NavLink key={l.to} to={l.to} data-testid={`mobile-nav-link-${l.id}`} className="font-display text-3xl">
