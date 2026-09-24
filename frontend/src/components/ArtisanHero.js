@@ -24,8 +24,8 @@ const Badge = ({ icon: Icon, title, text, className, delay, rotate = 0, color = 
 
 export const ArtisanHero = () => (
   <section data-testid="artisan-hero" className="relative pt-[100px] lg:pt-[120px] overflow-hidden bg-white">
-    <div className="flex flex-col-reverse lg:flex-col">
-    <div className="relative max-w-[1440px] mx-auto px-6 text-center mt-4 lg:mt-0">
+    <div className="flex flex-col-reverse">
+    <div className="relative w-full max-w-[1440px] mx-auto px-6 text-center mt-4 lg:mt-8">
       <motion.span {...fade(0.15)} className="inline-flex items-center gap-2 bg-[var(--bg-elevated)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
         <Sparkles size={12} /> L'artisane · Fondatrice
       </motion.span>
@@ -41,7 +41,7 @@ export const ArtisanHero = () => (
       </motion.div>
     </div>
 
-    <div className="relative mt-0 lg:mt-6 h-[400px] sm:h-[560px] lg:h-[700px] max-w-[1440px] mx-auto flex items-end justify-center">
+    <div className="relative mt-0 h-[400px] sm:h-[520px] lg:h-[600px] w-full max-w-[1440px] mx-auto flex items-end justify-center">
       <motion.img
         src="/artisan-cutout.png"
         alt={BRAND.artisan}
