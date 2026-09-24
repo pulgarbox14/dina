@@ -97,3 +97,6 @@ frontend/node_modules/.cache/default-development/9.pack
 credentials.json
 *.key
 .credentials
+
+# PHP — configuration locale (mots de passe MySQL) : jamais dans Git
+app/config.local.php

@@ -3,17 +3,18 @@
 ## Problème initial
 Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui confectionne des sacs et bijoux en perles. Site blanc, pages Accueil / Boutique / À propos / Contact / détail produit / panier / page artisane. Devise FCFA. Photos retouchées façon studio.
 
-## Architecture
-- Frontend React 19 (CRA/craco) + Tailwind + shadcn + framer-motion + lenis + @react-three/fiber/drei (three)
-- Backend FastAPI (`/api`) + MongoDB (motor). Seed produits au démarrage (`seed_data.py`).
-- Panier en localStorage (CartContext). Commandes enregistrées en base + lien WhatsApp pré-rempli.
+## Architecture (branche PHP)
+- PHP 8.1+ sans framework : contrôleur frontal `public/index.php`, routeur maison, gabarits `app/views`
+- MySQL / MariaDB via PDO (requêtes préparées) : `database/schema.sql` + `database/seed.sql`
+- Tailwind compilé (`public/assets/css/app.css`), 3D Three.js compilée (`public/assets/js/pearl3d.js`), JS sans framework (`public/assets/js/app.js`)
+- Panier en session PHP (id → quantité), prix toujours relus en base. Commandes enregistrées en base + lien WhatsApp pré-rempli.
+- Ancienne architecture (branche `main`) : React 19 + FastAPI + MongoDB.
 
-## Endpoints
-- GET /api/products?category=&featured=
-- GET /api/products/{id}
-- POST /api/orders · GET /api/orders
-- POST /api/contact
-- POST /api/newsletter
+## Routes
+- GET / · /boutique?categorie= · /produit/{id} · /artisane · /a-propos · /contact · /panier · /commande/confirmee
+- POST /panier/ajouter · /panier/modifier · /panier/retirer (JSON si Accept: application/json)
+- POST /commande · /contact · /newsletter
+- Protection CSRF sur tous les POST ; aucune liste de commandes exposée publiquement.
 
 ## Implémenté (24/09/2026)
 - Héros 3D (sac en perles Three.js, suit la souris) + révélation ligne par ligne
@@ -35,8 +36,15 @@ Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui conf
 - Portrait détouré recadré sur mobile (visage visible), fondu doux sur le bord du bras + fondu bas
 - Bouton « Commander » masqué sur mobile
 
+## Implémenté (24/09/2026 — migration PHP + MySQL)
+- Réécriture complète en PHP (pages, panier, commande, contact, newsletter) avec rendu identique
+- 3D portée en Three.js pur (mêmes modèles perle par perle, Float + OrbitControls reproduits)
+- Sécurité : total recalculé serveur, CSRF, XSS, anti-spam, GET /api/orders supprimé
+- Tests : tests/http_test.php (42 vérifications)
+
 ## Backlog
-- P0 : numéro WhatsApp réel (`src/lib/config.js` → BRAND.whatsapp), nom réel de l'artisane
+- P0 : numéro WhatsApp réel (`app/config.local.php` → brand.whatsapp)
+- P0 : rapatrier les photos hébergées chez Emergent dans public/assets/img
 - P1 : espace admin pour ajouter produits/photos (upload), gestion des commandes
 - P1 : paiement en ligne (Wave / Orange Money / Stripe)
 - P2 : multi-langue, avis clients dynamiques, Instagram feed

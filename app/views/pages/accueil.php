@@ -1,0 +1,172 @@
+<?php
+/** @var list<array> $featured  produits phares */
+use App\View;
+
+$heroProduct = null;
+foreach ($featured as $p) {
+    if ($p['id'] === 'sac-lune-nacre') {
+        $heroProduct = $p;
+    }
+}
+$heroProduct ??= $featured[0] ?? null;
+$minis = array_slice(array_values(array_filter($featured, fn ($p) => $p['id'] !== ($heroProduct['id'] ?? null))), 0, 3);
+
+$miniCard = static function (array $p, float $delay): string {
+    ob_start(); ?>
+    <div data-reveal style="--delay: <?= $delay ?>s; --y: 24px" class="w-[168px] shrink-0 card-3d p-3" data-testid="hero-mini-card-<?= e($p['id']) ?>">
+        <a href="<?= e(url('/produit/' . $p['id'])) ?>" class="block">
+            <div class="aspect-square rounded-xl overflow-hidden bg-[var(--luster)] img-zoom">
+                <img src="<?= e($p['images'][0] ?? '') ?>" alt="<?= e($p['name']) ?>" class="h-full w-full object-cover">
+            </div>
+            <div class="font-display text-lg mt-3 leading-none"><?= price((int) $p['price']) ?></div>
+            <div class="text-[12px] text-[var(--ink-2)] mt-1 leading-snug line-clamp-2 h-8"><?= e($p['name']) ?></div>
+            <div class="flex items-center justify-between mt-2">
+                <span class="text-[10px] text-[var(--ink-3)]"><?= (int) $p['weaving_hours'] ?> h de tissage</span>
+                <span class="h-7 px-3 rounded-full bg-[var(--ink)] text-white text-[11px] flex items-center">Voir</span>
+            </div>
+        </a>
+    </div>
+    <?php return (string) ob_get_clean();
+};
+?>
+<div data-testid="home-page">
+
+    <?php /* ——— Héros éditorial ——— */ ?>
+    <section data-testid="hero-section" class="px-3 sm:px-5 pt-[92px]">
+        <div class="relative rounded-[32px] sm:rounded-[40px] overflow-hidden min-h-[860px] sm:min-h-[640px] h-[calc(100svh-110px)] max-h-[900px] bg-[var(--bg-elevated)] border border-[var(--line)]">
+            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_100%,#ffffff_0%,transparent_60%)]"></div>
+            <img src="<?= e(url('artisan-cutout.png')) ?>" alt="L'artisane et son sac en perles" data-reveal style="--y: 40px; --dur: 1.6s"
+                 class="artisan-mask absolute right-[-8%] sm:right-[4%] lg:right-[31%] bottom-0 h-[40%] sm:h-[80%] lg:h-[96%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_40px_80px_rgba(20,20,20,0.18)] z-0">
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--bg-elevated)] via-[var(--bg-elevated)]/70 to-transparent"></div>
+
+            <div class="absolute left-6 sm:left-10 lg:left-14 top-[7%] lg:top-[12%] max-w-[92%] lg:max-w-[46%] text-[var(--ink)]">
+                <span data-reveal style="--delay: .2s; --y: 24px" class="inline-flex items-center gap-2 bg-white border border-[var(--line)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
+                    <?= icon('sparkles', 12) ?> Haute perlerie · Cotonou
+                </span>
+                <h1 class="font-display text-[12vw] sm:text-[8vw] lg:text-[4.9vw] leading-[0.98] tracking-[-0.035em] mt-6">
+                    <?= View::partial('partials/line-reveal', ['lines' => ['Portez la', 'lumière, perle', 'après perle.'], 'delay' => 0.35]) ?>
+                </h1>
+                <p data-reveal style="--delay: .95s; --y: 24px" class="mt-6 max-w-[78%] sm:max-w-sm text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+                    Sacs et parures en perles nacrées, entièrement tissés à la main dans notre atelier. Une seule pièce par modèle.
+                </p>
+                <div data-reveal style="--delay: 1.1s; --y: 24px" class="mt-8 flex flex-wrap gap-3">
+                    <a href="<?= e(url('/boutique')) ?>" data-testid="hero-cta-explore-button" class="btn-pill btn-dark">Découvrir la boutique <?= icon('arrow-up-right', 16) ?></a>
+                    <a href="<?= e(url('/artisane')) ?>" data-testid="hero-cta-artisan-button" class="btn-pill btn-ghost bg-white">Rencontrer l'artisane</a>
+                </div>
+            </div>
+
+            <div data-reveal style="--delay: 1.2s; --y: 24px" class="hidden md:flex absolute right-8 lg:right-12 top-[14%] flex-col items-end gap-3" data-testid="hero-social-proof">
+                <div class="flex -space-x-3">
+                    <?php foreach (['orangeRound', 'purple', 'amber'] as $g): ?>
+                        <img src="<?= e(gallery($g)) ?>" alt="" class="h-12 w-12 rounded-full object-cover border-2 border-white shadow-lg">
+                    <?php endforeach; ?>
+                </div>
+                <div class="font-display text-4xl leading-none">+200</div>
+                <div class="text-[11px] uppercase tracking-[0.2em] text-[var(--ink-3)]">pièces confiées à leurs propriétaires</div>
+            </div>
+
+            <?php if ($heroProduct): ?>
+                <div data-reveal style="--delay: 1.35s; --y: 24px" class="hidden md:block absolute right-8 lg:right-12 top-[38%] text-right" data-testid="hero-featured-product">
+                    <div class="text-xs text-[var(--ink-3)] max-w-[220px] ml-auto"><?= e($heroProduct['name']) ?> · <?= e($heroProduct['subtitle']) ?></div>
+                    <form method="post" action="<?= e(url('/panier/ajouter')) ?>" data-cart-form>
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="product_id" value="<?= e($heroProduct['id']) ?>">
+                        <input type="hidden" name="qty" value="1">
+                        <button data-testid="hero-add-to-cart-button"
+                                class="mt-3 inline-flex items-center gap-3 bg-white border border-[var(--line)] text-[var(--ink)] rounded-full pl-5 pr-1.5 h-12 text-sm font-medium shadow-[0_20px_40px_-24px_rgba(20,20,20,0.35)] hover:-translate-y-0.5 transition-transform">
+                            Ajouter au panier · <?= price((int) $heroProduct['price']) ?>
+                            <span class="h-9 w-9 rounded-full bg-[var(--ink)] text-white flex items-center justify-center"><?= icon('shopping-bag', 15) ?></span>
+                        </button>
+                    </form>
+                </div>
+            <?php endif; ?>
+
+            <div class="hidden lg:flex absolute right-8 lg:right-12 bottom-8 gap-4 z-10" data-testid="hero-mini-cards">
+                <?php foreach (array_slice($minis, 0, 2) as $i => $p) echo $miniCard($p, 1.3 + $i * 0.12); ?>
+            </div>
+        </div>
+
+        <div class="lg:hidden flex gap-4 overflow-x-auto px-3 py-6 -mx-3" data-testid="hero-mini-cards-mobile">
+            <?php foreach ($minis as $i => $p) echo $miniCard($p, 0.2 + $i * 0.1); ?>
+        </div>
+    </section>
+
+    <?= View::partial('partials/marquee') ?>
+
+    <?php /* ——— Sélection (bento) ——— */ ?>
+    <?php [$a, $b, $c, $d, $e2, $f] = array_pad($featured, 6, null); ?>
+    <section data-testid="featured-section" class="max-w-[1440px] mx-auto px-6 lg:px-12 py-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <?= View::partial('partials/section-heading', ['eyebrow' => 'Sélection', 'titleHtml' => 'Les pièces du moment', 'text' => "Une sélection courte : chaque modèle n'existe qu'en quelques exemplaires."]) ?>
+            <div data-reveal style="--delay: .1s">
+                <a href="<?= e(url('/boutique')) ?>" data-testid="featured-view-all-link" class="btn-pill btn-ghost">Toute la boutique <?= icon('arrow-up-right', 16) ?></a>
+            </div>
+        </div>
+        <?php if ($featured): ?>
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-6 lg:gap-8">
+                <?php foreach ([[$a, 'md:col-span-3', 0, 'aspect-[4/5]'], [$b, 'md:col-span-3', .1, 'aspect-[4/5]'], [$c, 'md:col-span-2', .05, 'aspect-[3/4]'], [$d, 'md:col-span-2', .1, 'aspect-[3/4]'], [$e2, 'md:col-span-2', .15, 'aspect-[3/4]']] as [$p, $span, $delay, $aspect]): ?>
+                    <div data-reveal style="--delay: <?= $delay ?>s" class="<?= $span ?>">
+                        <?php if ($p) echo View::partial('partials/product-card', ['product' => $p, 'aspect' => $aspect]); ?>
+                    </div>
+                <?php endforeach; ?>
+                <?php if ($f): ?>
+                    <div data-reveal style="--delay: .1s" class="md:col-span-6">
+                        <a href="<?= e(url('/produit/' . $f['id'])) ?>" data-testid="featured-wide-card-<?= e($f['id']) ?>" class="group grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
+                            <div class="img-zoom overflow-hidden aspect-[4/3] md:aspect-auto md:min-h-[420px]">
+                                <img src="<?= e($f['images'][0] ?? '') ?>" alt="<?= e($f['name']) ?>" loading="lazy" class="h-full w-full object-cover">
+                            </div>
+                            <div class="p-10 lg:p-16 flex flex-col justify-between">
+                                <span class="eyebrow !text-white/50"><?= e($f['tag'] ?: 'Collection') ?></span>
+                                <div>
+                                    <h3 class="font-display text-4xl lg:text-5xl leading-tight mt-8"><?= e($f['name']) ?></h3>
+                                    <p class="text-white/70 mt-4 max-w-md"><?= e($f['description']) ?></p>
+                                </div>
+                                <span class="mt-10 inline-flex items-center gap-2 text-sm link-underline w-fit">Voir la pièce <?= icon('arrow-up-right', 16) ?></span>
+                            </div>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </section>
+
+    <?php /* ——— Atelier 3D interactif ——— */ ?>
+    <section data-testid="atelier-3d-section" class="max-w-[1440px] mx-auto px-6 lg:px-12 py-28 grid lg:grid-cols-12 gap-12 items-center">
+        <div data-reveal class="lg:col-span-7 relative aspect-[5/4] rounded-[36px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#ffffff_0%,#f3f3f5_65%,#e7e7eb_100%)]">
+            <div id="atelier-scene" class="absolute inset-0" data-pearl-scene data-shape="round" data-accent="#f97316" data-testid="atelier-3d-canvas"></div>
+            <div class="absolute top-6 left-6 glass rounded-full px-4 h-9 flex items-center text-xs font-medium">Interactif · glissez pour tourner</div>
+        </div>
+        <div class="lg:col-span-5">
+            <div data-reveal>
+                <span class="eyebrow">Composez votre pièce</span>
+                <h2 class="font-display text-4xl sm:text-5xl leading-[1.02] tracking-tight mt-4">Choisissez la forme, choisissez la fleur.</h2>
+                <p class="text-[var(--ink-2)] mt-6 leading-relaxed">Chaque sac est tissé à la commande. Jouez avec les formes et les accents de couleur, puis demandez votre modèle sur mesure.</p>
+            </div>
+            <div data-reveal style="--delay: .1s" class="mt-8">
+                <div class="eyebrow mb-3">Forme</div>
+                <div class="flex gap-2" data-testid="atelier-shape-options" data-pearl-group="shape">
+                    <?php foreach ([['round', 'Arrondi'], ['tote', 'Cabas'], ['necklace', 'Parure']] as [$s, $l]): ?>
+                        <button type="button" data-pearl-target="atelier-scene" data-shape="<?= $s ?>" data-testid="atelier-shape-<?= $s ?>" aria-pressed="<?= $s === 'round' ? 'true' : 'false' ?>"
+                                class="pearl-option rounded-full px-5 h-10 text-sm border transition-colors border-[var(--line)] hover:border-[var(--ink)]"><?= $l ?></button>
+                    <?php endforeach; ?>
+                </div>
+                <div class="eyebrow mb-3 mt-8">Accent</div>
+                <div class="flex flex-wrap gap-2" data-testid="atelier-accent-options" data-pearl-group="accent">
+                    <?php foreach ([['Nacre blanche', '', 'blanche'], ['Fleur orange', '#f97316', 'orange'], ['Fleur violette', '#a855f7', 'violette'], ['Bleu lagon', '#60a5fa', 'lagon']] as [$l, $c, $slug]): ?>
+                        <button type="button" data-pearl-target="atelier-scene" data-accent="<?= $c ?>" data-testid="atelier-accent-<?= $slug ?>" aria-pressed="<?= $c === '#f97316' ? 'true' : 'false' ?>"
+                                class="pearl-swatch-option inline-flex items-center gap-2 rounded-full pl-2 pr-4 h-10 text-sm border transition-colors border-[var(--line)] hover:border-[var(--ink)]">
+                            <span class="h-6 w-6 rounded-full border border-white shadow" style="background: <?= $c ?: 'linear-gradient(135deg,#fff,#e6e2da)' ?>"></span>
+                            <?= e($l) ?>
+                        </button>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div data-reveal style="--delay: .15s">
+                <a href="<?= e(url('/contact')) ?>" data-testid="atelier-custom-cta" class="btn-pill btn-dark mt-10">Demander ce modèle <?= icon('arrow-up-right', 16) ?></a>
+            </div>
+        </div>
+    </section>
+
+    <?= View::partial('partials/process') ?>
+    <?= View::partial('partials/testimonials') ?>
+</div>
