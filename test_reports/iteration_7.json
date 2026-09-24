@@ -1,0 +1,42 @@
+{
+  "summary": "Frontend-only verification of /artisane page layout bug fix. Both desktop (1920x900) and mobile (390x800) viewports show the artisan photo (data-testid=artisan-cutout) BEFORE the h1 text block. Achieved via flex flex-col-reverse wrapping in ArtisanHero.js.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_results": {
+    "desktop_1920x900": {
+      "artisan_cutout_y": 120,
+      "h1_y": 804,
+      "image_above_h1": true,
+      "image_visible_in_viewport_at_scroll0": true,
+      "badges_count": 4,
+      "badges_left": 2,
+      "badges_right": 2,
+      "badges_visible": ["100 % main", "16 à 30 h", "+200 pièces", "Cotonou"]
+    },
+    "mobile_390x800": {
+      "artisan_cutout_y": 100,
+      "h1_y": 568,
+      "image_above_h1": true,
+      "overlap": false
+    },
+    "other_elements": {
+      "artisan_cta_boutique": true,
+      "stats_200_6ans_3": true,
+      "atelier_gallery": true,
+      "console_errors": []
+    }
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "ArtisanHero uses flex flex-col-reverse to place image before text in both desktop and mobile. All 4 badges use hidden md:flex so they only appear on md+ screens (correct per requirements). All acceptance criteria met."
+}
