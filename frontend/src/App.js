@@ -10,6 +10,7 @@ import Home from "@/pages/Home";
 import Boutique from "@/pages/Boutique";
 import Produit from "@/pages/Produit";
 import Artisane from "@/pages/Artisane";
+import ArtisaneV2 from "@/pages/ArtisaneV2";
 import APropos from "@/pages/APropos";
 import Panier from "@/pages/Panier";
 import Contact from "@/pages/Contact";
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/boutique" element={<Boutique />} />
                 <Route path="/produit/:id" element={<Produit />} />
                 <Route path="/artisane" element={<Artisane />} />
+                <Route path="/artisane-2" element={<ArtisaneV2 />} />
                 <Route path="/a-propos" element={<APropos />} />
                 <Route path="/panier" element={<Panier />} />
                 <Route path="/contact" element={<Contact />} />

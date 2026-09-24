@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
 import { SectionHeading } from "@/components/SectionHeading";
 
 const STEPS = [
@@ -9,18 +10,20 @@ const STEPS = [
 ];
 
 export const Process = () => (
-  <section data-testid="process-section" className="bg-[var(--bg-elevated)] py-32">
-    <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+  <section data-testid="process-section" className="px-3 sm:px-5 py-8">
+    <div className="rounded-[40px] bg-[var(--bg-elevated)] py-28 px-6 lg:px-16">
       <SectionHeading eyebrow="Savoir-faire" title="Quatre gestes, une pièce unique." />
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--line)] mt-16 border border-[var(--line)]">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
         {STEPS.map((s, i) => (
-          <Reveal key={s.n} delay={i * 0.1} className="bg-[var(--bg-elevated)] p-10 min-h-[300px] flex flex-col justify-between group hover:bg-white transition-colors duration-500">
-            <span className="font-mono text-xs text-[var(--ink-3)]">{s.n}</span>
-            <div>
-              <div className="pearl-dot h-5 w-5 rounded-full mb-6 group-hover:scale-125 transition-transform duration-500" />
-              <h3 className="font-display text-3xl leading-tight">{s.t}</h3>
-              <p className="text-sm text-[var(--ink-2)] mt-4 leading-relaxed">{s.d}</p>
-            </div>
+          <Reveal key={s.n} delay={i * 0.1}>
+            <TiltCard className="card-3d p-9 min-h-[300px] flex flex-col justify-between group">
+              <span className="font-mono text-xs text-[var(--ink-3)]">{s.n}</span>
+              <div>
+                <div className="pearl-dot h-5 w-5 rounded-full mb-6 group-hover:scale-125 transition-transform duration-500" />
+                <h3 className="font-display text-2xl leading-tight">{s.t}</h3>
+                <p className="text-sm text-[var(--ink-2)] mt-4 leading-relaxed">{s.d}</p>
+              </div>
+            </TiltCard>
           </Reveal>
         ))}
       </div>

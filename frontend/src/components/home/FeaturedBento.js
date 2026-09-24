@@ -33,7 +33,7 @@ export const FeaturedBento = () => {
 };
 
 const WideCard = ({ product }) => (
-  <Link to={`/produit/${product.id}`} data-testid={`featured-wide-card-${product.id}`} className="group grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden">
+  <Link to={`/produit/${product.id}`} data-testid={`featured-wide-card-${product.id}`} className="group grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
     <div className="img-zoom overflow-hidden aspect-[4/3] md:aspect-auto md:min-h-[420px]">
       <img src={product.images[0]} alt={product.name} className="h-full w-full object-cover" />
     </div>

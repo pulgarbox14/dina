@@ -49,6 +49,7 @@ export const Navbar = () => {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <Link to="/boutique" data-testid="nav-cta-button" className="hidden md:inline-flex btn-pill btn-dark !h-11 !px-6">Commander</Link>
           <button
             data-testid="cart-drawer-toggle"
             onClick={() => setOpen(true)}

@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/TiltCard";
 import { SectionHeading } from "@/components/SectionHeading";
 
 const REVIEWS = [
@@ -12,8 +13,9 @@ export const Testimonials = () => (
     <SectionHeading eyebrow="Elles les portent" title="Ce qu'elles en disent" align="center" />
     <div className="grid md:grid-cols-3 gap-6 mt-16">
       {REVIEWS.map((r, i) => (
-        <Reveal key={r.name} delay={i * 0.1} className="bg-white p-10 flex flex-col justify-between min-h-[280px] border border-[var(--line)]">
-          <p className="font-display text-2xl leading-snug italic font-light">« {r.text} »</p>
+        <Reveal key={r.name} delay={i * 0.1}>
+          <TiltCard className="card-3d p-9 flex flex-col justify-between min-h-[280px]">
+          <p className="font-display text-xl leading-snug font-normal">« {r.text} »</p>
           <div className="mt-8 flex items-center gap-3">
             <span className="pearl-dot h-9 w-9 rounded-full" />
             <div>
@@ -21,6 +23,7 @@ export const Testimonials = () => (
               <div className="text-xs text-[var(--ink-3)]">{r.city} · Achat vérifié</div>
             </div>
           </div>
+          </TiltCard>
         </Reveal>
       ))}
     </div>

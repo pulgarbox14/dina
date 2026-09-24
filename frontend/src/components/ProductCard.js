@@ -14,12 +14,12 @@ export const ProductCard = ({ product, aspect = "aspect-[4/5]" }) => {
   };
 
   return (
-    <TiltCard className="group bg-white rounded-sm" data-testid={`product-card-${product.id}`}>
+    <TiltCard className="group card-3d p-3" data-testid={`product-card-${product.id}`}>
       <Link to={`/produit/${product.id}`} className="block">
-        <div className={`relative overflow-hidden ${aspect} img-zoom bg-[var(--luster)]`}>
+        <div className={`relative overflow-hidden rounded-[22px] ${aspect} img-zoom bg-[var(--luster)]`}>
           <img src={product.images[0]} alt={product.name} loading="lazy" className="h-full w-full object-cover" />
           {product.tag && (
-            <span className="absolute top-4 left-4 bg-white/85 backdrop-blur px-3 py-1 text-[10px] uppercase tracking-[0.2em]">
+            <span className="absolute top-4 left-4 bg-white/85 backdrop-blur px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em]">
               {product.tag}
             </span>
           )}
@@ -32,9 +32,9 @@ export const ProductCard = ({ product, aspect = "aspect-[4/5]" }) => {
             <Plus size={18} />
           </button>
         </div>
-        <div className="pt-5 pb-6 px-1 flex justify-between gap-4">
+        <div className="pt-5 pb-3 px-2 flex justify-between gap-4">
           <div>
-            <h3 className="font-display text-2xl leading-tight">{product.name}</h3>
+            <h3 className="font-display text-xl leading-tight">{product.name}</h3>
             <p className="text-sm text-[var(--ink-3)] mt-1">{product.subtitle}</p>
           </div>
           <span className="font-mono text-sm mt-1 whitespace-nowrap" data-testid={`product-price-${product.id}`}>{formatPrice(product.price)}</span>

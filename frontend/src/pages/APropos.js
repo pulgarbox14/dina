@@ -16,7 +16,7 @@ export default function APropos() {
 
       <section className="max-w-[1440px] mx-auto px-6 lg:px-12 grid md:grid-cols-3 gap-4">
         {[GALLERY.lune, GALLERY.amber, GALLERY.orangeTote].map((src, i) => (
-          <Reveal key={src} delay={i * 0.1} className={`img-zoom overflow-hidden bg-[var(--luster)] ${i === 1 ? "md:mt-16" : ""} aspect-[3/4]`}>
+          <Reveal key={src} delay={i * 0.1} className={`img-zoom overflow-hidden rounded-[28px] bg-[var(--luster)] ${i === 1 ? "md:mt-16" : ""} aspect-[3/4]`}>
             <img src={src} alt="Création Perlae Atelier" className="h-full w-full object-cover" />
           </Reveal>
         ))}
