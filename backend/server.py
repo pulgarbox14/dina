@@ -19,7 +19,7 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-app = FastAPI(title="Perlae Atelier API")
+app = FastAPI(title="Dina Perles API")
 api_router = APIRouter(prefix="/api")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -96,7 +96,7 @@ async def seed_products():
 
 @api_router.get("/")
 async def root():
-    return {"message": "Perlae Atelier API"}
+    return {"message": "Dina Perles API"}
 
 
 @api_router.get("/products", response_model=List[Product])

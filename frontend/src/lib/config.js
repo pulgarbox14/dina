@@ -1,11 +1,11 @@
 export const BRAND = {
-  name: "Perlae Atelier",
+  name: "Dina Perles",
   tagline: "Haute Perlerie Artisanale",
-  artisan: "Aïssatou Diop",
+  artisan: "Zinsou Secondina Dagbédé",
   city: "Cotonou, Bénin",
   whatsapp: "22990000000",
-  email: "bonjour@perlae-atelier.com",
-  instagram: "@perlae.atelier",
+  email: "bonjour@dinaperles.com",
+  instagram: "@dina.perles",
 };
 
 export const ARTISAN_PHOTO =

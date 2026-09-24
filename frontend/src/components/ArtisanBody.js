@@ -8,7 +8,7 @@ import { GALLERY } from "@/lib/config";
 
 const VALUES = [
   { t: "Tout à la main", d: "Aucune machine n'intervient. Le fil, l'aiguille et des milliers de gestes répétés." },
-  { t: "Une pièce, une personne", d: "Aïssatou tisse chaque commande elle-même, du premier nœud aux finitions." },
+  { t: "Une pièce, une personne", d: "Secondina tisse chaque commande elle-même, du premier nœud aux finitions." },
   { t: "Transmission", d: "Elle forme aujourd'hui de jeunes femmes de son quartier au tissage de perles." },
 ];
 
@@ -26,7 +26,7 @@ export const ArtisanBody = () => (
           <p className="font-display text-2xl sm:text-3xl leading-snug">« J'ai commencé avec un sachet de perles et une idée : faire un sac que personne n'avait jamais vu. »</p>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="text-[var(--ink-2)] leading-relaxed">Autodidacte, Aïssatou a appris le tissage de perles en observant sa grand-mère confectionner des colliers de cérémonie. Elle a transposé ce geste ancestral au sac à main, en inventant ses propres motifs : la fleur orange, la fleur d'améthyste, la trame lune.</p>
+          <p className="text-[var(--ink-2)] leading-relaxed">Autodidacte, Secondina a appris le tissage de perles en observant sa grand-mère confectionner des colliers de cérémonie. Elle a transposé ce geste ancestral au sac à main, en inventant ses propres motifs : la fleur orange, la fleur d'améthyste, la trame lune.</p>
           <p className="text-[var(--ink-2)] leading-relaxed mt-5">Aujourd'hui, ses créations voyagent de Cotonou à Abidjan, Paris et Montréal. Chaque pièce porte sa signature discrète : une perle dorée cousue à l'intérieur.</p>
         </Reveal>
         <Reveal delay={0.15}>
@@ -40,7 +40,7 @@ export const ArtisanBody = () => (
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14" data-testid="atelier-gallery">
         {[GALLERY.classique, GALLERY.orangeRound, GALLERY.whiteSet, GALLERY.purple, GALLERY.amberPlate, GALLERY.trio, GALLERY.orangeTote, GALLERY.ringSet].map((src, i) => (
           <Reveal key={src} delay={(i % 4) * 0.08} className={`img-zoom overflow-hidden rounded-[24px] bg-[var(--luster)] ${i % 3 === 0 ? "row-span-2 aspect-[3/5]" : "aspect-[3/4]"}`}>
-            <img src={src} alt="Création Perlae Atelier" loading="lazy" className="h-full w-full object-cover" />
+            <img src={src} alt="Création Dina Perles" loading="lazy" className="h-full w-full object-cover" />
           </Reveal>
         ))}
       </div>

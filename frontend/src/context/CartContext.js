@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const CartContext = createContext(null);
-const KEY = "perlae-cart";
+const KEY = "dina-perles-cart";
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState(() => {

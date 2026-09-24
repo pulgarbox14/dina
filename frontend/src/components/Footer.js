@@ -29,12 +29,12 @@ export const Footer = () => {
       <div className="rounded-[40px] bg-[var(--bg-elevated)] px-6 sm:px-10 lg:px-16 pt-14 pb-8 overflow-hidden relative">
         <div className="grid lg:grid-cols-12 gap-10 items-end pb-12 border-b border-[var(--line)]">
           <div className="lg:col-span-7">
-            <span className="eyebrow">Perlae Atelier</span>
+            <span className="eyebrow">Dina Perles</span>
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.02] mt-4">Une pièce unique <br className="hidden sm:block" /> vous attend.</h2>
           </div>
           <div className="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
             <Link to="/boutique" data-testid="footer-cta-boutique" className="btn-pill btn-dark">Voir la boutique <ArrowUpRight size={16} /></Link>
-            <a href={whatsappLink("Bonjour Perlae Atelier !")} target="_blank" rel="noreferrer" data-testid="footer-whatsapp-link" className="btn-pill btn-ghost bg-white"><MessageCircle size={16} /> WhatsApp</a>
+            <a href={whatsappLink("Bonjour Dina Perles !")} target="_blank" rel="noreferrer" data-testid="footer-whatsapp-link" className="btn-pill btn-ghost bg-white"><MessageCircle size={16} /> WhatsApp</a>
           </div>
         </div>
 
@@ -69,7 +69,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-4 pt-6 border-t border-[var(--line)] text-xs text-[var(--ink-3)]">
           <span>© {new Date().getFullYear()} {BRAND.name}. Fait main avec patience.</span>
           <div className="flex flex-wrap gap-2">
-            {[[Hand, "100 % fait main"], [Truck, "Livraison Afrique & monde"], [ShieldCheck, "Wave · Orange Money · Livraison"]].map(([Icon, t]) => (
+            {[[Hand, "100 % fait main"], [Truck, "Livraison Afrique & monde"], [ShieldCheck, "MTN MoMo · Moov Money · Livraison"]].map(([Icon, t]) => (
               <span key={t} className="inline-flex items-center gap-1.5 bg-white border border-[var(--line)] rounded-full px-3 h-7"><Icon size={12} /> {t}</span>
             ))}
           </div>

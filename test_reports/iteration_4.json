@@ -1,0 +1,29 @@
+{
+  "summary": "Frontend-only regression testing after Dakar/Sénégal -> Cotonou/Bénin fix. Verified all 7 routes (/, /boutique, /produit/sac-lune-nacre with accordion-shipping opened, /artisane, /a-propos, /contact with faq-trigger-0 and faq-trigger-3 opened, /panier). Zero occurrences of 'Dakar' or 'Sénégal' anywhere in document.body.innerText. Cotonou/Bénin appear correctly (hero badge 'HAUTE PERLERIE · COTONOU', marquee/footer mentions Bénin, contact-address='Cotonou, Bénin', FAQ mentions Bénin). All three WhatsApp links (footer-whatsapp-link, contact-whatsapp-link, whatsapp-order-button) use https://wa.me/22990000000 (indicatif 229 ✓). No console errors on page loads. HOWEVER, the second part of the correctif ('Wave/Orange Money remplacés par MTN MoMo/Moov Money') is NOT fully applied: 'Wave' and 'Orange Money' still appear in Footer trust badges (visible on every page via footer) and in Panier subtitle. MTN/Moov Money only appear on /contact page.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Footer", "issue": "Trust badge still reads 'Wave · Orange Money · Livraison' — should be 'MTN MoMo · Moov Money · Livraison' per user requirement. Appears on EVERY page.", "selector": "/app/frontend/src/components/Footer.js:72", "priority": "HIGH"},
+      {"component": "Panier (cart page)", "issue": "Footer text under total says 'Paiement à la livraison, Wave ou Orange Money' — should reference MTN MoMo / Moov Money.", "selector": "/app/frontend/src/pages/Panier.js:88", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Replace 'Wave · Orange Money · Livraison' with 'MTN MoMo · Moov Money · Livraison' in /app/frontend/src/components/Footer.js line 72.",
+    "Replace 'Wave ou Orange Money' with 'MTN MoMo ou Moov Money' in /app/frontend/src/pages/Panier.js line 88.",
+    "grep confirms these are the only 2 remaining Wave/Orange Money occurrences in /app/frontend/src."
+  ],
+  "critical_code_review_comments": [
+    "The Dakar->Cotonou / Sénégal->Bénin correction is complete and consistent across all pages (verified via document.body.innerText scan on 7 routes).",
+    "Payment method rename (Wave/Orange Money -> MTN MoMo/Moov Money) was applied on /contact FAQ only; footer badge and cart hint were missed."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "80% (2 missed replacements)"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Route smoke via wait_until='domcontentloaded' works well. Use document.body.innerText for text audits. All key data-testids present: hero-section, accordion-shipping, faq-trigger-{0..n}, footer-whatsapp-link, contact-whatsapp-link, contact-address, whatsapp-order-button.",
+  "rca of the issue": "Location bug (Dakar/Sénégal) FULLY resolved via BRAND.city='Cotonou, Bénin' in /app/frontend/src/lib/config.js and localized strings in Marquee/Contact/Produit/APropos/Footer. Payment rename was only partial: /contact page updated to MTN MoMo/Moov Money, but Footer.js:72 trust badges array and Panier.js:88 subtitle still hardcode 'Wave · Orange Money'. Mitigation: two-line string replacement in the two files above."
+}

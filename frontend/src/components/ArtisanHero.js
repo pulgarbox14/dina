@@ -32,7 +32,7 @@ export const ArtisanHero = () => (
         <LineReveal lines={[BRAND.artisan, "tisse chaque perle à la main."]} delay={0.3} />
       </h1>
       <motion.p {...fade(0.9)} className="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
-        Fondatrice de Perlae Atelier, elle conçoit, dessine et tisse chaque sac elle-même dans son atelier de {BRAND.city}.
+        Fondatrice de Dina Perles, elle conçoit, dessine et tisse chaque sac elle-même dans son atelier de {BRAND.city}.
       </motion.p>
       <motion.div {...fade(1.05)} className="mt-8 flex justify-center gap-3">
         <Link to="/boutique" data-testid="artisan-cta-boutique" className="btn-pill btn-dark">Voir ses créations <ArrowUpRight size={16} /></Link>

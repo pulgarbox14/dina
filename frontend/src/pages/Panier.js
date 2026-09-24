@@ -16,7 +16,7 @@ export default function Panier() {
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const waText = () =>
-    `Bonjour Perlae Atelier ! Je souhaite commander :\n${items.map((i) => `• ${i.name} x${i.qty} — ${formatPrice(i.price * i.qty)}`).join("\n")}\nTotal : ${formatPrice(total)}`;
+    `Bonjour Dina Perles ! Je souhaite commander :\n${items.map((i) => `• ${i.name} x${i.qty} — ${formatPrice(i.price * i.qty)}`).join("\n")}\nTotal : ${formatPrice(total)}`;
 
   const submit = async (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ export default function Panier() {
       <div data-testid="order-success" className="pt-48 pb-32 px-6 max-w-2xl mx-auto text-center">
         <div className="h-16 w-16 rounded-full bg-[var(--ink)] text-[var(--pearl)] flex items-center justify-center mx-auto"><Check /></div>
         <h1 className="font-display text-5xl mt-8">Merci, {done.customer_name.split(" ")[0]}.</h1>
-        <p className="text-[var(--ink-2)] mt-6">Votre commande <span className="font-mono text-sm" data-testid="order-id">#{done.id.slice(0, 8)}</span> d'un montant de <strong>{formatPrice(done.total)}</strong> est bien enregistrée. Aïssatou vous contactera au {done.phone} pour confirmer la livraison.</p>
+        <p className="text-[var(--ink-2)] mt-6">Votre commande <span className="font-mono text-sm" data-testid="order-id">#{done.id.slice(0, 8)}</span> d'un montant de <strong>{formatPrice(done.total)}</strong> est bien enregistrée. Secondina vous contactera au {done.phone} pour confirmer la livraison.</p>
         <Link to="/boutique" data-testid="order-success-back-link" className="btn-pill btn-dark mt-10">Retour à la boutique</Link>
       </div>
     );
@@ -85,7 +85,7 @@ export default function Panier() {
               <span>Total</span>
               <span className="font-mono text-xl" data-testid="cart-page-total">{formatPrice(total)}</span>
             </div>
-            <p className="text-xs text-[var(--ink-3)] mt-2">Livraison calculée à la confirmation · Paiement à la livraison, Wave ou Orange Money</p>
+            <p className="text-xs text-[var(--ink-3)] mt-2">Livraison calculée à la confirmation · Paiement à la livraison, MTN MoMo ou Moov Money</p>
 
             <form onSubmit={submit} className="mt-8 space-y-4" data-testid="checkout-form">
               <input data-testid="checkout-name-input" required placeholder="Nom complet" value={form.customer_name} onChange={set("customer_name")} />

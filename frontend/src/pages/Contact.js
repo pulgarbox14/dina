@@ -39,7 +39,7 @@ export default function Contact() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 pb-32">
         <Reveal className="lg:col-span-4 space-y-8">
           {[
-            [MessageCircle, "WhatsApp", `+${BRAND.whatsapp}`, whatsappLink("Bonjour Perlae Atelier !"), "contact-whatsapp-link"],
+            [MessageCircle, "WhatsApp", `+${BRAND.whatsapp}`, whatsappLink("Bonjour Dina Perles !"), "contact-whatsapp-link"],
             [Mail, "E-mail", BRAND.email, `mailto:${BRAND.email}`, "contact-email-link"],
             [Instagram, "Instagram", BRAND.instagram, "#", "contact-instagram-link"],
             [MapPin, "Atelier", BRAND.city, null, "contact-address"],

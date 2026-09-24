@@ -7,8 +7,8 @@ export const Logo = ({ className = "", dark = false }) => (
       <path d="M20 26 C20 12 44 12 44 26" stroke="#D4AF37" strokeWidth="3.5" fill="none" strokeLinecap="round" />
     </svg>
     <span className="leading-none">
-      <span className="font-display text-[22px] tracking-tight block">Perlae</span>
-      <span className="eyebrow block mt-1 !tracking-[0.32em]">Atelier</span>
+      <span className="font-display text-[22px] tracking-tight block">Dina</span>
+      <span className="eyebrow block mt-1 !tracking-[0.32em]">Perles</span>
     </span>
   </span>
 );
