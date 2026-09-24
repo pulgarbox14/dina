@@ -35,7 +35,7 @@ export const ArtisanHero = () => (
       <motion.p {...fade(0.9)} className="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
         Fondatrice de Dina Perles, elle conçoit, dessine et tisse chaque sac elle-même dans son atelier de {BRAND.city}.
       </motion.p>
-      <motion.div {...fade(1.05)} className="mt-8 flex justify-center gap-3">
+      <motion.div {...fade(1.05)} className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <Link to="/boutique" data-testid="artisan-cta-boutique" className="btn-pill btn-dark">Voir ses créations <ArrowUpRight size={16} /></Link>
         <Link to="/contact" data-testid="artisan-cta-contact-hero" className="btn-pill btn-ghost">Commander sur mesure</Link>
       </motion.div>
@@ -61,12 +61,13 @@ export const ArtisanHero = () => (
     </div>
     </div>
 
-    <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 -mt-2 pb-4">
-      <div className="grid grid-cols-3 divide-x divide-[var(--line)] border-y border-[var(--line)]">
-        {[["+200", "pièces créées"], ["6 ans", "d'atelier"], ["3", "pays livrés"]].map(([n, l], i) => (
-          <motion.div key={l} {...fade(1.4 + i * 0.1)} className="py-6 sm:py-8 px-3 sm:px-6 text-center sm:text-left">
-            <div className="font-display text-3xl sm:text-5xl leading-none">{n}</div>
-            <div className="eyebrow mt-3">{l}</div>
+    <div className="relative max-w-[1100px] mx-auto px-6 lg:px-12 mt-14 pb-6">
+      <div className="grid grid-cols-3 gap-3 sm:gap-5">
+        {[["+200", "pièces créées", Award, "#D4AF37"], ["6 ans", "d'atelier", Clock, "#ea580c"], ["3", "pays livrés", MapPin, "#0ea5e9"]].map(([n, l, Icon, color], i) => (
+          <motion.div key={l} {...fade(1.4 + i * 0.1)} className="card-3d p-5 sm:p-7 flex flex-col items-center text-center gap-3">
+            <span className="h-10 w-10 rounded-full flex items-center justify-center" style={{ background: `${color}22`, color }}><Icon size={18} strokeWidth={1.8} /></span>
+            <div className="font-display text-2xl sm:text-5xl leading-none whitespace-nowrap">{n}</div>
+            <div className="eyebrow">{l}</div>
           </motion.div>
         ))}
       </div>
