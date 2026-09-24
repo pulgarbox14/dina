@@ -24,7 +24,6 @@ const Badge = ({ icon: Icon, title, text, className, delay, rotate = 0, color = 
 
 export const ArtisanHero = () => (
   <section data-testid="artisan-hero" className="relative pt-[120px] overflow-hidden bg-white">
-    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_70%,rgba(212,175,55,0.12),transparent_55%)]" />
     <div className="relative max-w-[1440px] mx-auto px-6 text-center">
       <motion.span {...fade(0.15)} className="inline-flex items-center gap-2 bg-[var(--bg-elevated)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
         <Sparkles size={12} /> L'artisane · Fondatrice
@@ -41,17 +40,18 @@ export const ArtisanHero = () => (
       </motion.div>
     </div>
 
-    <div className="relative mt-6 h-[520px] sm:h-[620px] lg:h-[700px] max-w-[1440px] mx-auto">
+    <div className="relative mt-6 h-[440px] sm:h-[620px] lg:h-[700px] max-w-[1440px] mx-auto flex items-end justify-center">
       <motion.img
         src="/artisan-cutout.png"
         alt={BRAND.artisan}
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease, delay: 0.5 }}
-        className="absolute left-1/2 -translate-x-1/2 bottom-0 h-full w-auto max-w-none object-contain drop-shadow-[0_40px_80px_rgba(40,30,20,0.25)]"
+        className="max-h-full max-w-full w-auto object-contain object-bottom drop-shadow-[0_40px_80px_rgba(20,20,20,0.18)]"
+        style={{ maskImage: "linear-gradient(to right, transparent 0%, black 9%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 9%, black 100%)" }}
         data-testid="artisan-cutout"
       />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/70 to-transparent" />
 
       <Badge icon={Hand} title="100 % main" text="Aucune machine" className="hidden md:flex left-[8%] lg:left-[16%] top-[18%]" delay={1.2} rotate={-6} color="#7c3aed" />
       <Badge icon={Clock} title="16 à 30 h" text="par pièce tissée" className="hidden md:flex left-[4%] lg:left-[12%] bottom-[22%]" delay={1.35} rotate={4} color="#ea580c" />
@@ -62,8 +62,8 @@ export const ArtisanHero = () => (
     <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 -mt-2 pb-4">
       <div className="grid grid-cols-3 divide-x divide-[var(--line)] border-y border-[var(--line)]">
         {[["+200", "pièces créées"], ["6 ans", "d'atelier"], ["3", "pays livrés"]].map(([n, l], i) => (
-          <motion.div key={l} {...fade(1.4 + i * 0.1)} className="py-8 px-6 text-center sm:text-left">
-            <div className="font-display text-4xl sm:text-5xl leading-none">{n}</div>
+          <motion.div key={l} {...fade(1.4 + i * 0.1)} className="py-6 sm:py-8 px-3 sm:px-6 text-center sm:text-left">
+            <div className="font-display text-3xl sm:text-5xl leading-none">{n}</div>
             <div className="eyebrow mt-3">{l}</div>
           </motion.div>
         ))}

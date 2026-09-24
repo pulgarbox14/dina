@@ -29,6 +29,12 @@ Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui conf
 - Nouveau footer (bloc arrondi clair, CTA, colonnes, newsletter)
 - Portrait détouré généré localement (rembg) → /frontend/public/artisan-cutout.png
 
+## Implémenté (24/09/2026 — itération 4)
+- Version A retenue pour L'Artisane (switch et /artisane-2 supprimés)
+- Palette 100 % blanche/neutre (plus de crème/taupe) : héros accueil sur fond blanc-gris avec portrait détouré
+- Portrait détouré recadré sur mobile (visage visible), fondu doux sur le bord du bras + fondu bas
+- Bouton « Commander » masqué sur mobile
+
 ## Backlog
 - P0 : numéro WhatsApp réel (`src/lib/config.js` → BRAND.whatsapp), nom réel de l'artisane
 - P1 : espace admin pour ajouter produits/photos (upload), gestion des commandes

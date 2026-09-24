@@ -7,7 +7,7 @@ export const ProductViewer3D = ({ product }) => {
   const [accent, setAccent] = useState(ACCENTS[product.accent] || null);
   const shape = shapeFor(product);
   return (
-    <div data-testid="product-3d-viewer" className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[radial-gradient(ellipse_at_50%_40%,#ffffff_0%,#efece6_70%,#e3ded6_100%)]">
+    <div data-testid="product-3d-viewer" className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[radial-gradient(ellipse_at_50%_40%,#ffffff_0%,#f2f2f4_70%,#e6e6ea_100%)]">
       <PearlScene shape={shape} accent={accent} camera={shape === "necklace" ? 7.6 : 7} testId="product-3d-canvas" />
       <div className="absolute top-5 left-5 glass rounded-full px-4 h-9 flex items-center gap-2 text-xs font-medium">
         <RotateCcw size={13} /> Glissez pour faire tourner

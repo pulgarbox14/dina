@@ -16,7 +16,7 @@ export const Atelier3D = () => {
   const [shape, setShape] = useState("round");
   return (
     <section data-testid="atelier-3d-section" className="max-w-[1440px] mx-auto px-6 lg:px-12 py-28 grid lg:grid-cols-12 gap-12 items-center">
-      <Reveal className="lg:col-span-7 relative aspect-[5/4] rounded-[36px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#ffffff_0%,#f1eee8_65%,#e5e0d8_100%)]">
+      <Reveal className="lg:col-span-7 relative aspect-[5/4] rounded-[36px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#ffffff_0%,#f3f3f5_65%,#e7e7eb_100%)]">
         <PearlScene shape={shape} accent={accent} camera={shape === "tote" ? 7.4 : 7} testId="atelier-3d-canvas" />
         <div className="absolute top-6 left-6 glass rounded-full px-4 h-9 flex items-center text-xs font-medium">Interactif · glissez pour tourner</div>
       </Reveal>

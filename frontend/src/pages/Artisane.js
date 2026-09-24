@@ -1,13 +1,11 @@
 import { ArtisanHero } from "@/components/ArtisanHero";
 import { ArtisanBody } from "@/components/ArtisanBody";
-import { VersionSwitch } from "@/components/VersionSwitch";
 
 export default function Artisane() {
   return (
     <div data-testid="artisane-page">
       <ArtisanHero />
       <ArtisanBody />
-      <VersionSwitch />
     </div>
   );
 }

@@ -135,7 +135,7 @@ export const PearlModel = ({ shape = "round", accent = null, spin = true }) => {
   });
   return (
     <group ref={group} position={[0, shape === "necklace" ? 0.1 : -0.2, 0]}>
-      <Beads key={`w-${shape}-${!!accent}`} items={white} color="#FAF8F5" />
+      <Beads key={`w-${shape}-${!!accent}`} items={white} color="#ffffff" />
       {accent && <Beads key={`a-${shape}-${accent}`} items={acc} color={accent} emissive={accent} />}
     </group>
   );
@@ -143,10 +143,10 @@ export const PearlModel = ({ shape = "round", accent = null, spin = true }) => {
 
 export const PearlLights = () => (
   <>
-    <ambientLight intensity={1.1} color="#FFF8F0" />
+    <ambientLight intensity={1.1} color="#ffffff" />
     <directionalLight position={[5, 8, 6]} intensity={2.6} />
-    <directionalLight position={[-6, -3, -2]} intensity={0.9} color="#E2D5C3" />
-    <pointLight position={[0, 2, 3]} intensity={12} color="#FFF3E0" />
+    <directionalLight position={[-6, -3, -2]} intensity={0.9} color="#e9e9ee" />
+    <pointLight position={[0, 2, 3]} intensity={12} color="#ffffff" />
     <spotLight position={[-3, 5, 4]} intensity={20} angle={0.4} penumbra={1} />
   </>
 );
