@@ -23,6 +23,12 @@ Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui conf
 - Pages L'Artisane, À propos, Contact (formulaire + FAQ), footer newsletter
 - 10 photos retouchées en studio (génération IA à partir des photos client)
 
+## Implémenté (24/09/2026 — itération 3)
+- Police Poppins (réf. Veluno), blocs et cartes arrondis avec profondeur 3D (card-3d + tilt)
+- Page L'Artisane en 2 rendus à comparer : /artisane (Version A, portrait détouré + badges flottants, réf. Copyscale) et /artisane-2 (Version B, éditorial avec carte produit, réf. Veluno) + switch flottant
+- Nouveau footer (bloc arrondi clair, CTA, colonnes, newsletter)
+- Portrait détouré généré localement (rembg) → /frontend/public/artisan-cutout.png
+
 ## Backlog
 - P0 : numéro WhatsApp réel (`src/lib/config.js` → BRAND.whatsapp), nom réel de l'artisane
 - P1 : espace admin pour ajouter produits/photos (upload), gestion des commandes

@@ -28,7 +28,7 @@ export const ArtisanHeroV2 = () => {
     <section data-testid="artisan-hero-v2" className="pt-[120px] pb-8 bg-white">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative lg:min-h-[620px]">
         <div className="relative z-10 pt-6 lg:max-w-[64%]">
-          <h1 className="font-display font-normal text-5xl sm:text-6xl lg:text-[4.6vw] leading-[1.05] tracking-[-0.03em]">
+          <h1 className="font-display font-normal text-5xl sm:text-6xl lg:text-[4.1vw] leading-[1.05] tracking-[-0.03em]">
             <LineReveal lines={[BRAND.artisan + ",", "l'artisane qui tisse", "la lumière à la main."]} delay={0.25} />
           </h1>
           <motion.p {...fade(0.9)} className="mt-6 max-w-sm text-sm text-[var(--ink-2)] leading-relaxed">
