@@ -91,7 +91,7 @@ export default function Produit() {
 
             <Accordion type="single" collapsible className="mt-10">
               <AccordionItem value="care"><AccordionTrigger data-testid="accordion-care">Entretien des perles</AccordionTrigger><AccordionContent>Essuyer avec un chiffon doux et sec. Éviter l'eau, les parfums et l'exposition prolongée au soleil. Ranger dans sa pochette en tissu.</AccordionContent></AccordionItem>
-              <AccordionItem value="ship"><AccordionTrigger data-testid="accordion-shipping">Livraison & délais</AccordionTrigger><AccordionContent>Dakar : 24 à 48 h. Afrique de l'Ouest : 3 à 7 jours. International : 7 à 14 jours. Les pièces sur mesure demandent 2 à 3 semaines.</AccordionContent></AccordionItem>
+              <AccordionItem value="ship"><AccordionTrigger data-testid="accordion-shipping">Livraison & délais</AccordionTrigger><AccordionContent>Cotonou : 24 à 48 h. Afrique de l'Ouest : 3 à 7 jours. International : 7 à 14 jours. Les pièces sur mesure demandent 2 à 3 semaines.</AccordionContent></AccordionItem>
               <AccordionItem value="custom"><AccordionTrigger data-testid="accordion-custom">Sur mesure</AccordionTrigger><AccordionContent>Couleur des fleurs, dimensions, initiales : chaque pièce peut être adaptée. Écrivez-nous sur WhatsApp avec votre idée.</AccordionContent></AccordionItem>
             </Accordion>
           </Reveal>

@@ -6,13 +6,13 @@ import { GALLERY } from "@/lib/config";
 const PILLARS = [
   { t: "Matières", d: "Perles nacrées haute résistance, fil de tissage renforcé, anses doublées. Des matières choisies pour tenir des années, pas une saison." },
   { t: "Production lente", d: "Nous ne produisons pas en stock. Chaque pièce est tissée à la commande ou en très petite série, sans gaspillage." },
-  { t: "Impact local", d: "L'atelier est basé à Dakar et forme de jeunes femmes au tissage. Acheter un sac, c'est financer une formation." },
+  { t: "Impact local", d: "L'atelier est basé à Cotonou et forme de jeunes femmes au tissage. Acheter un sac, c'est financer une formation." },
 ];
 
 export default function APropos() {
   return (
     <div data-testid="a-propos-page">
-      <PageHero eyebrow="À propos" title={<>Une maison de <em className="font-light">haute perlerie</em> née à Dakar.</>} text="Perlae Atelier est une marque d'accessoires faits main : sacs, pochettes et parures en perles nacrées, tissés un par un dans notre atelier." />
+      <PageHero eyebrow="À propos" title={<>Une maison de <em className="font-light">haute perlerie</em> née au Bénin.</>} text="Perlae Atelier est une marque d'accessoires faits main : sacs, pochettes et parures en perles nacrées, tissés un par un dans notre atelier." />
 
       <section className="max-w-[1440px] mx-auto px-6 lg:px-12 grid md:grid-cols-3 gap-4">
         {[GALLERY.lune, GALLERY.amber, GALLERY.orangeTote].map((src, i) => (

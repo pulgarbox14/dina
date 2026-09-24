@@ -2,8 +2,8 @@ export const BRAND = {
   name: "Perlae Atelier",
   tagline: "Haute Perlerie Artisanale",
   artisan: "Aïssatou Diop",
-  city: "Dakar, Sénégal",
-  whatsapp: "221770000000",
+  city: "Cotonou, Bénin",
+  whatsapp: "22990000000",
   email: "bonjour@perlae-atelier.com",
   instagram: "@perlae.atelier",
 };

@@ -27,7 +27,7 @@ export const ArtisanBody = () => (
         </Reveal>
         <Reveal delay={0.1}>
           <p className="text-[var(--ink-2)] leading-relaxed">Autodidacte, Aïssatou a appris le tissage de perles en observant sa grand-mère confectionner des colliers de cérémonie. Elle a transposé ce geste ancestral au sac à main, en inventant ses propres motifs : la fleur orange, la fleur d'améthyste, la trame lune.</p>
-          <p className="text-[var(--ink-2)] leading-relaxed mt-5">Aujourd'hui, ses créations voyagent de Dakar à Abidjan, Paris et Montréal. Chaque pièce porte sa signature discrète : une perle dorée cousue à l'intérieur.</p>
+          <p className="text-[var(--ink-2)] leading-relaxed mt-5">Aujourd'hui, ses créations voyagent de Cotonou à Abidjan, Paris et Montréal. Chaque pièce porte sa signature discrète : une perle dorée cousue à l'intérieur.</p>
         </Reveal>
         <Reveal delay={0.15}>
           <Link to="/contact" data-testid="artisan-cta-contact" className="btn-pill btn-dark">Commander sur mesure <ArrowUpRight size={16} /></Link>

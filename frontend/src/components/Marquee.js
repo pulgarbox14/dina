@@ -1,5 +1,5 @@
 const ITEMS = [
-  "Fait main à Dakar",
+  "Fait main au Bénin",
   "Perles nacrées haute qualité",
   "Éditions limitées",
   "Livraison Afrique & International",

@@ -8,10 +8,10 @@ import { PageHero } from "@/components/SectionHeading";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const FAQ = [
-  ["Livrez-vous hors du Sénégal ?", "Oui. Afrique de l'Ouest en 3 à 7 jours, Europe et Amérique du Nord en 7 à 14 jours via transporteur suivi."],
+  ["Livrez-vous hors du Bénin ?", "Oui. Afrique de l'Ouest en 3 à 7 jours, Europe et Amérique du Nord en 7 à 14 jours via transporteur suivi."],
   ["Puis-je commander un modèle sur mesure ?", "Absolument. Choisissez la couleur des fleurs, la taille et même vos initiales. Comptez 2 à 3 semaines de fabrication."],
   ["Comment entretenir mon sac en perles ?", "Un chiffon doux et sec suffit. Évitez l'eau, les parfums et le soleil direct. Rangez-le dans sa pochette."],
-  ["Quels moyens de paiement acceptez-vous ?", "Paiement à la livraison à Dakar, Wave, Orange Money et virement pour l'international."],
+  ["Quels moyens de paiement acceptez-vous ?", "Paiement à la livraison à Cotonou, MTN MoMo, Moov Money et virement pour l'international."],
 ];
 
 export default function Contact() {

@@ -3,7 +3,7 @@ import { TiltCard } from "@/components/TiltCard";
 import { SectionHeading } from "@/components/SectionHeading";
 
 const REVIEWS = [
-  { name: "Fatou N.", city: "Dakar", text: "Mon sac Lune Nacre a fait sensation au mariage de ma sœur. On m'a demandé dix fois où je l'avais trouvé." },
+  { name: "Fatou N.", city: "Cotonou", text: "Mon sac Lune Nacre a fait sensation au mariage de ma sœur. On m'a demandé dix fois où je l'avais trouvé." },
   { name: "Mariam K.", city: "Abidjan", text: "Le travail est incroyablement régulier. On sent les heures passées dessus. Livraison rapide jusqu'en Côte d'Ivoire." },
   { name: "Claire D.", city: "Paris", text: "Une vraie pièce d'artisanat. Les fleurs orange sont encore plus belles qu'en photo." },
 ];

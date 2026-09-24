@@ -50,7 +50,7 @@ export const HeroEditorial = () => {
 
         <div className="absolute left-6 sm:left-10 lg:left-14 top-[7%] lg:top-[12%] max-w-[92%] lg:max-w-[46%] text-[var(--ink)]">
           <motion.span {...fade(0.2)} className="inline-flex items-center gap-2 bg-white border border-[var(--line)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
-            <Sparkles size={12} /> Haute perlerie · Dakar
+            <Sparkles size={12} /> Haute perlerie · Cotonou
           </motion.span>
           <h1 className="font-display text-[12vw] sm:text-[8vw] lg:text-[4.9vw] leading-[0.98] tracking-[-0.035em] mt-6">
             <LineReveal lines={["Portez la", "lumière, perle", "après perle."]} delay={0.35} />
