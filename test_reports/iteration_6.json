@@ -1,0 +1,21 @@
+{
+  "summary": "Frontend-only regression for Dina Perles hero + artisane ordering fixes. All 7 checks pass: (1) /artisane mobile 390px shows artisan-cutout img above h1 (img.y=100 < h1.y=568); (2) /artisane desktop 1920px shows h1 above img (h1.y=172 < img.y=719); (3) home 1920x900 hero-mini-cards contains exactly 2 cards and both cards.x >= img.x+img.width-20 (threshold=1296.83, cards at 1499/1683); (4) home 390px hero-mini-cards-mobile visible with 3 cards; (5) no overlap between hero-cta-explore-button and cutout image on mobile; (6) hero-add-to-cart-button opens cart-drawer with product added; (7) zero console errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "HeroEditorial.js uses hidden lg:flex for desktop mini-cards but the min-h and h-[calc(100svh-110px)] may cause tight fit at 1920x900 — currently fine (bottom-8 + card ~232px stays within container).",
+    "ArtisanHero uses flex-col-reverse lg:flex-col which correctly inverts mobile ordering; consistent pattern."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Both fixes are verified working. Backend not tested per request. Hero cutout image right position at lg uses right-[31%] so cards at right-8/lg:right-12 sit clearly to the right of the image."
+}
