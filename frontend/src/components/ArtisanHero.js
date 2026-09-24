@@ -23,12 +23,13 @@ const Badge = ({ icon: Icon, title, text, className, delay, rotate = 0, color = 
 );
 
 export const ArtisanHero = () => (
-  <section data-testid="artisan-hero" className="relative pt-[120px] overflow-hidden bg-white">
-    <div className="relative max-w-[1440px] mx-auto px-6 text-center">
+  <section data-testid="artisan-hero" className="relative pt-[100px] lg:pt-[120px] overflow-hidden bg-white">
+    <div className="flex flex-col-reverse lg:flex-col">
+    <div className="relative max-w-[1440px] mx-auto px-6 text-center mt-4 lg:mt-0">
       <motion.span {...fade(0.15)} className="inline-flex items-center gap-2 bg-[var(--bg-elevated)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
         <Sparkles size={12} /> L'artisane · Fondatrice
       </motion.span>
-      <h1 className="font-display text-5xl sm:text-6xl lg:text-[5.4vw] leading-[1.02] tracking-[-0.03em] mt-6 max-w-4xl mx-auto">
+      <h1 className="font-display text-3xl sm:text-5xl lg:text-[4.6vw] leading-[1.08] tracking-[-0.03em] mt-5 max-w-5xl mx-auto">
         <LineReveal lines={[BRAND.artisan, "tisse chaque perle à la main."]} delay={0.3} />
       </h1>
       <motion.p {...fade(0.9)} className="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
@@ -40,7 +41,7 @@ export const ArtisanHero = () => (
       </motion.div>
     </div>
 
-    <div className="relative mt-6 h-[440px] sm:h-[620px] lg:h-[700px] max-w-[1440px] mx-auto flex items-end justify-center">
+    <div className="relative mt-0 lg:mt-6 h-[400px] sm:h-[560px] lg:h-[700px] max-w-[1440px] mx-auto flex items-end justify-center">
       <motion.img
         src="/artisan-cutout.png"
         alt={BRAND.artisan}
@@ -57,6 +58,7 @@ export const ArtisanHero = () => (
       <Badge icon={Clock} title="16 à 30 h" text="par pièce tissée" className="hidden md:flex left-[4%] lg:left-[12%] bottom-[22%]" delay={1.35} rotate={4} color="#ea580c" />
       <Badge icon={Award} title="+200 pièces" text="depuis 2019" className="hidden md:flex right-[8%] lg:right-[16%] top-[14%]" delay={1.3} rotate={5} color="#D4AF37" />
       <Badge icon={MapPin} title={BRAND.city.split(",")[0]} text="Atelier & formation" className="hidden md:flex right-[4%] lg:right-[12%] bottom-[26%]" delay={1.45} rotate={-4} color="#0ea5e9" />
+    </div>
     </div>
 
     <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 -mt-2 pb-4">

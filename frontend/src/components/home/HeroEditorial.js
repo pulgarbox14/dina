@@ -43,7 +43,7 @@ export const HeroEditorial = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.6, ease }}
-          className="absolute right-[-8%] sm:right-[4%] lg:right-[24%] bottom-0 h-[40%] sm:h-[80%] lg:h-[96%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_40px_80px_rgba(20,20,20,0.18)]"
+          className="absolute right-[-8%] sm:right-[4%] lg:right-[31%] bottom-0 h-[40%] sm:h-[80%] lg:h-[96%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_40px_80px_rgba(20,20,20,0.18)] z-0"
           style={{ maskImage: "linear-gradient(to right, transparent 0%, black 9%, black 100%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 9%, black 100%)" }}
         />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--bg-elevated)] via-[var(--bg-elevated)]/70 to-transparent" />
@@ -92,8 +92,8 @@ export const HeroEditorial = () => {
           </motion.div>
         )}
 
-        <div className="hidden lg:flex absolute right-8 lg:right-12 bottom-8 gap-4" data-testid="hero-mini-cards">
-          {minis.map((p, i) => <MiniCard key={p.id} product={p} delay={1.3 + i * 0.12} />)}
+        <div className="hidden lg:flex absolute right-8 lg:right-12 bottom-8 gap-4 z-10" data-testid="hero-mini-cards">
+          {minis.slice(0, 2).map((p, i) => <MiniCard key={p.id} product={p} delay={1.3 + i * 0.12} />)}
         </div>
       </div>
 

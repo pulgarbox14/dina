@@ -1,4 +1,4 @@
-# Perlae Atelier — PRD
+# Dina Perles — PRD
 
 ## Problème initial
 Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui confectionne des sacs et bijoux en perles. Site blanc, pages Accueil / Boutique / À propos / Contact / détail produit / panier / page artisane. Devise FCFA. Photos retouchées façon studio.

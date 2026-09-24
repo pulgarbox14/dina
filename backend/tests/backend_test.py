@@ -7,6 +7,14 @@ BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://landing-3d-shop.prev
 API = f"{BASE_URL}/api"
 
 
+# --- Root ---
+class TestRoot:
+    def test_root_message(self):
+        r = requests.get(f"{API}/")
+        assert r.status_code == 200
+        assert r.json().get("message") == "Dina Perles API"
+
+
 # --- Products ---
 class TestProducts:
     def test_list_all(self):
