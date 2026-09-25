@@ -1,21 +1,18 @@
 <?php
-/**
- * Bloc « Commander en trois étapes » (accueil et À propos).
- * Icônes 3D : Microsoft Fluent Emoji (licence MIT, voir public/assets/img/icones-3d/).
- */
+/** Bloc « Commander en trois étapes » (accueil et À propos). Icônes : pastilles en relief (classe .icon-3d). */
 $steps = [
     [
-        '01', 'sacs-shopping', '#f97316', 'Choisissez votre pièce',
+        '01', icon('shopping-bag', 26, 1.7), '#f97316', 'Choisissez votre pièce',
         'Parcourez la boutique ou imaginez votre modèle sur mesure : forme, couleur des fleurs, dimensions.',
         ['Pièces uniques', 'Sur mesure possible'],
     ],
     [
-        '02', 'telephone', '#ec4899', 'Commandez en ligne ou sur WhatsApp',
+        '02', brand_icon('whatsapp', 26), '#ec4899', 'Commandez en ligne ou sur WhatsApp',
         'Validez votre panier sur le site ou envoyez votre sélection sur WhatsApp. Secondina vous rappelle pour confirmer les détails.',
         ['Réponse sous 24 h', 'Conseil personnalisé'],
     ],
     [
-        '03', 'camion-livraison', '#f43f5e', 'Payez et recevez',
+        '03', icon('truck', 26, 1.7), '#f43f5e', 'Payez et recevez',
         "Paiement à la livraison à Cotonou, par MTN MoMo ou Moov Money. Livraison en 24 à 48 h à Cotonou, 3 à 7 jours en Afrique de l'Ouest.",
         ['MTN MoMo · Moov Money', 'Livraison suivie'],
     ],
@@ -40,11 +37,7 @@ $steps = [
                 <?php foreach ($steps as $i => [$n, $ic, $color, $title, $text, $tags]): ?>
                     <li data-reveal style="--delay: <?= $i * 0.1 ?>s">
                         <div data-tilt class="tilt-card group relative card-3d p-7 lg:p-8 h-full flex flex-col" data-testid="order-step-<?= $n ?>">
-                            <div class="relative h-20 w-20">
-                                <span class="absolute inset-2 rounded-full blur-xl opacity-40" style="background: <?= $color ?>" aria-hidden="true"></span>
-                                <img src="<?= e(url('assets/img/icones-3d/' . $ic . '.png')) ?>" alt="" width="80" height="80" loading="lazy"
-                                     class="relative h-20 w-20 object-contain drop-shadow-[0_10px_14px_rgba(20,20,20,0.18)] transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-105">
-                            </div>
+                            <span class="icon-3d h-16 w-16 rounded-[20px]" style="--c: <?= $color ?>" aria-hidden="true"><?= $ic ?></span>
                             <h3 class="font-display text-xl leading-tight mt-5"><?= e($title) ?></h3>
                             <p class="text-sm text-[var(--ink-2)] mt-4 leading-relaxed flex-1"><?= e($text) ?></p>
                             <div class="flex flex-wrap gap-2 mt-8">
