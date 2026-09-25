@@ -13,7 +13,7 @@ $links = [
         <a href="<?= e(url('/')) ?>" data-testid="nav-logo-link" aria-label="Dina Perles — accueil">
             <?= App\View::partial('partials/logo') ?>
         </a>
-        <nav class="hidden md:flex items-center gap-10">
+        <nav class="hidden md:flex items-center gap-5 lg:gap-10">
             <?php foreach ($links as [$to, $label, $id]): ?>
                 <a href="<?= e(url($to)) ?>" data-testid="nav-link-<?= $id ?>"
                    class="link-underline text-sm tracking-wide <?= is_active($to) ? 'active' : 'text-[var(--ink-2)]' ?>"
@@ -21,7 +21,7 @@ $links = [
             <?php endforeach; ?>
         </nav>
         <div class="flex items-center gap-3">
-            <span class="hidden md:block"><a href="<?= e(url('/boutique')) ?>" data-testid="nav-cta-button" class="btn-pill btn-dark !h-11 !px-6">Commander</a></span>
+            <span class="hidden lg:block"><a href="<?= e(url('/boutique')) ?>" data-testid="nav-cta-button" class="btn-pill btn-dark !h-11 !px-6">Commander</a></span>
             <a href="<?= e(url('/panier')) ?>" data-cart-open data-testid="cart-drawer-toggle" aria-label="Panier"
                class="relative h-11 w-11 rounded-full bg-white border border-[var(--line)] flex items-center justify-center hover:bg-[var(--ink)] hover:text-[var(--pearl)] transition-colors duration-300">
                 <?= icon('shopping-bag', 18, 1.6) ?>

@@ -33,13 +33,14 @@ $miniCard = static function (array $p, float $delay): string {
 
     <?php /* ——— Héros éditorial ——— */ ?>
     <section data-testid="hero-section" class="px-3 sm:px-5 pt-[92px]">
-        <div class="relative rounded-[32px] sm:rounded-[40px] overflow-hidden min-h-[860px] sm:min-h-[640px] h-[calc(100svh-110px)] max-h-[900px] bg-warm border border-[#fbe3ea]">
+        <div class="relative rounded-[32px] sm:rounded-[40px] overflow-hidden min-h-[940px] sm:min-h-[640px] h-[calc(100svh-110px)] max-h-[900px] bg-warm border border-[#fbe3ea]">
             <div class="pointer-events-none absolute -top-24 right-[18%] h-[420px] w-[420px] rounded-full bg-[#fdba74] opacity-40 blur-3xl"></div>
             <div class="pointer-events-none absolute bottom-[-120px] right-[34%] h-[460px] w-[460px] rounded-full bg-[#f9a8d4] opacity-40 blur-3xl"></div>
             <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_100%,#ffffff_0%,transparent_60%)]"></div>
-            <img src="<?= e(url('artisan-cutout.png')) ?>" alt="L'artisane et son sac en perles" data-reveal style="--y: 40px; --dur: 1.6s"
-                 class="artisan-mask absolute right-[-8%] sm:right-[4%] lg:right-[31%] bottom-0 h-[40%] sm:h-[80%] lg:h-[96%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_40px_80px_rgba(20,20,20,0.18)] z-0">
-            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#fdeef6] via-[#fdeef6]/70 to-transparent"></div>
+            <?php /* Portrait en fond : pleine largeur en bas sur mobile, à droite du texte à partir de la tablette. */ ?>
+            <img src="<?= e(url('artisan-cutout.png')) ?>" alt="L'artisane et son sac en perles" data-reveal style="--y: 40px; --dur: 1.6s" data-testid="hero-portrait"
+                 class="hero-portrait absolute inset-x-0 bottom-0 h-[50%] w-full object-cover object-top sm:inset-x-auto sm:right-[4%] lg:right-[31%] sm:h-[80%] lg:h-[96%] sm:w-auto sm:max-w-none sm:object-contain sm:object-bottom z-0">
+            <div class="absolute inset-x-0 bottom-0 h-20 sm:h-32 bg-gradient-to-t from-[#fdeef6] via-[#fdeef6]/60 to-transparent"></div>
 
             <div class="absolute left-6 sm:left-10 lg:left-14 top-[7%] lg:top-[12%] max-w-[92%] lg:max-w-[46%] text-[var(--ink)]">
                 <span data-reveal style="--delay: .2s; --y: 24px" class="inline-flex items-center gap-2 bg-white border border-[var(--line)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
