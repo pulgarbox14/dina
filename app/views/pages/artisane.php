@@ -27,7 +27,7 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
             <div class="relative w-full max-w-[1280px] mx-auto px-6 text-center mt-4 lg:mt-8">
                 <h1 class="font-display text-3xl sm:text-5xl lg:text-[clamp(2.75rem,3.6vw,4rem)] leading-[1.08] tracking-[-0.03em] max-w-5xl mx-auto">
                     <?php $artisan = mb_strtoupper(brand('artisan')); ?>
-                    <?= View::partial('partials/line-reveal', ['lines' => [$artisan, 'tisse chaque perle à la main.'], 'delay' => 0.3, 'highlight' => $artisan]) ?>
+                    <?= View::partial('partials/line-reveal', ['lines' => [$artisan], 'delay' => 0.3, 'highlight' => $artisan]) ?>
                 </h1>
                 <p data-reveal style="--delay: .9s; --y: 24px" class="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
                     Fondatrice de Dina Perles, diplômée d'État (CQM), elle conçoit, dessine et tisse chaque pièce elle-même dans son atelier de <?= e(brand('city')) ?>.
