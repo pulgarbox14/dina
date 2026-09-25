@@ -319,6 +319,40 @@ summary:focus-visible {
     }
 }
 
+/* ——— Vitrine produits (accueil) ——— */
+@keyframes spin-slow {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.spin-slow {
+    animation: spin-slow 18s linear infinite;
+}
+.vitrine-thumb {
+    border-color: transparent;
+    opacity: 0.55;
+}
+.vitrine-thumb:hover {
+    opacity: 0.85;
+}
+.vitrine-thumb[aria-selected="true"] {
+    border-color: var(--rose);
+    opacity: 1;
+    box-shadow: 0 10px 24px -12px rgba(236, 72, 153, 0.7);
+}
+.vitrine-fade {
+    transition: opacity 0.35s ease, transform 0.35s var(--ease-out);
+}
+.vitrine-fade.is-switching {
+    opacity: 0;
+    transform: translateY(8px);
+}
+@media (prefers-reduced-motion: reduce) {
+    .spin-slow {
+        animation: none;
+    }
+}
+
 /* ——— Tiroir panier ——— */
 .cart-drawer {
     visibility: hidden;

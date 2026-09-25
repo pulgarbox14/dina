@@ -327,6 +327,64 @@
         });
     }
 
+    /* ——— Vitrine produits de l'accueil : flèches, miniatures, clavier ——— */
+    function initVitrine() {
+        const root = $("[data-vitrine]");
+        if (!root) return;
+        let slides;
+        try {
+            slides = JSON.parse($("[data-vitrine-slides]", root).textContent);
+        } catch (_) {
+            return;
+        }
+        if (!slides.length) return;
+        let current = 0;
+        const fading = $$(".vitrine-fade", root);
+
+        const render = (i) => {
+            const s = slides[i];
+            const img = $("[data-vitrine-image]", root);
+            img.src = s.image;
+            img.alt = s.name;
+            const set = (sel, value) => $$(sel, root).forEach((el) => (el.textContent = value));
+            set("[data-vitrine-tag]", s.tag);
+            set("[data-vitrine-name]", s.name);
+            set("[data-vitrine-subtitle]", s.subtitle);
+            set("[data-vitrine-price]", s.price);
+            set("[data-vitrine-hours]", s.hours);
+            set("[data-vitrine-accent]", s.accent);
+            set("[data-vitrine-index]", String(i + 1).padStart(2, "0"));
+            $$("[data-vitrine-link]", root).forEach((a) => (a.href = s.url));
+            $("[data-vitrine-id]", root).value = s.id;
+            $$("[data-vitrine-go]", root).forEach((b) =>
+                b.setAttribute("aria-selected", String(Number(b.dataset.vitrineGo) === i))
+            );
+        };
+
+        const go = (i) => {
+            i = (i + slides.length) % slides.length;
+            if (i === current) return;
+            current = i;
+            if (reducedMotion) return render(i);
+            fading.forEach((el) => el.classList.add("is-switching"));
+            setTimeout(() => {
+                render(i);
+                fading.forEach((el) => el.classList.remove("is-switching"));
+            }, 250);
+        };
+
+        // Précharge les photos pour un changement instantané.
+        slides.forEach((s) => (new Image().src = s.image));
+
+        $("[data-vitrine-prev]", root)?.addEventListener("click", () => go(current - 1));
+        $("[data-vitrine-next]", root)?.addEventListener("click", () => go(current + 1));
+        $$("[data-vitrine-go]", root).forEach((b) => b.addEventListener("click", () => go(Number(b.dataset.vitrineGo))));
+        root.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") go(current - 1);
+            if (e.key === "ArrowRight") go(current + 1);
+        });
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
         initSmoothScroll();
         initReveal();
@@ -337,6 +395,7 @@
         initAjaxForms();
         initProductPage();
         initPearlControls();
+        initVitrine();
         showFlashes();
     });
 })();

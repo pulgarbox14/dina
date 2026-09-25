@@ -110,6 +110,9 @@ check('catégorie inconnue → tout le catalogue', $count($c->get('/boutique?cat
 $p = $c->get('/produit/sac-lune-nacre')['body'];
 check('fiche produit : nom et prix', str_contains($p, 'Le Sac Lune Nacre') && str_contains($p, "55\u{202F}000 FCFA"));
 check('fiche produit : réglages 3D', str_contains($p, 'data-shape="round"'));
+$home = $c->get('/')['body'];
+check('accueil : vitrine avec 6 pièces', str_contains($home, 'data-testid="vitrine-section"') && substr_count($home, 'data-vitrine-go=') === 6);
+check('accueil : bloc sur mesure conservé', str_contains($home, 'data-testid="sur-mesure-section"'));
 check('parure ambre : 2 photos', substr_count($c->get('/produit/parure-ambre')['body'], 'data-testid="product-thumb-') === 2);
 
 echo "Sécurité CSRF\n";
@@ -180,6 +183,7 @@ if ($degradedBase !== null) {
         $r = $d->get($path);
         check("GET $path : 200 + message catalogue", $r['status'] === 200 && str_contains($r['body'], 'data-testid="catalog-unavailable"'));
     }
+    check('vitrine masquée sans catalogue', !str_contains($d->get('/')['body'], 'data-testid="vitrine-section"'));
     check('fiche produit → 503 (pas 404)', $d->get('/produit/sac-lune-nacre')['status'] === 503);
     check('ajout au panier → 503', $d->post('/panier/ajouter', ['product_id' => 'sac-lune-nacre'])['status'] === 503);
     $r = $d->post('/contact', ['name' => 'Test', 'email' => 't@example.com', 'subject' => 'Salut', 'message' => 'Bonjour test']);

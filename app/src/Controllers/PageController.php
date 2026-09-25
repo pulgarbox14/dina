@@ -16,6 +16,7 @@ final class PageController
     {
         echo View::render('pages/accueil', [
             'featured' => ProductRepository::all(featured: true),
+            'showcase' => ProductRepository::all(),
         ]);
     }
 

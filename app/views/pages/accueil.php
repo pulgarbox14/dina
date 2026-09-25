@@ -133,6 +133,9 @@ $miniCard = static function (array $p, float $delay): string {
         <?php endif; ?>
     </section>
 
+    <?php /* ——— Vitrine produits ——— */ ?>
+    <?= View::partial('partials/vitrine', ['products' => $showcase]) ?>
+
     <?php /* ——— Sur mesure ——— */ ?>
     <?= View::partial('partials/sur-mesure') ?>
 
