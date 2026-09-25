@@ -44,7 +44,7 @@ final class Router
         if ($allowed) {
             header('Allow: ' . implode(', ', $allowed));
             http_response_code(405);
-            echo 'Méthode non autorisée';
+            echo View::render('pages/erreur', ['title' => 'Page introuvable', 'code' => 405]);
             return;
         }
 

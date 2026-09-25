@@ -36,7 +36,7 @@ set_exception_handler(static function (Throwable $e) use ($debug): void {
         http_response_code(500);
     }
     if (App\Http::wantsJson()) {
-        App\Http::json(['ok' => false, 'error' => 'Erreur serveur'], 500);
+        App\Http::json(['ok' => false, 'message' => 'Petit contretemps, merci de réessayer dans un instant.'], 500);
         return;
     }
     if ($debug) {
@@ -44,11 +44,11 @@ set_exception_handler(static function (Throwable $e) use ($debug): void {
         return;
     }
     try {
-        echo App\View::render('pages/erreur', ['title' => 'Erreur', 'code' => 500]);
+        echo App\View::render('pages/erreur', ['title' => 'Petit contretemps', 'code' => 500]);
     } catch (Throwable) {
         // La page d'erreur complète a elle-même besoin de MySQL (panier) : version minimale.
         echo '<!doctype html><meta charset="utf-8"><title>Dina Perles</title>'
-            . '<p style="font-family:sans-serif;text-align:center;margin-top:20vh">Une erreur est survenue. Merci de réessayer dans un instant.</p>';
+            . '<p style="font-family:sans-serif;text-align:center;margin-top:20vh">Petit contretemps : merci de réessayer dans un instant.</p>';
     }
 });
 
