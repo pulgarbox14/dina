@@ -133,42 +133,8 @@ $miniCard = static function (array $p, float $delay): string {
         <?php endif; ?>
     </section>
 
-    <?php /* ——— Atelier 3D interactif ——— */ ?>
-    <section data-testid="atelier-3d-section" class="max-w-[1440px] mx-auto px-6 lg:px-12 py-28 grid lg:grid-cols-12 gap-12 items-center">
-        <div data-reveal class="lg:col-span-7 relative aspect-[5/4] rounded-[36px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#ffffff_0%,#fff1ea_60%,#fde2ee_100%)]">
-            <div id="atelier-scene" class="absolute inset-0" data-pearl-scene data-shape="round" data-accent="#f97316" data-testid="atelier-3d-canvas"></div>
-            <div class="absolute top-6 left-6 glass rounded-full px-4 h-9 flex items-center text-xs font-medium">Interactif · glissez pour tourner</div>
-        </div>
-        <div class="lg:col-span-5">
-            <div data-reveal>
-                <span class="eyebrow">Composez votre pièce</span>
-                <h2 class="font-display text-4xl sm:text-5xl leading-[1.02] tracking-tight mt-4">Choisissez la forme, <span class="text-gradient">choisissez la fleur.</span></h2>
-                <p class="text-[var(--ink-2)] mt-6 leading-relaxed">Chaque sac est tissé à la commande. Jouez avec les formes et les accents de couleur, puis demandez votre modèle sur mesure.</p>
-            </div>
-            <div data-reveal style="--delay: .1s" class="mt-8">
-                <div class="eyebrow mb-3">Forme</div>
-                <div class="flex gap-2" data-testid="atelier-shape-options" data-pearl-group="shape">
-                    <?php foreach ([['round', 'Arrondi'], ['tote', 'Cabas'], ['necklace', 'Parure']] as [$s, $l]): ?>
-                        <button type="button" data-pearl-target="atelier-scene" data-shape="<?= $s ?>" data-testid="atelier-shape-<?= $s ?>" aria-pressed="<?= $s === 'round' ? 'true' : 'false' ?>"
-                                class="pearl-option rounded-full px-5 h-10 text-sm border transition-colors border-[var(--line)] hover:border-[var(--ink)]"><?= $l ?></button>
-                    <?php endforeach; ?>
-                </div>
-                <div class="eyebrow mb-3 mt-8">Accent</div>
-                <div class="flex flex-wrap gap-2" data-testid="atelier-accent-options" data-pearl-group="accent">
-                    <?php foreach ([['Nacre blanche', '', 'blanche'], ['Fleur orange', '#f97316', 'orange'], ['Fleur violette', '#a855f7', 'violette'], ['Bleu lagon', '#60a5fa', 'lagon']] as [$l, $c, $slug]): ?>
-                        <button type="button" data-pearl-target="atelier-scene" data-accent="<?= $c ?>" data-testid="atelier-accent-<?= $slug ?>" aria-pressed="<?= $c === '#f97316' ? 'true' : 'false' ?>"
-                                class="pearl-swatch-option inline-flex items-center gap-2 rounded-full pl-2 pr-4 h-10 text-sm border transition-colors border-[var(--line)] hover:border-[var(--ink)]">
-                            <span class="h-6 w-6 rounded-full border border-white shadow" style="background: <?= $c ?: 'linear-gradient(135deg,#fff,#e6e2da)' ?>"></span>
-                            <?= e($l) ?>
-                        </button>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div data-reveal style="--delay: .15s">
-                <a href="<?= e(url('/contact')) ?>" data-testid="atelier-custom-cta" class="btn-pill btn-dark mt-10">Demander ce modèle <?= icon('arrow-up-right', 16) ?></a>
-            </div>
-        </div>
-    </section>
+    <?php /* ——— Sur mesure ——— */ ?>
+    <?= View::partial('partials/sur-mesure') ?>
 
     <?= View::partial('partials/order-steps') ?>
     <?= View::partial('partials/testimonials') ?>

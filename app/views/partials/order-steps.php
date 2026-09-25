@@ -3,7 +3,7 @@
 $steps = [
     [
         '01', 'shopping-bag', '#f97316', 'Choisissez votre pièce',
-        'Parcourez la boutique ou composez votre modèle en 3D : forme, couleur des fleurs, dimensions.',
+        'Parcourez la boutique ou imaginez votre modèle sur mesure : forme, couleur des fleurs, dimensions.',
         ['Pièces uniques', 'Sur mesure possible'],
     ],
     [

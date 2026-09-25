@@ -44,7 +44,7 @@ tests/http_test.php      tests de bout en bout (51 vérifications)
 
 | URL | Contenu |
 |---|---|
-| `/` | Accueil : héros, sélection, configurateur 3D, commander en 3 étapes, avis |
+| `/` | Accueil : héros, sélection, sur mesure, commander en 3 étapes, avis |
 | `/boutique?categorie=sacs\|minis\|bijoux` | Catalogue filtré |
 | `/produit/{id}` | Fiche produit : photos, vue 3D, quantité, panier, WhatsApp |
 | `/artisane`, `/a-propos` | Pages de présentation |

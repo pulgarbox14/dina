@@ -15,8 +15,7 @@ final class PageController
     public static function home(): void
     {
         echo View::render('pages/accueil', [
-            'featured'    => ProductRepository::all(featured: true),
-            'withPearl3d' => true,
+            'featured' => ProductRepository::all(featured: true),
         ]);
     }
 
