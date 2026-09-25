@@ -25,7 +25,7 @@ $slides = array_map(static fn (array $p): array => [
 $first = $slides[0];
 $count = count($slides);
 ?>
-<section data-testid="vitrine-section" data-vitrine class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20" aria-roledescription="carrousel" aria-label="Vitrine des créations">
+<section data-testid="vitrine-section" data-vitrine class="max-w-[1280px] mx-auto px-6 lg:px-12 py-14 sm:py-20" aria-roledescription="carrousel" aria-label="Vitrine des créations">
     <script type="application/json" data-vitrine-slides><?= json_encode($slides, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE) ?></script>
 
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
@@ -33,7 +33,7 @@ $count = count($slides);
         <div class="lg:col-span-4 order-1">
             <div data-reveal>
                 <span class="eyebrow">Vitrine</span>
-                <h2 class="font-display text-3xl sm:text-4xl leading-[1.02] tracking-tight mt-4">Nos pièces <span class="text-gradient">signature.</span></h2>
+                <h2 class="font-display text-[1.75rem] sm:text-4xl leading-[1.02] tracking-tight mt-4">Nos pièces <span class="text-gradient">signature.</span></h2>
                 <p class="text-[var(--ink-2)] mt-6 leading-relaxed max-w-sm">Sacs et parures tissés perle après perle dans l'atelier de Cotonou. Faites défiler pour découvrir chaque création.</p>
                 <a href="<?= e(url('/boutique')) ?>" data-testid="vitrine-all-link" class="btn-pill btn-dark mt-8">Tout voir <?= icon('arrow-up-right', 16) ?></a>
             </div>

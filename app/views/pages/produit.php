@@ -39,7 +39,7 @@ $accordions = [
 
             <div data-reveal style="--delay: .1s" class="lg:col-span-5 lg:col-start-8 lg:sticky lg:top-32 self-start">
                 <?php if (!empty($p['tag'])): ?><span class="eyebrow"><?= e($p['tag']) ?></span><?php endif; ?>
-                <h1 data-testid="product-name" class="font-display text-4xl lg:text-5xl leading-[1] tracking-tight mt-3"><?= e($p['name']) ?></h1>
+                <h1 data-testid="product-name" class="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1] tracking-tight mt-3"><?= e($p['name']) ?></h1>
                 <p class="text-[var(--ink-2)] mt-3"><?= e($p['subtitle']) ?></p>
                 <div data-testid="product-price" class="font-mono text-2xl mt-8"><?= price((int) $p['price']) ?></div>
                 <p class="text-base text-[var(--ink-2)] leading-relaxed mt-8"><?= e($p['description']) ?></p>
@@ -80,7 +80,7 @@ $accordions = [
 
         <section class="mt-24">
             <h2 class="font-display text-3xl mb-8">Vous aimerez aussi</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8" data-testid="related-products">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8" data-testid="related-products">
                 <?php foreach ($related as $r) echo View::partial('partials/product-card', ['product' => $r]); ?>
             </div>
         </section>

@@ -28,7 +28,7 @@ ob_start(); ?>
             <span>Prix en FCFA</span>
         </div>
         <?php if (ProductRepository::unavailable()) echo View::partial('partials/catalog-unavailable'); ?>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12" data-testid="products-grid">
+        <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 sm:gap-x-6 gap-y-6 sm:gap-y-12" data-testid="products-grid">
             <?php foreach ($products as $i => $p): ?>
                 <div data-reveal style="--delay: <?= ($i % 3) * 0.08 ?>s">
                     <?= View::partial('partials/product-card', ['product' => $p]) ?>

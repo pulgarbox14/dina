@@ -8,7 +8,7 @@ $options = [
 $swatches = ['#ffffff', '#f97316', '#a855f7', '#60a5fa', '#f59e0b', '#ec4899'];
 $waText = 'Bonjour Secondina ! Je souhaite une pièce sur mesure : ';
 ?>
-<section data-testid="sur-mesure-section" class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<section data-testid="sur-mesure-section" class="max-w-[1280px] mx-auto px-6 lg:px-12 py-14 sm:py-20 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
     <div data-reveal class="lg:col-span-6 relative">
         <div class="img-zoom overflow-hidden rounded-[36px] aspect-[4/5] bg-[var(--luster)] shadow-[0_40px_80px_-50px_rgba(236,72,153,0.55)]">
             <img src="<?= e(gallery('purple')) ?>" alt="Panier en perles à fleur violette, réalisé sur mesure" loading="lazy" class="h-full w-full object-cover">
@@ -35,7 +35,7 @@ $waText = 'Bonjour Secondina ! Je souhaite une pièce sur mesure : ';
     <div class="lg:col-span-6">
         <div data-reveal>
             <span class="eyebrow">Sur mesure</span>
-            <h2 class="font-display text-3xl sm:text-4xl leading-[1.02] tracking-tight mt-4">Votre pièce, <span class="text-gradient">vos couleurs.</span></h2>
+            <h2 class="font-display text-[1.75rem] sm:text-4xl leading-[1.02] tracking-tight mt-4">Votre pièce, <span class="text-gradient">vos couleurs.</span></h2>
             <p class="text-[var(--ink-2)] mt-6 leading-relaxed max-w-xl">Chaque sac est tissé à la commande. Décrivez votre idée à Secondina : elle vous conseille, vous envoie un aperçu, puis tisse une pièce qui n'existera qu'une fois.</p>
         </div>
 

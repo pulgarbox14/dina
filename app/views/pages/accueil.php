@@ -48,7 +48,7 @@ $miniCard = static function (array $p, float $delay): string {
                 <span data-reveal style="--delay: .2s; --y: 24px" class="inline-flex items-center gap-2 bg-white border border-[var(--line)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
                     <?= icon('sparkles', 12) ?> Haute perlerie · Cotonou
                 </span>
-                <h1 class="font-display text-[12vw] sm:text-[7vw] lg:text-[clamp(3rem,4vw,4.5rem)] leading-[0.98] tracking-[-0.035em] mt-6">
+                <h1 class="font-display text-[10.5vw] sm:text-[7vw] lg:text-[clamp(3rem,4vw,4.5rem)] leading-[0.98] tracking-[-0.035em] mt-6">
                     <?= View::partial('partials/line-reveal', ['lines' => ['Portez la', 'lumière, perle', 'après perle.'], 'delay' => 0.35, 'highlight' => 'lumière']) ?>
                 </h1>
                 <p data-reveal style="--delay: .95s; --y: 24px" class="mt-6 max-w-[78%] sm:max-w-sm text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
@@ -109,7 +109,7 @@ $miniCard = static function (array $p, float $delay): string {
         </div>
         <?php if (App\ProductRepository::unavailable()) echo View::partial('partials/catalog-unavailable'); ?>
         <?php if ($featured): ?>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
                 <?php foreach ([[$a, 0], [$b, .06], [$c, .12], [$d, .18]] as [$p, $delay]): ?>
                     <?php if ($p): ?>
                         <div data-reveal style="--delay: <?= $delay ?>s">
@@ -118,7 +118,7 @@ $miniCard = static function (array $p, float $delay): string {
                     <?php endif; ?>
                 <?php endforeach; ?>
                 <?php if ($f): ?>
-                    <div data-reveal style="--delay: .1s" class="sm:col-span-2 lg:col-span-4">
+                    <div data-reveal style="--delay: .1s" class="col-span-2 lg:col-span-4">
                         <a href="<?= e(url('/produit/' . $f['id'])) ?>" data-testid="featured-wide-card-<?= e($f['id']) ?>" class="group grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
                             <div class="img-zoom overflow-hidden aspect-[4/3] md:aspect-auto md:min-h-[360px]">
                                 <img src="<?= e($f['images'][0] ?? '') ?>" alt="<?= e($f['name']) ?>" loading="lazy" class="h-full w-full object-cover">

@@ -39,7 +39,7 @@ $pillars = [
     <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 text-center">
         <div data-reveal>
             <span class="eyebrow">Dina Perles</span>
-            <p class="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-4xl mx-auto mt-6">
+            <p class="font-display text-2xl sm:text-4xl lg:text-5xl leading-tight max-w-4xl mx-auto mt-6">
                 « Dina Perles », le prénom de sa fondatrice et la perle qu'elle tisse. Un nom pour une promesse : la lumière portée à la main.
             </p>
         </div>

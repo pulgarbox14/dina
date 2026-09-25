@@ -72,11 +72,9 @@
 html {
     scroll-behavior: auto;
 }
-/* Grands écrans : tout ce qui est exprimé en rem (textes, marges, boutons) est réduit d'environ 6 %. */
-@media (min-width: 1024px) {
-    html {
-        font-size: 15px;
-    }
+/* Base de 15 px (au lieu de 16) : textes, marges et boutons exprimés en rem ~6 % plus petits, sur tous les écrans. */
+html {
+    font-size: 15px;
 }
 
 html.lenis,
