@@ -7,11 +7,11 @@ $badges = [
     ['award', '+200 pièces', 'depuis 2019', 'hidden md:flex right-[8%] lg:right-[16%] top-[14%]', 1.3, 5, '#f43f5e'],
     ['map-pin', explode(',', brand('city'))[0], 'Atelier & formation', 'hidden md:flex right-[4%] lg:right-[12%] bottom-[26%]', 1.45, -4, '#db2777'],
 ];
-$stats = [['+200', 'pièces créées', 'award', '#f43f5e'], ['6 ans', "d'atelier", 'clock', '#f97316'], ['3', 'pays livrés', 'map-pin', '#ec4899']];
+$stats = [['+200', 'pièces créées', 'award', '#f43f5e'], ['6 ans', 'de perlage', 'clock', '#f97316'], ['3', 'pays livrés', 'map-pin', '#ec4899']];
 $values = [
     ['Tout à la main', "Aucune machine n'intervient. Le fil, l'aiguille et des milliers de gestes répétés."],
     ['Une pièce, une personne', 'Secondina tisse chaque commande elle-même, du premier nœud aux finitions.'],
-    ['Transmission', "Elle forme aujourd'hui de jeunes femmes de son quartier au tissage de perles."],
+    ['Un savoir-faire certifié', "Formée deux ans auprès d'une patronne puis diplômée d'État (CQM), Secondina applique une technique maîtrisée à chaque pièce."],
 ];
 $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'trio', 'orangeTote', 'ringSet'];
 ?>
@@ -30,7 +30,7 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
                     <?= View::partial('partials/line-reveal', ['lines' => [$artisan, 'tisse chaque perle à la main.'], 'delay' => 0.3, 'highlight' => $artisan]) ?>
                 </h1>
                 <p data-reveal style="--delay: .9s; --y: 24px" class="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
-                    Fondatrice de Dina Perles, elle conçoit, dessine et tisse chaque sac elle-même dans son atelier de <?= e(brand('city')) ?>.
+                    Fondatrice de Dina Perles, diplômée d'État (CQM), elle conçoit, dessine et tisse chaque pièce elle-même dans son atelier de <?= e(brand('city')) ?>.
                 </p>
                 <div data-reveal style="--delay: 1.05s; --y: 24px" class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
                     <a href="<?= e(url('/boutique')) ?>" data-testid="artisan-cta-boutique" class="btn-pill btn-dark">Voir ses créations <?= icon('arrow-up-right', 16) ?></a>
@@ -77,12 +77,28 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
         </div>
         <div class="lg:col-span-5 lg:col-start-8 lg:pt-12 space-y-8">
             <div data-reveal>
-                <p class="font-display text-2xl sm:text-3xl leading-snug">« J'ai commencé avec un sachet de perles et une idée : faire un sac que personne n'avait jamais vu. »</p>
+                <p class="font-display text-2xl sm:text-3xl leading-snug">Deux ans d'apprentissage, un diplôme d'État, <span class="text-gradient">six ans de perlage.</span></p>
             </div>
             <div data-reveal style="--delay: .1s">
-                <p class="text-[var(--ink-2)] leading-relaxed">Autodidacte, Secondina a appris le tissage de perles en observant sa grand-mère confectionner des colliers de cérémonie. Elle a transposé ce geste ancestral au sac à main, en inventant ses propres motifs : la fleur orange, la fleur d'améthyste, la trame lune.</p>
-                <p class="text-[var(--ink-2)] leading-relaxed mt-5">Aujourd'hui, ses créations voyagent de Cotonou à Abidjan, Paris et Montréal. Chaque pièce porte sa signature discrète : une perle dorée cousue à l'intérieur.</p>
+                <p class="text-[var(--ink-2)] leading-relaxed">Secondina a appris le perlage au cours d'une formation professionnelle de deux ans, auprès d'une patronne qui lui a transmis les gestes du métier. Elle a ensuite obtenu son CQM, le Certificat de Qualification aux Métiers : un diplôme d'État, délivré avec son attestation.</p>
+                <p class="text-[var(--ink-2)] leading-relaxed mt-5">Voilà maintenant environ six ans qu'elle perle. Elle imagine ses propres modèles (la fleur orange, la fleur d'améthyste, la trame nacrée) et tisse chaque commande elle-même, perle après perle, dans son atelier de Cotonou.</p>
             </div>
+            <?php /* Parcours de l'artisane (informations fournies par Secondina). */ ?>
+            <ol data-reveal style="--delay: .12s" class="grid sm:grid-cols-3 gap-3" data-testid="artisan-parcours">
+                <?php foreach ([
+                    ['hand', '#f97316', 'Formation', "2 ans auprès d'une patronne"],
+                    ['award', '#ec4899', 'CQM', "Diplôme d'État et attestation"],
+                    ['sparkles', '#f43f5e', '6 ans', 'dans le perlage'],
+                ] as [$ic, $color, $t, $d]): ?>
+                    <li class="card-3d p-4 flex sm:flex-col items-center sm:items-start gap-3">
+                        <span class="h-10 w-10 shrink-0 rounded-xl flex items-center justify-center" style="background: <?= $color ?>1f; color: <?= $color ?>"><?= icon($ic, 18, 1.8) ?></span>
+                        <span>
+                            <span class="block font-display text-lg leading-tight"><?= e($t) ?></span>
+                            <span class="block text-xs text-[var(--ink-3)] mt-1"><?= e($d) ?></span>
+                        </span>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
             <div data-reveal style="--delay: .15s">
                 <a href="<?= e(url('/contact')) ?>" data-testid="artisan-cta-contact" class="btn-pill btn-dark">Commander sur mesure <?= icon('arrow-up-right', 16) ?></a>
             </div>
