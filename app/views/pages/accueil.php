@@ -37,12 +37,13 @@ $miniCard = static function (array $p, float $delay): string {
             <div class="pointer-events-none absolute -top-24 right-[18%] h-[420px] w-[420px] rounded-full bg-[#fdba74] opacity-40 blur-3xl"></div>
             <div class="pointer-events-none absolute bottom-[-120px] right-[34%] h-[460px] w-[460px] rounded-full bg-[#f9a8d4] opacity-40 blur-3xl"></div>
             <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_100%,#ffffff_0%,transparent_60%)]"></div>
-            <?php /* Portrait : fond de tout le bloc (derrière le texte) sur mobile et tablette, à droite du texte sur ordinateur. */ ?>
+            <?php /* Portrait en fond, derrière le texte : il remplit le bloc sur mobile et tablette, et se place sous le titre sur ordinateur. */ ?>
             <img src="<?= e(url('artisan-cutout.png')) ?>" alt="L'artisane et son sac en perles" data-reveal style="--y: 40px; --dur: 1.6s" data-testid="hero-portrait"
-                 class="hero-portrait absolute inset-0 h-full w-full object-cover object-[50%_30%] lg:inset-x-auto lg:inset-y-auto lg:bottom-0 lg:right-[31%] lg:h-[96%] lg:w-auto lg:max-w-none lg:object-contain lg:object-bottom z-0">
+                 class="hero-portrait absolute inset-0 h-full w-full object-cover object-[50%_30%] lg:inset-auto lg:bottom-0 lg:left-[14%] xl:left-[18%] lg:h-full lg:w-auto lg:max-w-none lg:object-contain lg:object-bottom z-0">
             <div class="absolute inset-x-0 bottom-0 h-20 sm:h-32 bg-gradient-to-t from-[#fdeef6] via-[#fdeef6]/60 to-transparent"></div>
-            <?php /* Mobile et tablette : voile clair derrière le texte pour qu'il reste lisible sur la photo. */ ?>
+            <?php /* Voile clair derrière le texte pour qu'il reste lisible sur la photo (vertical sur mobile, horizontal sur ordinateur). */ ?>
             <div class="lg:hidden pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fff6f0]/90 via-[#fff6f0]/55 via-45% to-transparent to-75%"></div>
+            <div class="hidden lg:block pointer-events-none absolute inset-0 bg-gradient-to-r from-[#fff5ee]/90 via-[#fff5ee]/50 via-35% to-transparent to-55%"></div>
 
             <div class="hero-copy absolute left-6 sm:left-10 lg:left-14 top-[7%] lg:top-[12%] max-w-[92%] lg:max-w-[46%] text-[var(--ink)] z-10">
                 <span data-reveal style="--delay: .2s; --y: 24px" class="inline-flex items-center gap-2 bg-white border border-[var(--line)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">

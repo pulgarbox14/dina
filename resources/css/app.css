@@ -272,14 +272,12 @@ summary:focus-visible {
     outline-offset: 3px;
 }
 
-/* Portrait de l'accueil : sur mobile il remplit tout le bloc, derrière le texte ;
+/* Portrait de l'accueil, toujours derrière le texte : il remplit le bloc sur mobile ;
  * sur ordinateur, fondu sur le bord gauche (bras coupé sur la photo d'origine). */
-/* Mobile et tablette : le texte passe devant la photo ; léger halo blanc pour la lisibilité. */
-@media (max-width: 1023px) {
-    .hero-copy h1,
-    .hero-copy p {
-        text-shadow: 0 1px 14px rgba(255, 255, 255, 0.85);
-    }
+/* Le texte passe devant la photo : léger halo blanc pour la lisibilité. */
+.hero-copy h1,
+.hero-copy p {
+    text-shadow: 0 1px 14px rgba(255, 255, 255, 0.85);
 }
 @media (min-width: 1024px) {
     .hero-portrait {
