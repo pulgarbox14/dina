@@ -444,28 +444,26 @@ summary:focus-visible {
     }
 }
 
-/* ——— Icône en relief : pastille dégradée, reflet de lumière, ombre colorée (couleur via --c) ——— */
-.icon-3d {
-    position: relative;
+/* ——— Pastille d'icône : tuile blanche légèrement surélevée, trait à la couleur de la marque (--c) ——— */
+.icon-tile {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    background:
-        radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 55%),
-        linear-gradient(150deg, color-mix(in srgb, var(--c) 70%, #fff) 0%, var(--c) 45%, color-mix(in srgb, var(--c) 78%, #000) 100%);
+    color: var(--c, var(--ink));
+    background: linear-gradient(180deg, #fff 0%, #fbf8f6 100%);
+    border: 1px solid rgba(20, 20, 20, 0.07);
     box-shadow:
-        inset 0 1.5px 0 rgba(255, 255, 255, 0.55),
-        inset 0 -3px 6px color-mix(in srgb, var(--c) 60%, #000 40%),
-        0 12px 24px -10px color-mix(in srgb, var(--c) 75%, transparent),
-        0 4px 8px -4px rgba(20, 20, 20, 0.25);
+        inset 0 1px 0 #fff,
+        0 1px 2px rgba(20, 20, 20, 0.06),
+        0 8px 18px -12px color-mix(in srgb, var(--c, #141414) 55%, transparent);
     transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
 }
-.icon-3d svg {
-    filter: drop-shadow(0 1.5px 1.5px rgba(0, 0, 0, 0.22));
-}
-.group:hover .icon-3d {
-    transform: translateY(-3px) rotate(-3deg);
+.group:hover .icon-tile {
+    transform: translateY(-2px);
+    box-shadow:
+        inset 0 1px 0 #fff,
+        0 2px 4px rgba(20, 20, 20, 0.06),
+        0 14px 24px -14px color-mix(in srgb, var(--c, #141414) 70%, transparent);
 }
 
 /* ——— Pastilles aux couleurs officielles des réseaux sociaux ——— */

@@ -1,5 +1,5 @@
 <?php
-/** Bloc « Commander en trois étapes » (accueil et À propos). Icônes : pastilles en relief (classe .icon-3d). */
+/** Bloc « Commander en trois étapes » (accueil et À propos). Icônes : tuiles d'icône (classe .icon-tile). */
 $steps = [
     [
         '01', icon('shopping-bag', 26, 1.7), '#f97316', 'Choisissez votre pièce',
@@ -37,7 +37,7 @@ $steps = [
                 <?php foreach ($steps as $i => [$n, $ic, $color, $title, $text, $tags]): ?>
                     <li data-reveal style="--delay: <?= $i * 0.1 ?>s">
                         <div data-tilt class="tilt-card group relative card-3d p-7 lg:p-8 h-full flex flex-col" data-testid="order-step-<?= $n ?>">
-                            <span class="icon-3d h-16 w-16 rounded-[20px]" style="--c: <?= $color ?>" aria-hidden="true"><?= $ic ?></span>
+                            <span class="icon-tile h-16 w-16 rounded-[20px]" style="--c: <?= $color ?>" aria-hidden="true"><?= $ic ?></span>
                             <h3 class="font-display text-xl leading-tight mt-5"><?= e($title) ?></h3>
                             <p class="text-sm text-[var(--ink-2)] mt-4 leading-relaxed flex-1"><?= e($text) ?></p>
                             <div class="flex flex-wrap gap-2 mt-8">
