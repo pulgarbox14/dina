@@ -274,13 +274,16 @@ summary:focus-visible {
     outline-offset: 3px;
 }
 
-/* Portrait de l'accueil : sur mobile il sert de fond (fondu par le haut pour laisser lire le texte),
- * à partir de la tablette il reprend le fondu sur le bord gauche (bras coupé sur la photo d'origine). */
-.hero-portrait {
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 22%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 22%);
+/* Portrait de l'accueil : sur mobile il remplit tout le bloc, derrière le texte ;
+ * sur ordinateur, fondu sur le bord gauche (bras coupé sur la photo d'origine). */
+/* Mobile et tablette : le texte passe devant la photo ; léger halo blanc pour la lisibilité. */
+@media (max-width: 1023px) {
+    .hero-copy h1,
+    .hero-copy p {
+        text-shadow: 0 1px 14px rgba(255, 255, 255, 0.85);
+    }
 }
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
     .hero-portrait {
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 9%, black 100%);
         mask-image: linear-gradient(to right, transparent 0%, black 9%, black 100%);

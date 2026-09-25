@@ -13,7 +13,7 @@ $waText = 'Bonjour Secondina ! Je souhaite une pièce sur mesure : ';
         <div class="img-zoom overflow-hidden rounded-[36px] aspect-[4/5] bg-[var(--luster)] shadow-[0_40px_80px_-50px_rgba(236,72,153,0.55)]">
             <img src="<?= e(gallery('purple')) ?>" alt="Panier en perles à fleur violette, réalisé sur mesure" loading="lazy" class="h-full w-full object-cover">
         </div>
-        <div class="hidden sm:block absolute -right-6 lg:-right-10 top-10 w-40 lg:w-48 aspect-[3/4] overflow-hidden rounded-[24px] border-4 border-white shadow-xl rotate-3">
+        <div class="hidden sm:block absolute right-4 lg:-right-10 top-10 w-40 lg:w-48 aspect-[3/4] overflow-hidden rounded-[24px] border-4 border-white shadow-xl rotate-3">
             <img src="<?= e(gallery('orangeRound')) ?>" alt="" loading="lazy" class="h-full w-full object-cover">
         </div>
         <div class="absolute left-4 right-4 sm:left-6 sm:right-auto bottom-6 card-3d p-5 flex items-center gap-4">

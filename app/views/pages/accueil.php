@@ -33,16 +33,18 @@ $miniCard = static function (array $p, float $delay): string {
 
     <?php /* ——— Héros éditorial ——— */ ?>
     <section data-testid="hero-section" class="px-3 sm:px-5 pt-[92px]">
-        <div class="relative rounded-[32px] sm:rounded-[40px] overflow-hidden min-h-[940px] sm:min-h-[640px] h-[calc(100svh-110px)] max-h-[760px] bg-warm border border-[#fbe3ea]">
+        <div class="relative rounded-[32px] sm:rounded-[40px] overflow-hidden min-h-[720px] sm:min-h-[640px] h-[calc(100svh-110px)] max-h-[760px] bg-warm border border-[#fbe3ea]">
             <div class="pointer-events-none absolute -top-24 right-[18%] h-[420px] w-[420px] rounded-full bg-[#fdba74] opacity-40 blur-3xl"></div>
             <div class="pointer-events-none absolute bottom-[-120px] right-[34%] h-[460px] w-[460px] rounded-full bg-[#f9a8d4] opacity-40 blur-3xl"></div>
             <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_100%,#ffffff_0%,transparent_60%)]"></div>
-            <?php /* Portrait en fond : pleine largeur en bas sur mobile, à droite du texte à partir de la tablette. */ ?>
+            <?php /* Portrait : fond de tout le bloc (derrière le texte) sur mobile et tablette, à droite du texte sur ordinateur. */ ?>
             <img src="<?= e(url('artisan-cutout.png')) ?>" alt="L'artisane et son sac en perles" data-reveal style="--y: 40px; --dur: 1.6s" data-testid="hero-portrait"
-                 class="hero-portrait absolute inset-x-0 bottom-0 h-[50%] w-full object-cover object-top sm:inset-x-auto sm:right-[4%] lg:right-[31%] sm:h-[80%] lg:h-[96%] sm:w-auto sm:max-w-none sm:object-contain sm:object-bottom z-0">
+                 class="hero-portrait absolute inset-0 h-full w-full object-cover object-[50%_30%] lg:inset-x-auto lg:inset-y-auto lg:bottom-0 lg:right-[31%] lg:h-[96%] lg:w-auto lg:max-w-none lg:object-contain lg:object-bottom z-0">
             <div class="absolute inset-x-0 bottom-0 h-20 sm:h-32 bg-gradient-to-t from-[#fdeef6] via-[#fdeef6]/60 to-transparent"></div>
+            <?php /* Mobile et tablette : voile clair derrière le texte pour qu'il reste lisible sur la photo. */ ?>
+            <div class="lg:hidden pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fff6f0]/90 via-[#fff6f0]/55 via-45% to-transparent to-75%"></div>
 
-            <div class="absolute left-6 sm:left-10 lg:left-14 top-[7%] lg:top-[12%] max-w-[92%] lg:max-w-[46%] text-[var(--ink)]">
+            <div class="hero-copy absolute left-6 sm:left-10 lg:left-14 top-[7%] lg:top-[12%] max-w-[92%] lg:max-w-[46%] text-[var(--ink)] z-10">
                 <span data-reveal style="--delay: .2s; --y: 24px" class="inline-flex items-center gap-2 bg-white border border-[var(--line)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
                     <?= icon('sparkles', 12) ?> Haute perlerie · Cotonou
                 </span>
@@ -54,11 +56,11 @@ $miniCard = static function (array $p, float $delay): string {
                 </p>
                 <div data-reveal style="--delay: 1.1s; --y: 24px" class="mt-8 flex flex-wrap gap-3">
                     <a href="<?= e(url('/boutique')) ?>" data-testid="hero-cta-explore-button" class="btn-pill btn-dark">Découvrir la boutique <?= icon('arrow-up-right', 16) ?></a>
-                    <a href="<?= e(url('/artisane')) ?>" data-testid="hero-cta-artisan-button" class="btn-pill btn-ghost bg-white">Rencontrer l'artisane</a>
+                    <a href="<?= e(url('/artisane')) ?>" data-testid="hero-cta-artisan-button" class="btn-pill btn-ghost bg-white/90 backdrop-blur">Rencontrer l'artisane</a>
                 </div>
             </div>
 
-            <div data-reveal style="--delay: 1.2s; --y: 24px" class="hidden md:flex absolute right-8 lg:right-12 top-[14%] flex-col items-end gap-3" data-testid="hero-social-proof">
+            <div data-reveal style="--delay: 1.2s; --y: 24px" class="hidden lg:flex absolute right-12 top-[14%] flex-col items-end gap-3" data-testid="hero-social-proof">
                 <div class="flex -space-x-3">
                     <?php foreach (['orangeRound', 'purple', 'amber'] as $g): ?>
                         <img src="<?= e(gallery($g)) ?>" alt="" class="h-12 w-12 rounded-full object-cover border-2 border-white shadow-lg">
@@ -69,7 +71,7 @@ $miniCard = static function (array $p, float $delay): string {
             </div>
 
             <?php if ($heroProduct): ?>
-                <div data-reveal style="--delay: 1.35s; --y: 24px" class="hidden md:block absolute right-8 lg:right-12 top-[38%] text-right" data-testid="hero-featured-product">
+                <div data-reveal style="--delay: 1.35s; --y: 24px" class="hidden lg:block absolute right-12 top-[38%] text-right" data-testid="hero-featured-product">
                     <div class="text-xs text-[var(--ink-3)] max-w-[220px] ml-auto"><?= e($heroProduct['name']) ?> · <?= e($heroProduct['subtitle']) ?></div>
                     <form method="post" action="<?= e(url('/panier/ajouter')) ?>" data-cart-form>
                         <?= csrf_field() ?>
