@@ -1,7 +1,7 @@
 <?php
 /**
  * Avis clientes en bande qui défile en continu (pause au survol).
- * La liste est répétée pour remplir les grands écrans, puis dupliquée pour une boucle sans à-coup :
+ * Une courte liste est répétée pour remplir les grands écrans, puis la bande est dupliquée pour une boucle sans à-coup :
  * seule la première copie est lue par les lecteurs d'écran.
  * Un clic sur une carte ouvre une fenêtre avec l'avis complet et la pièce achetée (app.js → initReviews).
  */
@@ -12,6 +12,11 @@ $reviews = [
     ['Fatou N.', 'Cotonou', "Mon sac Lune Nacre a fait sensation au mariage de ma sœur. On m'a demandé dix fois où je l'avais trouvé.", 'sac-lune-nacre'],
     ['Mariam K.', 'Abidjan', "Le travail est incroyablement régulier. On sent les heures passées dessus. Livraison rapide jusqu'en Côte d'Ivoire.", null],
     ['Claire D.', 'Paris', "Une vraie pièce d'artisanat. Les fleurs orange sont encore plus belles qu'en photo.", 'cabas-fleur-de-soleil'],
+    ['Aïcha B.', 'Porto-Novo', "J'ai offert le panier Fleur d'Améthyste à ma mère, elle ne le quitte plus. Les finitions sont impeccables.", 'panier-fleur-amethyste'],
+    ['Nadège H.', 'Lomé', "Secondina a pris le temps de me conseiller sur les couleurs. Le résultat correspond exactement à ma tenue.", null],
+    ['Rachida S.', 'Cotonou', "La parure perles blanches est d'une finesse rare. Collier et bracelet tiennent parfaitement.", 'parure-perles-blanches'],
+    ['Estelle A.', 'Dakar', "Commandé pour ma fille, les minis sacs sont adorables et solides. Bien emballés à l'arrivée.", 'collection-mini-trio'],
+    ['Sandrine G.', 'Bruxelles', "Le panier Soleil est structuré et léger à la fois. Je reçois des compliments à chaque sortie.", 'panier-soleil-structure'],
 ];
 $products = ProductRepository::findMany(array_values(array_filter(array_column($reviews, 3))));
 $details = array_map(static function (array $r) use ($products): array {
@@ -28,7 +33,7 @@ $details = array_map(static function (array $r) use ($products): array {
         ],
     ];
 }, $reviews);
-$band = array_merge($reviews, $reviews);
+$band = count($reviews) < 6 ? array_merge($reviews, $reviews) : $reviews;
 
 $stars = static function (int $size = 16): string {
     return str_repeat('<svg width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>', 5);
@@ -44,15 +49,12 @@ $card = static function (array $review, int $i, bool $focusable) use ($stars, $r
             <span class="flex gap-1 text-[var(--orange)]" aria-label="5 étoiles sur 5"><?= $stars() ?></span>
             <span class="block font-display text-base sm:text-lg leading-snug font-normal mt-5">« <?= e($text) ?> »</span>
         </span>
-        <span class="mt-8 flex items-center justify-between gap-3">
-            <span class="flex items-center gap-3">
-                <span class="pearl-dot <?= $i % 2 ? 'pearl-dot-rose' : 'pearl-dot-warm' ?> h-9 w-9 rounded-full"></span>
-                <span>
-                    <span class="block text-sm font-semibold"><?= e($name) ?></span>
-                    <span class="block text-xs text-[var(--ink-3)]"><?= e($city) ?> · Achat vérifié</span>
-                </span>
+        <span class="mt-8 flex items-center gap-3">
+            <span class="pearl-dot <?= $i % 2 ? 'pearl-dot-rose' : 'pearl-dot-warm' ?> h-9 w-9 rounded-full"></span>
+            <span>
+                <span class="block text-sm font-semibold"><?= e($name) ?></span>
+                <span class="block text-xs text-[var(--ink-3)]"><?= e($city) ?> · Achat vérifié</span>
             </span>
-            <span class="review-more h-8 w-8 rounded-full flex items-center justify-center bg-[var(--bg-elevated)] text-[var(--ink-2)] transition-colors"><?= icon('plus', 14) ?></span>
         </span>
     </button>
     <?php return (string) ob_get_clean();

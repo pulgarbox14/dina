@@ -325,7 +325,7 @@ summary:focus-visible {
     mask-image: linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%);
 }
 .reviews-track {
-    animation: marquee 60s linear infinite;
+    animation: marquee 80s linear infinite;
     will-change: transform;
 }
 .reviews-band:hover .reviews-track,
@@ -389,12 +389,6 @@ summary:focus-visible {
     .reviews-band:hover .review-card {
         animation: none !important;
     }
-}
-.review-card:hover .review-more,
-.review-card:focus-visible .review-more,
-.review-card.is-swimming .review-more {
-    background: var(--accent-gradient);
-    color: #fff;
 }
 .review-dialog {
     border: 0;
