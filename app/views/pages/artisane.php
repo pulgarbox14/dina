@@ -45,7 +45,7 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
 
                 <?php foreach ($badges as [$ic, $title, $text, $pos, $delay, $rotate, $color]): ?>
                     <div data-reveal style="--delay: <?= $delay ?>s; --y: 30px; --r: <?= $rotate ?>deg; --dur: 1.1s" class="reveal-rotate absolute card-3d p-4 pr-6 flex items-center gap-3 <?= $pos ?>">
-                        <span class="h-11 w-11 rounded-xl flex items-center justify-center" style="background: <?= $color ?>22; color: <?= $color ?>"><?= icon($ic, 20, 1.8) ?></span>
+                        <span class="icon-3d h-11 w-11 rounded-xl" style="--c: <?= $color ?>" aria-hidden="true"><?= icon($ic, 20, 1.8) ?></span>
                         <div>
                             <div class="font-display text-lg leading-none"><?= e($title) ?></div>
                             <div class="text-[11px] text-[var(--ink-3)] mt-1"><?= e($text) ?></div>
@@ -59,7 +59,7 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
             <div class="grid grid-cols-3 gap-3 sm:gap-5">
                 <?php foreach ($stats as $i => [$n, $l, $ic, $color]): ?>
                     <div data-reveal style="--delay: <?= 1.4 + $i * 0.1 ?>s; --y: 24px" class="card-3d p-5 sm:p-7 flex flex-col items-center text-center gap-3">
-                        <span class="h-10 w-10 rounded-full flex items-center justify-center" style="background: <?= $color ?>22; color: <?= $color ?>"><?= icon($ic, 18, 1.8) ?></span>
+                        <span class="icon-3d h-10 w-10 rounded-full" style="--c: <?= $color ?>" aria-hidden="true"><?= icon($ic, 18, 1.8) ?></span>
                         <div class="font-display text-2xl sm:text-5xl leading-none whitespace-nowrap"><?= e($n) ?></div>
                         <div class="eyebrow"><?= e($l) ?></div>
                     </div>
@@ -90,8 +90,8 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
                     ['award', '#ec4899', 'CQM', "Diplôme d'État et attestation"],
                     ['sparkles', '#f43f5e', '6 ans', 'dans le perlage'],
                 ] as [$ic, $color, $t, $d]): ?>
-                    <li class="card-3d p-4 flex sm:flex-col items-center sm:items-start gap-3">
-                        <span class="h-10 w-10 shrink-0 rounded-xl flex items-center justify-center" style="background: <?= $color ?>1f; color: <?= $color ?>"><?= icon($ic, 18, 1.8) ?></span>
+                    <li class="group card-3d p-4 flex sm:flex-col items-center sm:items-start gap-3">
+                        <span class="icon-3d h-10 w-10 shrink-0 rounded-xl" style="--c: <?= $color ?>" aria-hidden="true"><?= icon($ic, 18, 1.8) ?></span>
                         <span>
                             <span class="block font-display text-lg leading-tight"><?= e($t) ?></span>
                             <span class="block text-xs text-[var(--ink-3)] mt-1"><?= e($d) ?></span>

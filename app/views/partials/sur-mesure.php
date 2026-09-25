@@ -41,8 +41,8 @@ $waText = 'Bonjour Secondina ! Je souhaite une pièce sur mesure : ';
 
         <ul class="mt-10 space-y-4">
             <?php foreach ($options as $i => [$ic, $color, $title, $text]): ?>
-                <li data-reveal style="--delay: <?= 0.08 * ($i + 1) ?>s" class="flex gap-4 items-start card-3d p-5">
-                    <span class="h-12 w-12 shrink-0 rounded-2xl flex items-center justify-center" style="background: <?= $color ?>1f; color: <?= $color ?>"><?= icon($ic, 22, 1.8) ?></span>
+                <li data-reveal style="--delay: <?= 0.08 * ($i + 1) ?>s" class="group flex gap-4 items-start card-3d p-5">
+                    <span class="icon-3d h-12 w-12 shrink-0 rounded-2xl" style="--c: <?= $color ?>" aria-hidden="true"><?= icon($ic, 22, 1.8) ?></span>
                     <div>
                         <h3 class="font-display text-lg leading-tight"><?= e($title) ?></h3>
                         <p class="text-sm text-[var(--ink-2)] mt-1 leading-relaxed"><?= e($text) ?></p>
