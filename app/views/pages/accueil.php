@@ -124,8 +124,10 @@ $miniCard = static function (array $p, float $delay): string {
                 ?>
                     <div data-reveal style="--delay: .1s" class="col-span-2 lg:col-span-4">
                         <div data-testid="featured-wide-card-<?= e($f['id']) ?>" class="grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[24px] sm:rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
-                            <a href="<?= e(url('/produit/' . $f['id'])) ?>" class="img-zoom overflow-hidden block aspect-[4/3] md:aspect-auto md:h-[460px]" aria-label="<?= e($f['name']) ?>">
-                                <img src="<?= e($f['images'][0] ?? '') ?>" alt="<?= e($f['name']) ?>" loading="lazy" class="h-full w-full object-cover">
+                            <?php /* Pièce entière visible (contain) ; les bords sont remplis par la même photo floutée. */ ?>
+                            <a href="<?= e(url('/produit/' . $f['id'])) ?>" class="img-zoom relative overflow-hidden block aspect-[5/4] md:aspect-auto md:h-[460px] bg-[var(--luster)]" aria-label="<?= e($f['name']) ?>">
+                                <img src="<?= e($f['images'][0] ?? '') ?>" alt="" aria-hidden="true" loading="lazy" class="absolute inset-0 h-full w-full object-cover scale-125 blur-2xl opacity-70">
+                                <img src="<?= e($f['images'][0] ?? '') ?>" alt="<?= e($f['name']) ?>" loading="lazy" class="relative h-full w-full object-contain">
                             </a>
                             <div class="p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-8">
                                 <div>
