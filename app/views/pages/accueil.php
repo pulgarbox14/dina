@@ -61,6 +61,18 @@ $miniCard = static function (array $p, float $delay): string {
                 </div>
             </div>
 
+            <?php /* Mobile et tablette : « +200 pièces » en bas du bloc, dans l'espace libre sur la photo. */ ?>
+            <div data-reveal style="--delay: 1.2s; --y: 24px" class="lg:hidden absolute left-4 right-4 sm:left-10 sm:right-auto bottom-5 z-10 glass rounded-2xl border border-white/70 shadow-lg px-4 py-3 flex items-center gap-4" data-testid="hero-social-proof-mobile">
+                <div class="flex -space-x-2.5 shrink-0">
+                    <?php foreach (['orangeRound', 'purple', 'amber'] as $g): ?>
+                        <img src="<?= e(gallery($g)) ?>" alt="" class="h-10 w-10 rounded-full object-cover border-2 border-white shadow">
+                    <?php endforeach; ?>
+                </div>
+                <div>
+                    <div class="font-display text-2xl leading-none">+200</div>
+                    <div class="text-[10px] uppercase tracking-[0.16em] text-[var(--ink-2)] mt-1">pièces confiées à leurs propriétaires</div>
+                </div>
+            </div>
             <div data-reveal style="--delay: 1.2s; --y: 24px" class="hidden lg:flex absolute right-12 top-[14%] flex-col items-end gap-3" data-testid="hero-social-proof">
                 <div class="flex -space-x-3">
                     <?php foreach (['orangeRound', 'purple', 'amber'] as $g): ?>
