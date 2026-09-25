@@ -1,6 +1,6 @@
 # Dina Perles — site PHP + MySQL
 
-Boutique et portfolio de **Zinsou Secondina Dagbédé**, artisane en haute perlerie à Cotonou (Bénin) :
+Boutique et portfolio de **Zinsou Secondina**, artisane en haute perlerie à Cotonou (Bénin) :
 sacs et parures en perles tissés à la main, prix en FCFA, commande en ligne ou via WhatsApp.
 
 > L'ancienne version React + FastAPI + MongoDB reste disponible sur la branche `main`.

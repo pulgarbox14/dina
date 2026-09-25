@@ -110,7 +110,7 @@ function brand(string $key): string
     $brand ??= [
         'name'      => 'Dina Perles',
         'tagline'   => 'Haute Perlerie Artisanale',
-        'artisan'   => 'Zinsou Secondina Dagbédé',
+        'artisan'   => 'Zinsou Secondina',
         'city'      => 'Cotonou, Bénin',
         'whatsapp'  => (string) Config::get('brand.whatsapp'),
         'email'     => (string) Config::get('brand.email'),
