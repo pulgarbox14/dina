@@ -53,7 +53,11 @@ $form = App\Session::takeForm('newsletter');
         </div>
 
         <div class="flex flex-col md:flex-row justify-between gap-4 pt-6 border-t border-[var(--line)] text-xs text-[var(--ink-3)]">
-            <span>© <?= date('Y') ?> <?= e(brand('name')) ?>. Fait main avec patience.</span>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <span data-testid="footer-copyright">© <?= date('Y') ?> <?= e(brand('name')) ?>. Tous droits réservés.</span>
+                <span class="hidden sm:inline" aria-hidden="true">·</span>
+                <span data-testid="footer-credit">Développé par <span class="font-semibold text-[var(--ink-2)]">Pascal Carmel GUEZO</span></span>
+            </div>
             <div class="flex flex-wrap gap-2">
                 <?php foreach ([['hand', '100 % fait main'], ['truck', 'Livraison Afrique & monde'], ['shield-check', 'MTN MoMo · Moov Money · Livraison']] as [$ic, $t]): ?>
                     <span class="inline-flex items-center gap-1.5 bg-white border border-[var(--line)] rounded-full px-3 h-7"><?= icon($ic, 12) ?> <?= e($t) ?></span>
