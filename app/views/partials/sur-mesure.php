@@ -1,5 +1,5 @@
 <?php
-/** Bloc « Sur mesure » de l'accueil : personnalisation d'une pièce, sans configurateur 3D. */
+/** Bloc « Sur mesure » de l'accueil : personnalisation d'une pièce. */
 $options = [
     ['sparkles', '#f97316', 'Couleur des fleurs', 'Orange, violet, bleu lagon, ambre… ou la teinte exacte de votre tenue.'],
     ['shopping-bag', '#ec4899', 'Forme et taille', 'Pochette, cabas, mini-sac : des dimensions pensées pour votre usage.'],

@@ -109,7 +109,7 @@ check('5 sacs', $count($c->get('/boutique?categorie=sacs')['body']) === 5);
 check('catégorie inconnue → tout le catalogue', $count($c->get('/boutique?categorie=%27%20OR%201=1--')['body']) === 9);
 $p = $c->get('/produit/sac-lune-nacre')['body'];
 check('fiche produit : nom et prix', str_contains($p, 'Le Sac Lune Nacre') && str_contains($p, "55\u{202F}000 FCFA"));
-check('fiche produit : réglages 3D', str_contains($p, 'data-shape="round"'));
+check('fiche produit : sans vue 3D', !str_contains($p, 'Vue 3D') && !str_contains($p, 'pearl3d'));
 $home = $c->get('/')['body'];
 check('accueil : vitrine avec 6 pièces', str_contains($home, 'data-testid="vitrine-section"') && substr_count($home, 'data-vitrine-go=') === 6);
 check('accueil : bloc sur mesure conservé', str_contains($home, 'data-testid="sur-mesure-section"'));

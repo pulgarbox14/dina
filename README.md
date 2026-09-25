@@ -13,7 +13,6 @@ sacs et parures en perles tissés à la main, prix en FCFA, commande en ligne ou
 | Base de données | **MySQL 5.7+ / MariaDB 10.3+** via PDO | Requêtes préparées (protection contre l'injection SQL) |
 | Pages | Gabarits PHP (`app/views`) | HTML généré par le serveur : rapide et bien référencé |
 | Style | Tailwind CSS, **compilé** dans `public/assets/css/app.css` | Aucun outil nécessaire sur l'hébergement |
-| 3D | Three.js, **compilé** dans `public/assets/js/pearl3d.js` | Mêmes sacs en perles 3D que la version React |
 | Interactions | JavaScript sans framework (`public/assets/js/app.js`) | Panier sans rechargement, animations, menu mobile |
 
 Sans JavaScript, le site reste utilisable : chaque action (panier, commande, contact) est un vrai formulaire.
@@ -36,7 +35,7 @@ public/                  ← SEUL dossier exposé sur le web
   index.php              point d'entrée unique
   .htaccess              réécriture d'URL (Apache)
   assets/                CSS, JS et bibliothèques compilés
-resources/               sources du CSS et de la 3D (à recompiler après modification)
+resources/               source du CSS Tailwind (à recompiler après modification)
 tests/http_test.php      tests de bout en bout (51 vérifications)
 ```
 
@@ -46,7 +45,7 @@ tests/http_test.php      tests de bout en bout (51 vérifications)
 |---|---|
 | `/` | Accueil : héros, sélection, vitrine produits, sur mesure, commander en 3 étapes, avis |
 | `/boutique?categorie=sacs\|minis\|bijoux` | Catalogue filtré |
-| `/produit/{id}` | Fiche produit : photos, vue 3D, quantité, panier, WhatsApp |
+| `/produit/{id}` | Fiche produit : photos, quantité, panier, WhatsApp |
 | `/artisane`, `/a-propos` | Pages de présentation |
 | `/contact` | Formulaire de contact + FAQ |
 | `/panier` → `/commande/confirmee` | Panier, commande, confirmation |
@@ -99,13 +98,13 @@ php -S localhost:8000 -t public app/dev-router.php
 
 Une variable d'environnement du serveur (ex. `DB_NAME=dina_test`) a priorité sur la même clé du `.env`.
 
-### Modifier le style ou la 3D
+### Modifier le style
 
 Nécessite Node.js **uniquement sur votre ordinateur**, jamais sur l'hébergement :
 
 ```bash
 npm install
-npm run build        # recompile public/assets/css/app.css et public/assets/js/pearl3d.js
+npm run build        # recompile public/assets/css/app.css
 npm run watch:css    # recompile le CSS à chaque modification des gabarits
 ```
 

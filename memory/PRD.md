@@ -1,12 +1,12 @@
 # Dina Perles — PRD
 
 ## Problème initial
-Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui confectionne des sacs et bijoux en perles. Site blanc, pages Accueil / Boutique / À propos / Contact / détail produit / panier / page artisane. Devise FCFA. Photos retouchées façon studio.
+Page d'atterrissage e-commerce/portfolio pour une artisane qui confectionne des sacs et bijoux en perles. Site blanc, pages Accueil / Boutique / À propos / Contact / détail produit / panier / page artisane. Devise FCFA. Photos retouchées façon studio.
 
 ## Architecture (branche PHP)
 - PHP 8.1+ sans framework : contrôleur frontal `public/index.php`, routeur maison, gabarits `app/views`
 - MySQL / MariaDB via PDO (requêtes préparées) : `database/schema.sql` + `database/seed.sql`
-- Tailwind compilé (`public/assets/css/app.css`), 3D Three.js compilée (`public/assets/js/pearl3d.js`), JS sans framework (`public/assets/js/app.js`)
+- Tailwind compilé (`public/assets/css/app.css`), JS sans framework (`public/assets/js/app.js`)
 - Panier en session PHP (id → quantité), prix toujours relus en base. Commandes enregistrées en base + lien WhatsApp pré-rempli.
 - Ancienne architecture (branche `main`) : React 19 + FastAPI + MongoDB.
 
@@ -38,7 +38,7 @@ Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui conf
 
 ## Implémenté (24/09/2026 — migration PHP + MySQL)
 - Réécriture complète en PHP (pages, panier, commande, contact, newsletter) avec rendu identique
-- 3D portée en Three.js pur (mêmes modèles perle par perle, Float + OrbitControls reproduits)
+- 3D retirée (produits physiques : les photos réelles suffisent)
 - Sécurité : total recalculé serveur, CSRF, XSS, anti-spam, GET /api/orders supprimé
 - Tests : tests/http_test.php (42 vérifications)
 

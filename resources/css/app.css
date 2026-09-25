@@ -423,28 +423,6 @@ summary:focus-visible {
     }
 }
 
-/* ——— Boutons à état (forme/accent 3D, photo/3D, miniatures) ——— */
-.pearl-option[aria-pressed="true"] {
-    background: var(--accent-gradient);
-    color: #fff;
-    border-color: transparent;
-}
-.view-toggle[aria-pressed="true"] {
-    background: var(--ink);
-    color: #fff;
-    border-color: var(--ink);
-}
-.view-toggle[aria-pressed="false"]:hover {
-    background: #fff;
-}
-.pearl-swatch-option[aria-pressed="true"] {
-    border-color: var(--rose);
-}
-.pearl-swatch[aria-pressed="true"] {
-    border-color: var(--ink);
-    transform: scale(1.1);
-}
-
 /* ——— Accordéons (<details>) ——— */
 .accordion summary::-webkit-details-marker {
     display: none;
@@ -470,16 +448,4 @@ summary:focus-visible {
         opacity: 0;
         transform: translateY(12px);
     }
-}
-
-/* ——— Scène 3D ——— */
-[data-pearl-scene] canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-    touch-action: pan-y;
-    cursor: grab;
-}
-[data-pearl-scene] canvas:active {
-    cursor: grabbing;
 }

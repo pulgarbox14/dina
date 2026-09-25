@@ -268,7 +268,7 @@
         });
     }
 
-    /* ——— Page produit : quantité, miniatures, photo / 3D ——— */
+    /* ——— Page produit : quantité et miniatures ——— */
     function initProductPage() {
         const page = $("[data-product-page]");
         if (!page) return;
@@ -296,35 +296,11 @@
                 $$("[data-thumb]", page).forEach((t) => {
                     const active = t === thumb;
                     t.setAttribute("aria-pressed", String(active));
-                    t.classList.toggle("border-[var(--ink)]", active);
+                    t.classList.toggle("border-[var(--rose)]", active);
                     t.classList.toggle("border-transparent", !active);
                 });
             })
         );
-
-        $$("[data-view-toggle]", page).forEach((btn) =>
-            btn.addEventListener("click", () => {
-                const mode = btn.dataset.viewToggle;
-                $$("[data-view-toggle]", page).forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-                $$("[data-view-panel]", page).forEach((p) => p.classList.toggle("hidden", p.dataset.viewPanel !== mode));
-            })
-        );
-    }
-
-    /* ——— Boutons de forme / couleur des scènes 3D ——— */
-    function initPearlControls() {
-        document.addEventListener("click", (e) => {
-            const btn = e.target.closest("[data-pearl-target]");
-            if (!btn) return;
-            const scene = document.getElementById(btn.dataset.pearlTarget);
-            if (!scene) return;
-            const group = btn.closest("[data-pearl-group]");
-            $$("[data-pearl-target]", group).forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-            const detail = {};
-            if (btn.dataset.shape !== undefined) detail.shape = scene.dataset.shape = btn.dataset.shape;
-            if (btn.dataset.accent !== undefined) detail.accent = scene.dataset.accent = btn.dataset.accent;
-            scene.dispatchEvent(new CustomEvent("pearl:update", { detail }));
-        });
     }
 
     /* ——— Vitrine produits de l'accueil : flèches, miniatures, clavier ——— */
@@ -394,7 +370,6 @@
         initCartForms();
         initAjaxForms();
         initProductPage();
-        initPearlControls();
         initVitrine();
         showFlashes();
     });

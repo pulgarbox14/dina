@@ -52,7 +52,6 @@ final class PageController
             'description' => $product['subtitle'] . ' — ' . $product['description'],
             'product'     => $product,
             'related'     => array_slice($related, 0, 4),
-            'withPearl3d' => true,
         ]);
     }
 

@@ -5,7 +5,6 @@
  * @var string $content  HTML de la page
  * @var string|null $title
  * @var string|null $description
- * @var bool|null $withPearl3d  charge le module 3D (Three.js) sur cette page
  */
 $cart = App\Cart::summary();
 $pageTitle = isset($title) ? $title . ' — Dina Perles' : 'Dina Perles — Haute Perlerie Artisanale';
@@ -41,8 +40,5 @@ $flashes = App\Session::takeFlashes();
 
     <script src="<?= e(asset('vendor/lenis.min.js')) ?>" defer></script>
     <script src="<?= e(asset('js/app.js')) ?>" defer></script>
-    <?php if (!empty($withPearl3d)): ?>
-    <script type="module" src="<?= e(asset('js/pearl3d.js')) ?>"></script>
-    <?php endif; ?>
 </body>
 </html>

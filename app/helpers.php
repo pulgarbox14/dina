@@ -145,27 +145,6 @@ function gallery(string $key): string
     return url('assets/img/produits/' . ($files[$key] ?? $files['lune']) . '.jpg');
 }
 
-/**
- * Forme et couleur du modèle 3D d'un produit (même logique que PearlModel.js).
- *
- * @return array{shape: string, accent: ?string}
- */
-function pearl_model(array $product): array
-{
-    $accents = [
-        'Fleur orange'       => '#f97316',
-        'Fleur violette'     => '#a855f7',
-        'Ambre'              => '#f59e0b',
-        'Blanc, bleu & gris' => '#60a5fa',
-    ];
-    $shape = match (true) {
-        $product['category'] === 'bijoux' => 'necklace',
-        in_array($product['id'], ['sac-lune-nacre', 'sac-nacre-classique', 'cabas-fleur-de-soleil'], true) => 'round',
-        default => 'tote',
-    };
-    return ['shape' => $shape, 'accent' => $accents[$product['accent']] ?? null];
-}
-
 /** Erreur de validation d'un champ, prête à afficher sous l'input. */
 function field_error(array $errors, string $field): string
 {
