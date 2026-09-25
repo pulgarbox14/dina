@@ -343,6 +343,15 @@
             lenis?.stop();
             dialog.showModal();
         });
+        // Toucher (mobile) : la carte « nage » un instant, comme au survol sur ordinateur.
+        root.addEventListener("touchstart", (e) => {
+            const card = e.target.closest("[data-review]");
+            if (!card) return;
+            card.classList.add("is-swimming");
+            clearTimeout(card._swim);
+            card._swim = setTimeout(() => card.classList.remove("is-swimming"), 2600);
+        }, { passive: true });
+
         const close = () => dialog.close();
         $$("[data-review-close]", dialog).forEach((b) => b.addEventListener("click", close));
         // Clic sur le fond assombri (en dehors de la fenêtre) : fermeture.

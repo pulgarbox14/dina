@@ -350,18 +350,57 @@ summary:focus-visible {
 }
 
 /* Cartes d'avis cliquables et fenêtre de détail */
+/* Effet « nage » : au survol ou au toucher, la carte flotte comme sur l'eau
+ * (ondulation verticale + léger balancement), et ses voisines ondulent un peu. */
 .review-card {
-    transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    transition: box-shadow 0.4s var(--ease-out);
+    will-change: transform;
+}
+@keyframes review-swim {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    20% {
+        transform: translateY(-10px) rotate(-1.4deg);
+    }
+    45% {
+        transform: translateY(-4px) rotate(1deg);
+    }
+    70% {
+        transform: translateY(-12px) rotate(-0.8deg);
+    }
+}
+@keyframes review-ripple {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
 }
 .review-card:hover,
-.review-card:focus-visible {
-    transform: translateY(-6px);
+.review-card:focus-visible,
+.review-card.is-swimming {
+    animation: review-swim 2.6s ease-in-out infinite;
     box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.9) inset,
-        0 30px 60px -30px rgba(236, 72, 153, 0.45);
+        0 34px 60px -30px rgba(236, 72, 153, 0.5);
+}
+.reviews-band:hover .review-card:not(:hover) {
+    animation: review-ripple 3.2s ease-in-out infinite;
+}
+.reviews-band:hover .review-card:nth-child(odd):not(:hover) {
+    animation-delay: -1.6s;
+}
+@media (prefers-reduced-motion: reduce) {
+    .review-card,
+    .reviews-band:hover .review-card {
+        animation: none !important;
+    }
 }
 .review-card:hover .review-more,
-.review-card:focus-visible .review-more {
+.review-card:focus-visible .review-more,
+.review-card.is-swimming .review-more {
     background: var(--accent-gradient);
     color: #fff;
 }
