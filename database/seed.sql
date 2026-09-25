@@ -17,14 +17,18 @@ INSERT INTO products (id, name, subtitle, price, category, accent, tag, weaving_
 ON DUPLICATE KEY UPDATE name = VALUES(name), subtitle = VALUES(subtitle), price = VALUES(price), category = VALUES(category), accent = VALUES(accent), tag = VALUES(tag), weaving_hours = VALUES(weaving_hours), dimensions = VALUES(dimensions), description = VALUES(description), featured = VALUES(featured), sort_order = VALUES(sort_order);
 
 DELETE FROM product_images WHERE product_id IN ('sac-lune-nacre', 'sac-nacre-classique', 'cabas-fleur-de-soleil', 'panier-soleil-structure', 'panier-fleur-amethyste', 'collection-mini-trio', 'parure-perles-blanches', 'parure-nacre-bague', 'parure-ambre');
+-- Chemins relatifs au dossier public/ (photos incluses dans le projet).
 INSERT INTO product_images (product_id, url, position) VALUES
-    ('sac-lune-nacre', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/46cb48231813f0acda019e8e5e4356b4088a4400185d9ab3649fcedbbc567ab0.jpeg', 0),
-    ('sac-nacre-classique', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/948ae007bf90f1cccd44d63de2610a179d9d7fd504a584b2a390c834a7a1bdf1.jpeg', 0),
-    ('cabas-fleur-de-soleil', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/638c5bb9c6b1c9f2320fb89647f1941b48f217bba82e11ac795513904763fac3.jpeg', 0),
-    ('panier-soleil-structure', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/6fb44d546c549ddb989ca3038d6b535177b7e6eda7b6cbf12e5d215a4ce25389.jpeg', 0),
-    ('panier-fleur-amethyste', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/d483f02574a8bd6c9b24c025cad33c6617fc51b1ae1c176f97e8ab23d3ca16b1.jpeg', 0),
-    ('collection-mini-trio', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/3162899abd160da05fb509fe34b1c229746b7566748d4ebef2af7e3423814f43.jpeg', 0),
-    ('parure-perles-blanches', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/9f479b1f426704ec3959febadbe5f31f0d208ea76b3585c35a18461aa8ea1c11.jpeg', 0),
-    ('parure-nacre-bague', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/6d9b5a4bf8e02572a0ce17141868ead5d8303ba81184d4615a61c7354f9762b7.jpeg', 0),
-    ('parure-ambre', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/85bcddc3e7e29cc572b81600bcbe7c945eda731b37605ed8314ff3aec5ca8d36.jpeg', 0),
-    ('parure-ambre', 'https://static.prod-images.emergentagent.com/jobs/7ee9dc22-104f-4f5f-bce4-68271cc60488/images/84b8e25e1f496e0775005a7db0dde27dd7a11a3e05c54e45b9a9f534c0c0ba65.jpeg', 1);
+    ('sac-lune-nacre', 'assets/img/produits/sac-lune-nacre-1.jpg', 0),
+    ('sac-lune-nacre', 'assets/img/produits/sac-lune-nacre-2.jpg', 1),
+    ('sac-nacre-classique', 'assets/img/produits/sac-nacre-classique.jpg', 0),
+    ('cabas-fleur-de-soleil', 'assets/img/produits/cabas-fleur-de-soleil-1.jpg', 0),
+    ('cabas-fleur-de-soleil', 'assets/img/produits/cabas-fleur-de-soleil-2.jpg', 1),
+    ('panier-soleil-structure', 'assets/img/produits/panier-soleil-structure.jpg', 0),
+    ('panier-fleur-amethyste', 'assets/img/produits/panier-fleur-amethyste-1.jpg', 0),
+    ('panier-fleur-amethyste', 'assets/img/produits/panier-fleur-amethyste-2.jpg', 1),
+    ('collection-mini-trio', 'assets/img/produits/collection-mini-trio.jpg', 0),
+    ('parure-perles-blanches', 'assets/img/produits/parure-perles-blanches.jpg', 0),
+    ('parure-nacre-bague', 'assets/img/produits/parure-nacre-bague.jpg', 0),
+    ('parure-ambre', 'assets/img/produits/parure-ambre-1.jpg', 0),
+    ('parure-ambre', 'assets/img/produits/parure-ambre-2.jpg', 1);

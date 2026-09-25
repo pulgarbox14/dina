@@ -139,6 +139,6 @@ php tests/http_test.php http://127.0.0.1:8080 http://127.0.0.1:8082
 ## À faire
 
 - **Numéro WhatsApp réel** dans `.env` (`BRAND_WHATSAPP`) : c'est encore un numéro fictif.
-- **Photos** : elles sont hébergées chez Emergent (`static.prod-images.emergentagent.com`). Pour ne plus en dépendre, copiez-les dans `public/assets/img/` et mettez à jour les URL (table `product_images` et fonction `gallery()` dans `app/helpers.php`).
+- **Photos** : incluses dans `public/assets/img/produits/` (chemins enregistrés dans la table `product_images`). Pour ajouter une création, déposez sa photo dans ce dossier et ajoutez la ligne correspondante en base.
 - **Espace admin** : en attendant, les commandes, messages et inscriptions se consultent dans phpMyAdmin (tables `orders`, `order_items`, `contact_messages`, `newsletter_subscribers`).
 - **Notification** e-mail ou WhatsApp à Secondina pour chaque nouvelle commande.

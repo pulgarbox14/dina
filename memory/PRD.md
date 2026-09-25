@@ -44,7 +44,6 @@ Page d'atterrissage e-commerce/portfolio orientée 3D pour une artisane qui conf
 
 ## Backlog
 - P0 : numéro WhatsApp réel (`.env` → BRAND_WHATSAPP)
-- P0 : rapatrier les photos hébergées chez Emergent dans public/assets/img
 - P1 : espace admin pour ajouter produits/photos (upload), gestion des commandes
 - P1 : paiement en ligne (Wave / Orange Money / Stripe)
 - P2 : multi-langue, avis clients dynamiques, Instagram feed

@@ -115,7 +115,7 @@ final class ProductRepository
         $stmt->execute($ids);
         $images = [];
         foreach ($stmt->fetchAll() as $img) {
-            $images[$img['product_id']][] = $img['url'];
+            $images[$img['product_id']][] = media($img['url']);
         }
         return array_map(static function (array $p) use ($images): array {
             $p['featured'] = (bool) $p['featured'];
