@@ -61,8 +61,9 @@ $miniCard = static function (array $p, float $delay): string {
                 </div>
             </div>
 
-            <?php /* Mobile et tablette : « +200 pièces » en bas du bloc, dans l'espace libre sur la photo. */ ?>
-            <div data-reveal style="--delay: 1.2s; --y: 24px" class="lg:hidden absolute left-4 right-4 sm:left-10 sm:right-auto bottom-5 z-10 glass rounded-2xl border border-white/70 shadow-lg px-4 py-3 flex items-center gap-4" data-testid="hero-social-proof-mobile">
+            <?php /* Mobile et tablette : « +200 pièces » en bas du bloc, posé sur un fondu clair qui remonte depuis le bas de la photo. */ ?>
+            <div class="lg:hidden pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#fdeef6] via-[#fdeef6]/85 via-45% to-transparent"></div>
+            <div class="hero-copy lg:hidden absolute left-6 right-6 sm:left-10 bottom-6 z-10 flex items-center gap-4" data-testid="hero-social-proof-mobile">
                 <div class="flex -space-x-2.5 shrink-0">
                     <?php foreach (['orangeRound', 'purple', 'amber'] as $g): ?>
                         <img src="<?= e(gallery($g)) ?>" alt="" class="h-10 w-10 rounded-full object-cover border-2 border-white shadow">
@@ -136,11 +137,10 @@ $miniCard = static function (array $p, float $delay): string {
                     $more = array_slice(array_values(array_filter($showcase, fn ($p) => !in_array($p['id'], $shown, true))), 0, 4);
                 ?>
                     <div data-reveal style="--delay: .1s" class="col-span-2 lg:col-span-4">
-                        <div data-testid="featured-wide-card-<?= e($f['id']) ?>" class="grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[24px] sm:rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
-                            <?php /* Pièce entière visible (contain) ; les bords sont remplis par la même photo floutée. */ ?>
-                            <a href="<?= e(url('/produit/' . $f['id'])) ?>" class="img-zoom relative overflow-hidden block aspect-[5/4] md:aspect-auto md:h-[460px] bg-[var(--luster)]" aria-label="<?= e($f['name']) ?>">
-                                <img src="<?= e($f['images'][0] ?? '') ?>" alt="" aria-hidden="true" loading="lazy" class="absolute inset-0 h-full w-full object-cover scale-125 blur-2xl opacity-70">
-                                <img src="<?= e($f['images'][0] ?? '') ?>" alt="<?= e($f['name']) ?>" loading="lazy" class="relative h-full w-full object-contain">
+                        <div data-testid="featured-wide-card-<?= e($f['id']) ?>" class="grid md:grid-cols-[340px_1fr] bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[24px] sm:rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
+                            <?php /* Colonne photo à la largeur d'une photo portrait : la pièce remplit tout le cadre. */ ?>
+                            <a href="<?= e(url('/produit/' . $f['id'])) ?>" class="img-zoom overflow-hidden block aspect-[4/5] md:aspect-auto md:h-full md:min-h-[420px] bg-[var(--luster)]" aria-label="<?= e($f['name']) ?>">
+                                <img src="<?= e($f['images'][0] ?? '') ?>" alt="<?= e($f['name']) ?>" loading="lazy" class="h-full w-full object-cover">
                             </a>
                             <div class="p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-8">
                                 <div>
@@ -155,7 +155,7 @@ $miniCard = static function (array $p, float $delay): string {
                                 <?php if ($more): ?>
                                     <div>
                                         <div class="text-[11px] uppercase tracking-[0.2em] text-white/50 font-semibold">À découvrir aussi</div>
-                                        <div class="grid grid-cols-4 gap-2 sm:gap-3 mt-3" data-testid="featured-more">
+                                        <div class="grid grid-cols-4 gap-2 sm:gap-3 mt-3 max-w-md" data-testid="featured-more">
                                             <?php foreach ($more as $m): ?>
                                                 <a href="<?= e(url('/produit/' . $m['id'])) ?>" class="group/mini block" title="<?= e($m['name']) ?>">
                                                     <span class="block aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-white/10 ring-1 ring-white/10 group-hover/mini:ring-[#f9a8d4] transition">
