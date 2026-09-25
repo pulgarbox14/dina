@@ -116,8 +116,6 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
         </div>
     </section>
 
-    <?= View::partial('partials/marquee') ?>
-
     <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 grid lg:grid-cols-3 gap-6">
         <?php foreach ($values as $i => [$t, $d]): ?>
             <div data-reveal style="--delay: <?= $i * 0.1 ?>s">

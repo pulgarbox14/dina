@@ -36,5 +36,4 @@ ob_start(); ?>
             <?php endforeach; ?>
         </div>
     </section>
-    <?= View::partial('partials/marquee', ['dark' => true]) ?>
 </div>

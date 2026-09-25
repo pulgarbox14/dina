@@ -199,11 +199,6 @@ body {
         transform: translateX(-50%);
     }
 }
-.marquee-track {
-    animation: marquee 40s linear infinite;
-    will-change: transform;
-}
-
 .tilt-card {
     transform-style: preserve-3d;
     transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
@@ -321,9 +316,6 @@ summary:focus-visible {
     }
     .reveal-rotate {
         transform: rotate(var(--r, 0deg)) !important;
-    }
-    .marquee-track {
-        animation: none;
     }
 }
 
