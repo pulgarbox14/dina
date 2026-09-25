@@ -5,12 +5,12 @@ $cols = [
 ];
 $form = App\Session::takeForm('newsletter');
 ?>
-<footer data-testid="footer" class="px-3 sm:px-5 pb-5 mt-28">
-    <div class="rounded-[40px] bg-warm px-6 sm:px-10 lg:px-16 pt-14 pb-8 overflow-hidden relative">
+<footer data-testid="footer" class="px-3 sm:px-5 pb-5 mt-20">
+    <div class="rounded-[40px] bg-warm px-6 sm:px-10 lg:px-16 pt-12 pb-8 overflow-hidden relative">
         <div class="grid lg:grid-cols-12 gap-10 items-end pb-12 border-b border-[var(--line)]">
             <div class="lg:col-span-7">
                 <span class="eyebrow">Dina Perles</span>
-                <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.02] mt-4">Une pièce <span class="text-gradient">unique</span> <br class="hidden sm:block"> vous attend.</h2>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1.02] mt-4">Une pièce <span class="text-gradient">unique</span> <br class="hidden sm:block"> vous attend.</h2>
             </div>
             <div class="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
                 <a href="<?= e(url('/boutique')) ?>" data-testid="footer-cta-boutique" class="btn-pill btn-dark">Voir la boutique <?= icon('arrow-up-right', 16) ?></a>

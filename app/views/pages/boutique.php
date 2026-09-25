@@ -22,13 +22,13 @@ ob_start(); ?>
         'text'      => 'Chaque création est fabriquée à la main dans notre atelier. Les quantités sont volontairement limitées.',
         'extra'     => $filters,
     ]) ?>
-    <section class="max-w-[1440px] mx-auto px-6 lg:px-12 pb-24">
+    <section class="max-w-[1280px] mx-auto px-6 lg:px-12 pb-24">
         <div class="flex justify-between text-xs text-[var(--ink-3)] uppercase tracking-[0.2em] mb-8 border-b border-[var(--line)] pb-4">
             <span data-testid="products-count"><?= count($products) ?> création<?= count($products) > 1 ? 's' : '' ?></span>
             <span>Prix en FCFA</span>
         </div>
         <?php if (ProductRepository::unavailable()) echo View::partial('partials/catalog-unavailable'); ?>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14" data-testid="products-grid">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12" data-testid="products-grid">
             <?php foreach ($products as $i => $p): ?>
                 <div data-reveal style="--delay: <?= ($i % 3) * 0.08 ?>s">
                     <?= View::partial('partials/product-card', ['product' => $p]) ?>

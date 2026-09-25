@@ -25,7 +25,7 @@ $slides = array_map(static fn (array $p): array => [
 $first = $slides[0];
 $count = count($slides);
 ?>
-<section data-testid="vitrine-section" data-vitrine class="max-w-[1440px] mx-auto px-6 lg:px-12 py-28" aria-roledescription="carrousel" aria-label="Vitrine des créations">
+<section data-testid="vitrine-section" data-vitrine class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20" aria-roledescription="carrousel" aria-label="Vitrine des créations">
     <script type="application/json" data-vitrine-slides><?= json_encode($slides, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE) ?></script>
 
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
@@ -33,7 +33,7 @@ $count = count($slides);
         <div class="lg:col-span-4 order-1">
             <div data-reveal>
                 <span class="eyebrow">Vitrine</span>
-                <h2 class="font-display text-4xl sm:text-5xl leading-[1.02] tracking-tight mt-4">Nos pièces <span class="text-gradient">signature.</span></h2>
+                <h2 class="font-display text-3xl sm:text-4xl leading-[1.02] tracking-tight mt-4">Nos pièces <span class="text-gradient">signature.</span></h2>
                 <p class="text-[var(--ink-2)] mt-6 leading-relaxed max-w-sm">Sacs et parures tissés perle après perle dans l'atelier de Cotonou. Faites défiler pour découvrir chaque création.</p>
                 <a href="<?= e(url('/boutique')) ?>" data-testid="vitrine-all-link" class="btn-pill btn-dark mt-8">Tout voir <?= icon('arrow-up-right', 16) ?></a>
             </div>
@@ -68,9 +68,9 @@ $count = count($slides);
             <div data-reveal style="--delay: .1s" class="card-3d p-7" aria-live="polite">
                 <div class="vitrine-fade" data-vitrine-card>
                     <span class="eyebrow" data-vitrine-tag><?= e($first['tag']) ?></span>
-                    <h3 class="font-display text-2xl leading-tight mt-3" data-vitrine-name data-testid="vitrine-name"><?= e($first['name']) ?></h3>
+                    <h3 class="font-display text-xl leading-tight mt-3" data-vitrine-name data-testid="vitrine-name"><?= e($first['name']) ?></h3>
                     <p class="text-sm text-[var(--ink-3)] mt-2" data-vitrine-subtitle><?= e($first['subtitle']) ?></p>
-                    <div class="font-mono text-2xl mt-5" data-vitrine-price data-testid="vitrine-price"><?= e($first['price']) ?></div>
+                    <div class="font-mono text-xl mt-5" data-vitrine-price data-testid="vitrine-price"><?= e($first['price']) ?></div>
                     <dl class="grid grid-cols-2 gap-3 mt-6 text-sm">
                         <div class="rounded-2xl bg-warm p-3"><dt class="text-[10px] uppercase tracking-[0.18em] text-[var(--ink-3)]">Tissage</dt><dd class="mt-1 font-semibold" data-vitrine-hours><?= e($first['hours']) ?></dd></div>
                         <div class="rounded-2xl bg-warm p-3"><dt class="text-[10px] uppercase tracking-[0.18em] text-[var(--ink-3)]">Accent</dt><dd class="mt-1 font-semibold truncate" data-vitrine-accent><?= e($first['accent']) ?></dd></div>

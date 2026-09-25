@@ -72,6 +72,12 @@
 html {
     scroll-behavior: auto;
 }
+/* Grands écrans : tout ce qui est exprimé en rem (textes, marges, boutons) est réduit d'environ 6 %. */
+@media (min-width: 1024px) {
+    html {
+        font-size: 15px;
+    }
+}
 
 html.lenis,
 html.lenis body {

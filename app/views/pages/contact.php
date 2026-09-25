@@ -23,7 +23,7 @@ $channels = [
         'titleHtml' => 'Parlons de votre <em class="not-italic text-gradient">prochaine pièce.</em>',
         'text'      => "Une question, une commande sur mesure, une collaboration ? L'atelier vous répond sous 24 heures.",
     ]) ?>
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 pb-32">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 pb-32">
         <div data-reveal class="lg:col-span-4 space-y-8">
             <?php foreach ($channels as [$ic, $label, $value, $href, $tid]): ?>
                 <div class="flex gap-4 items-start">
@@ -62,7 +62,7 @@ $channels = [
                 <button data-testid="contact-submit-button" class="btn-pill btn-dark w-fit disabled:opacity-40" data-loading-text="Envoi…">Envoyer le message</button>
             </form>
             <div class="mt-24">
-                <h2 class="font-display text-4xl mb-6">Questions fréquentes</h2>
+                <h2 class="font-display text-3xl mb-6">Questions fréquentes</h2>
                 <div data-testid="faq-accordion" class="divide-y divide-[var(--line)] border-b border-[var(--line)]">
                     <?php foreach ($faq as $i => [$q, $a]): ?>
                         <details class="accordion group" name="faq">

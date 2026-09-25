@@ -19,8 +19,8 @@ $steps = [
 ];
 ?>
 <section data-testid="order-steps-section" class="px-3 sm:px-5 py-8">
-    <div class="rounded-[40px] bg-warm py-20 lg:py-28 px-6 lg:px-16">
-        <div class="max-w-[1440px] mx-auto">
+    <div class="rounded-[40px] bg-warm py-16 lg:py-20 px-6 lg:px-12">
+        <div class="max-w-[1280px] mx-auto">
             <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
                 <?= App\View::partial('partials/section-heading', [
                     'eyebrow'   => 'Commander',
@@ -33,15 +33,15 @@ $steps = [
                 </div>
             </div>
 
-            <ol class="grid md:grid-cols-3 gap-6 mt-14">
+            <ol class="grid md:grid-cols-3 gap-5 mt-10">
                 <?php foreach ($steps as $i => [$n, $ic, $color, $title, $text, $tags]): ?>
                     <li data-reveal style="--delay: <?= $i * 0.1 ?>s">
-                        <div data-tilt class="tilt-card relative card-3d p-8 lg:p-10 h-full flex flex-col" data-testid="order-step-<?= $n ?>">
+                        <div data-tilt class="tilt-card relative card-3d p-7 lg:p-8 h-full flex flex-col" data-testid="order-step-<?= $n ?>">
                             <div class="flex items-center justify-between">
                                 <span class="h-14 w-14 rounded-2xl flex items-center justify-center" style="background: <?= $color ?>1f; color: <?= $color ?>"><?= icon($ic, 24, 1.8) ?></span>
-                                <span class="font-display text-5xl leading-none opacity-25" style="color: <?= $color ?>" aria-hidden="true"><?= $n ?></span>
+                                <span class="font-display text-4xl leading-none opacity-25" style="color: <?= $color ?>" aria-hidden="true"><?= $n ?></span>
                             </div>
-                            <h3 class="font-display text-2xl leading-tight mt-8"><?= e($title) ?></h3>
+                            <h3 class="font-display text-xl leading-tight mt-6"><?= e($title) ?></h3>
                             <p class="text-sm text-[var(--ink-2)] mt-4 leading-relaxed flex-1"><?= e($text) ?></p>
                             <div class="flex flex-wrap gap-2 mt-8">
                                 <?php foreach ($tags as $tag): ?>

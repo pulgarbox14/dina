@@ -11,7 +11,7 @@ $empty = $cart['items'] === [];
 ?>
 <div data-testid="panier-page" data-cart-page>
     <?= View::partial('partials/page-hero', ['eyebrow' => 'Panier', 'titleHtml' => 'Votre sélection']) ?>
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 pb-24">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 pb-24">
         <div class="lg:col-span-7" data-cart-page-items>
             <?= View::partial('partials/cart-page-items', ['cart' => $cart]) ?>
         </div>

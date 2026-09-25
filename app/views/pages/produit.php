@@ -14,14 +14,14 @@ $accordions = [
 ];
 ?>
 <div data-testid="product-page" class="pt-32" data-product-page>
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
         <nav class="text-xs text-[var(--ink-3)] flex gap-2 mb-10" data-testid="breadcrumbs" aria-label="Fil d'Ariane">
             <a href="<?= e(url('/')) ?>" class="hover:text-[var(--ink)]">Accueil</a><span>/</span>
             <a href="<?= e(url('/boutique')) ?>" class="hover:text-[var(--ink)]">Boutique</a><span>/</span>
             <span class="text-[var(--ink)]"><?= e($p['name']) ?></span>
         </nav>
         <div class="grid lg:grid-cols-12 gap-12">
-            <div data-reveal class="lg:col-span-7">
+            <div data-reveal class="lg:col-span-6">
                 <div class="aspect-[4/5] overflow-hidden rounded-[28px] bg-[var(--luster)]">
                     <img data-main-image data-testid="product-main-image" src="<?= e($p['images'][0] ?? '') ?>" alt="<?= e($p['name']) ?>" class="h-full w-full object-cover">
                 </div>
@@ -37,9 +37,9 @@ $accordions = [
                 <?php endif; ?>
             </div>
 
-            <div data-reveal style="--delay: .1s" class="lg:col-span-5 lg:sticky lg:top-32 self-start">
+            <div data-reveal style="--delay: .1s" class="lg:col-span-5 lg:col-start-8 lg:sticky lg:top-32 self-start">
                 <?php if (!empty($p['tag'])): ?><span class="eyebrow"><?= e($p['tag']) ?></span><?php endif; ?>
-                <h1 data-testid="product-name" class="font-display text-5xl lg:text-6xl leading-[1] tracking-tight mt-3"><?= e($p['name']) ?></h1>
+                <h1 data-testid="product-name" class="font-display text-4xl lg:text-5xl leading-[1] tracking-tight mt-3"><?= e($p['name']) ?></h1>
                 <p class="text-[var(--ink-2)] mt-3"><?= e($p['subtitle']) ?></p>
                 <div data-testid="product-price" class="font-mono text-2xl mt-8"><?= price((int) $p['price']) ?></div>
                 <p class="text-base text-[var(--ink-2)] leading-relaxed mt-8"><?= e($p['description']) ?></p>
@@ -78,8 +78,8 @@ $accordions = [
             </div>
         </div>
 
-        <section class="mt-32">
-            <h2 class="font-display text-4xl mb-10">Vous aimerez aussi</h2>
+        <section class="mt-24">
+            <h2 class="font-display text-3xl mb-8">Vous aimerez aussi</h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8" data-testid="related-products">
                 <?php foreach ($related as $r) echo View::partial('partials/product-card', ['product' => $r]); ?>
             </div>

@@ -9,7 +9,7 @@ $links = [
 ];
 ?>
 <header data-testid="navbar" class="fixed top-3 sm:top-5 inset-x-3 sm:inset-x-5 z-50">
-    <div data-navbar-bar class="max-w-[1400px] mx-auto px-4 sm:px-6 h-[64px] rounded-full flex items-center justify-between glass border border-white/60 transition-shadow duration-500 shadow-[0_10px_40px_-24px_rgba(20,20,20,0.25)]">
+    <div data-navbar-bar class="max-w-[1280px] mx-auto px-4 sm:px-6 h-[64px] rounded-full flex items-center justify-between glass border border-white/60 transition-shadow duration-500 shadow-[0_10px_40px_-24px_rgba(20,20,20,0.25)]">
         <a href="<?= e(url('/')) ?>" data-testid="nav-logo-link" aria-label="Dina Perles — accueil">
             <?= App\View::partial('partials/logo') ?>
         </a>

@@ -31,7 +31,7 @@
 ?>
 <div class="pt-48 pb-32 px-6 max-w-2xl mx-auto text-center" data-testid="<?= !empty($productNotFound) ? 'product-not-found' : 'error-page' ?>">
     <span class="eyebrow"><?= e($eyebrow) ?></span>
-    <h1 class="font-display text-4xl sm:text-5xl mt-6"><?= e($heading) ?></h1>
+    <h1 class="font-display text-3xl sm:text-4xl mt-6"><?= e($heading) ?></h1>
     <p class="text-[var(--ink-2)] mt-6"><?= e($message) ?></p>
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="<?= e(url('/boutique')) ?>" class="btn-pill btn-dark">Voir la boutique <?= icon('arrow-up-right', 16) ?></a>
