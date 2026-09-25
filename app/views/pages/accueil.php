@@ -117,21 +117,43 @@ $miniCard = static function (array $p, float $delay): string {
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <?php if ($f): ?>
+                <?php if ($f):
+                    // Autres créations à découvrir : celles qui ne sont ni dans la sélection ni la pièce mise en avant.
+                    $shown = array_filter([$a['id'] ?? null, $b['id'] ?? null, $c['id'] ?? null, $d['id'] ?? null, $f['id']]);
+                    $more = array_slice(array_values(array_filter($showcase, fn ($p) => !in_array($p['id'], $shown, true))), 0, 4);
+                ?>
                     <div data-reveal style="--delay: .1s" class="col-span-2 lg:col-span-4">
-                        <a href="<?= e(url('/produit/' . $f['id'])) ?>" data-testid="featured-wide-card-<?= e($f['id']) ?>" class="group grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
-                            <div class="img-zoom overflow-hidden aspect-[4/3] md:aspect-auto md:min-h-[360px]">
+                        <div data-testid="featured-wide-card-<?= e($f['id']) ?>" class="grid md:grid-cols-2 bg-[var(--ink)] text-[var(--pearl)] overflow-hidden rounded-[24px] sm:rounded-[32px] shadow-[0_30px_70px_-40px_rgba(20,20,20,0.6)]">
+                            <a href="<?= e(url('/produit/' . $f['id'])) ?>" class="img-zoom overflow-hidden block aspect-[4/3] md:aspect-auto md:h-[460px]" aria-label="<?= e($f['name']) ?>">
                                 <img src="<?= e($f['images'][0] ?? '') ?>" alt="<?= e($f['name']) ?>" loading="lazy" class="h-full w-full object-cover">
-                            </div>
-                            <div class="p-10 lg:p-16 flex flex-col justify-between">
-                                <span class="eyebrow !text-white/50"><?= e($f['tag'] ?: 'Collection') ?></span>
+                            </a>
+                            <div class="p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-8">
                                 <div>
-                                    <h3 class="font-display text-3xl lg:text-4xl leading-tight mt-6"><?= e($f['name']) ?></h3>
-                                    <p class="text-white/70 mt-4 max-w-md"><?= e($f['description']) ?></p>
+                                    <span class="eyebrow !text-[#f9a8d4]"><?= e($f['tag'] ?: 'Collection') ?></span>
+                                    <h3 class="font-display text-2xl sm:text-3xl lg:text-4xl leading-tight mt-4"><a href="<?= e(url('/produit/' . $f['id'])) ?>" class="hover:text-[#f9a8d4] transition-colors"><?= e($f['name']) ?></a></h3>
+                                    <p class="text-white/70 mt-3 max-w-md text-sm sm:text-base"><?= e($f['description']) ?></p>
+                                    <div class="flex items-center gap-4 mt-5">
+                                        <span class="font-mono text-lg"><?= price((int) $f['price']) ?></span>
+                                        <a href="<?= e(url('/produit/' . $f['id'])) ?>" class="inline-flex items-center gap-2 text-sm link-underline">Voir la pièce <?= icon('arrow-up-right', 16) ?></a>
+                                    </div>
                                 </div>
-                                <span class="mt-10 inline-flex items-center gap-2 text-sm link-underline w-fit">Voir la pièce <?= icon('arrow-up-right', 16) ?></span>
+                                <?php if ($more): ?>
+                                    <div>
+                                        <div class="text-[11px] uppercase tracking-[0.2em] text-white/50 font-semibold">À découvrir aussi</div>
+                                        <div class="grid grid-cols-4 gap-2 sm:gap-3 mt-3" data-testid="featured-more">
+                                            <?php foreach ($more as $m): ?>
+                                                <a href="<?= e(url('/produit/' . $m['id'])) ?>" class="group/mini block" title="<?= e($m['name']) ?>">
+                                                    <span class="block aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-white/10 ring-1 ring-white/10 group-hover/mini:ring-[#f9a8d4] transition">
+                                                        <img src="<?= e($m['images'][0] ?? '') ?>" alt="<?= e($m['name']) ?>" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover/mini:scale-110">
+                                                    </span>
+                                                    <span class="block font-mono text-[10px] sm:text-[11px] text-white/60 mt-1.5 truncate"><?= price((int) $m['price']) ?></span>
+                                                </a>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
