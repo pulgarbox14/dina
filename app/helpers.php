@@ -67,6 +67,19 @@ function icon(string $name, int $size = 16, float $stroke = 2, string $class = '
     );
 }
 
+/** Logo officiel d'un réseau social (Instagram, WhatsApp) en SVG plein. */
+function brand_icon(string $name, int $size = 18, string $class = ''): string
+{
+    static $icons = null;
+    $icons ??= require __DIR__ . '/brand-icons.php';
+    return sprintf(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="%1$d" height="%1$d" viewBox="0 0 24 24" fill="currentColor" class="%2$s" aria-hidden="true"><path d="%3$s"/></svg>',
+        $size,
+        e($class),
+        $icons[$name] ?? ''
+    );
+}
+
 function csrf_field(): string
 {
     return '<input type="hidden" name="_csrf" value="' . e(Session::csrfToken()) . '">';

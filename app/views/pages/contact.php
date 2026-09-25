@@ -11,10 +11,11 @@ $faq = [
     ['Quels moyens de paiement acceptez-vous ?', "Paiement à la livraison à Cotonou, MTN MoMo, Moov Money et virement pour l'international."],
 ];
 $channels = [
-    ['message-circle', 'WhatsApp', '+' . brand('whatsapp'), whatsapp_link('Bonjour Dina Perles !'), 'contact-whatsapp-link'],
-    ['mail', 'E-mail', brand('email'), 'mailto:' . brand('email'), 'contact-email-link'],
-    ['instagram', 'Instagram', brand('instagram'), '#', 'contact-instagram-link'],
-    ['map-pin', 'Atelier', brand('city'), null, 'contact-address'],
+    // [pastille (HTML), libellé, valeur, lien, data-testid]
+    ['<span class="social-badge social-whatsapp h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . brand_icon('whatsapp', 20) . '</span>', 'WhatsApp', '+' . brand('whatsapp'), whatsapp_link('Bonjour Dina Perles !'), 'contact-whatsapp-link'],
+    ['<span class="social-badge social-mail h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . icon('mail', 18, 2) . '</span>', 'E-mail', brand('email'), 'mailto:' . brand('email'), 'contact-email-link'],
+    ['<span class="social-badge social-instagram h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . brand_icon('instagram', 19) . '</span>', 'Instagram', brand('instagram'), '#', 'contact-instagram-link'],
+    ['<span class="h-11 w-11 rounded-full border border-[var(--line)] flex items-center justify-center shrink-0">' . icon('map-pin', 17, 1.6) . '</span>', 'Atelier', brand('city'), null, 'contact-address'],
 ];
 ?>
 <div data-testid="contact-page">
@@ -25,9 +26,9 @@ $channels = [
     ]) ?>
     <div class="max-w-[1280px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 pb-32">
         <div data-reveal class="lg:col-span-4 space-y-8">
-            <?php foreach ($channels as [$ic, $label, $value, $href, $tid]): ?>
-                <div class="flex gap-4 items-start">
-                    <span class="h-11 w-11 rounded-full border border-[var(--line)] flex items-center justify-center shrink-0"><?= icon($ic, 17, 1.6) ?></span>
+            <?php foreach ($channels as [$badge, $label, $value, $href, $tid]): ?>
+                <div class="flex gap-4 items-center">
+                    <?= $badge ?>
                     <div>
                         <div class="eyebrow"><?= e($label) ?></div>
                         <?php if ($href): ?>

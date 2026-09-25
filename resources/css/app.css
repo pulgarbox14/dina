@@ -383,6 +383,25 @@ summary:focus-visible {
     }
 }
 
+/* ——— Pastilles aux couleurs officielles des réseaux sociaux ——— */
+.social-badge {
+    color: #fff;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+    box-shadow: 0 8px 18px -10px rgba(20, 20, 20, 0.45);
+}
+.social-badge:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+.social-instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.social-whatsapp {
+    background: #25d366;
+}
+.social-mail {
+    background: var(--accent-gradient);
+}
+
 /* ——— Tiroir panier ——— */
 .cart-drawer {
     visibility: hidden;

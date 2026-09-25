@@ -14,7 +14,7 @@ $form = App\Session::takeForm('newsletter');
             </div>
             <div class="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
                 <a href="<?= e(url('/boutique')) ?>" data-testid="footer-cta-boutique" class="btn-pill btn-dark">Voir la boutique <?= icon('arrow-up-right', 16) ?></a>
-                <a href="<?= e(whatsapp_link('Bonjour Dina Perles !')) ?>" target="_blank" rel="noopener" data-testid="footer-whatsapp-link" class="btn-pill btn-ghost bg-white"><?= icon('message-circle', 16) ?> WhatsApp</a>
+                <a href="<?= e(whatsapp_link('Bonjour Dina Perles !')) ?>" target="_blank" rel="noopener" data-testid="footer-whatsapp-link" class="btn-pill btn-ghost bg-white"><?= brand_icon('whatsapp', 16) ?> WhatsApp</a>
             </div>
         </div>
 
@@ -23,9 +23,9 @@ $form = App\Session::takeForm('newsletter');
                 <?= App\View::partial('partials/logo') ?>
                 <p class="text-sm text-[var(--ink-2)] mt-6 max-w-xs leading-relaxed">Sacs et parures en perles nacrées, tissés à la main à <?= e(brand('city')) ?>. Chaque perle est posée une à une.</p>
                 <div class="flex gap-3 mt-6">
-                    <?php foreach ([['instagram', '#', 'footer-instagram', 'Instagram'], ['message-circle', whatsapp_link('Bonjour !'), 'footer-whatsapp-icon', 'WhatsApp'], ['mail', 'mailto:' . brand('email'), 'footer-mail', 'E-mail']] as [$ic, $href, $tid, $label]): ?>
-                        <a href="<?= e($href) ?>" target="_blank" rel="noopener" data-testid="<?= $tid ?>" aria-label="<?= e($label) ?>" class="h-11 w-11 rounded-full bg-white border border-[var(--line)] flex items-center justify-center hover:bg-[var(--ink)] hover:text-white transition-colors"><?= icon($ic, 17, 1.6) ?></a>
-                    <?php endforeach; ?>
+                    <a href="#" target="_blank" rel="noopener" data-testid="footer-instagram" aria-label="Instagram" class="social-badge social-instagram h-11 w-11 rounded-full flex items-center justify-center"><?= brand_icon('instagram', 19) ?></a>
+                    <a href="<?= e(whatsapp_link('Bonjour !')) ?>" target="_blank" rel="noopener" data-testid="footer-whatsapp-icon" aria-label="WhatsApp" class="social-badge social-whatsapp h-11 w-11 rounded-full flex items-center justify-center"><?= brand_icon('whatsapp', 20) ?></a>
+                    <a href="mailto:<?= e(brand('email')) ?>" data-testid="footer-mail" aria-label="E-mail" class="social-badge social-mail h-11 w-11 rounded-full flex items-center justify-center"><?= icon('mail', 18, 2) ?></a>
                 </div>
             </div>
             <?php foreach ($cols as [$title, $tid, $links]): ?>

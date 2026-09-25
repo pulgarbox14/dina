@@ -35,6 +35,6 @@
     <p class="text-[var(--ink-2)] mt-6"><?= e($message) ?></p>
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="<?= e(url('/boutique')) ?>" class="btn-pill btn-dark">Voir la boutique <?= icon('arrow-up-right', 16) ?></a>
-        <a href="<?= e(whatsapp_link('Bonjour Dina Perles !')) ?>" target="_blank" rel="noopener" class="btn-pill btn-ghost"><?= icon('message-circle', 16) ?> WhatsApp</a>
+        <a href="<?= e(whatsapp_link('Bonjour Dina Perles !')) ?>" target="_blank" rel="noopener" class="btn-pill btn-ghost"><?= brand_icon('whatsapp', 16) ?> WhatsApp</a>
     </div>
 </div>

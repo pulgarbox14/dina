@@ -1,18 +1,21 @@
 <?php
-/** Bloc « Commander en trois étapes » (accueil et À propos). */
+/**
+ * Bloc « Commander en trois étapes » (accueil et À propos).
+ * Icônes 3D : Microsoft Fluent Emoji (licence MIT, voir public/assets/img/icones-3d/).
+ */
 $steps = [
     [
-        '01', 'shopping-bag', '#f97316', 'Choisissez votre pièce',
+        '01', 'sacs-shopping', '#f97316', 'Choisissez votre pièce',
         'Parcourez la boutique ou imaginez votre modèle sur mesure : forme, couleur des fleurs, dimensions.',
         ['Pièces uniques', 'Sur mesure possible'],
     ],
     [
-        '02', 'message-circle', '#ec4899', 'Commandez en ligne ou sur WhatsApp',
+        '02', 'telephone', '#ec4899', 'Commandez en ligne ou sur WhatsApp',
         'Validez votre panier sur le site ou envoyez votre sélection sur WhatsApp. Secondina vous rappelle pour confirmer les détails.',
         ['Réponse sous 24 h', 'Conseil personnalisé'],
     ],
     [
-        '03', 'truck', '#f43f5e', 'Payez et recevez',
+        '03', 'camion-livraison', '#f43f5e', 'Payez et recevez',
         "Paiement à la livraison à Cotonou, par MTN MoMo ou Moov Money. Livraison en 24 à 48 h à Cotonou, 3 à 7 jours en Afrique de l'Ouest.",
         ['MTN MoMo · Moov Money', 'Livraison suivie'],
     ],
@@ -29,19 +32,20 @@ $steps = [
                 ]) ?>
                 <div data-reveal style="--delay: .1s" class="flex flex-wrap gap-3">
                     <a href="<?= e(url('/boutique')) ?>" data-testid="order-steps-shop-link" class="btn-pill btn-dark">Voir la boutique <?= icon('arrow-up-right', 16) ?></a>
-                    <a href="<?= e(whatsapp_link('Bonjour Dina Perles ! Je souhaite passer commande.')) ?>" target="_blank" rel="noopener" data-testid="order-steps-whatsapp-link" class="btn-pill btn-ghost bg-white"><?= icon('message-circle', 16) ?> WhatsApp</a>
+                    <a href="<?= e(whatsapp_link('Bonjour Dina Perles ! Je souhaite passer commande.')) ?>" target="_blank" rel="noopener" data-testid="order-steps-whatsapp-link" class="btn-pill btn-ghost bg-white"><?= brand_icon('whatsapp', 16) ?> WhatsApp</a>
                 </div>
             </div>
 
             <ol class="grid md:grid-cols-3 gap-5 mt-10">
                 <?php foreach ($steps as $i => [$n, $ic, $color, $title, $text, $tags]): ?>
                     <li data-reveal style="--delay: <?= $i * 0.1 ?>s">
-                        <div data-tilt class="tilt-card relative card-3d p-7 lg:p-8 h-full flex flex-col" data-testid="order-step-<?= $n ?>">
-                            <div class="flex items-center justify-between">
-                                <span class="h-14 w-14 rounded-2xl flex items-center justify-center" style="background: <?= $color ?>1f; color: <?= $color ?>"><?= icon($ic, 24, 1.8) ?></span>
-                                <span class="font-display text-4xl leading-none opacity-25" style="color: <?= $color ?>" aria-hidden="true"><?= $n ?></span>
+                        <div data-tilt class="tilt-card group relative card-3d p-7 lg:p-8 h-full flex flex-col" data-testid="order-step-<?= $n ?>">
+                            <div class="relative h-20 w-20">
+                                <span class="absolute inset-2 rounded-full blur-xl opacity-40" style="background: <?= $color ?>" aria-hidden="true"></span>
+                                <img src="<?= e(url('assets/img/icones-3d/' . $ic . '.png')) ?>" alt="" width="80" height="80" loading="lazy"
+                                     class="relative h-20 w-20 object-contain drop-shadow-[0_10px_14px_rgba(20,20,20,0.18)] transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-105">
                             </div>
-                            <h3 class="font-display text-xl leading-tight mt-6"><?= e($title) ?></h3>
+                            <h3 class="font-display text-xl leading-tight mt-5"><?= e($title) ?></h3>
                             <p class="text-sm text-[var(--ink-2)] mt-4 leading-relaxed flex-1"><?= e($text) ?></p>
                             <div class="flex flex-wrap gap-2 mt-8">
                                 <?php foreach ($tags as $tag): ?>

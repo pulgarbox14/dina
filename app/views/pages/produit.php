@@ -62,7 +62,7 @@ $accordions = [
                     <button data-testid="add-to-cart-button" class="btn-pill btn-dark flex-1 min-w-[200px]"><?= icon('shopping-bag', 16) ?> Ajouter au panier</button>
                 </form>
                 <a href="<?= e(whatsapp_link(str_replace('{qty}', '1', $waTemplate))) ?>" data-wa-template="<?= e($waTemplate) ?>" data-wa-phone="<?= e(brand('whatsapp')) ?>"
-                   target="_blank" rel="noopener" data-testid="whatsapp-order-button" class="btn-pill btn-ghost w-full mt-4"><?= icon('message-circle', 16) ?> Commander sur WhatsApp</a>
+                   target="_blank" rel="noopener" data-testid="whatsapp-order-button" class="btn-pill btn-ghost w-full mt-4"><?= brand_icon('whatsapp', 16) ?> Commander sur WhatsApp</a>
 
                 <div class="mt-10 divide-y divide-[var(--line)] border-b border-[var(--line)]">
                     <?php foreach ($accordions as [$id, $label, $body]): ?>

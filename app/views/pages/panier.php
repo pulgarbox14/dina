@@ -48,7 +48,7 @@ $empty = $cart['items'] === [];
                 </form>
                 <div class="flex items-center gap-4 my-6 text-xs text-[var(--ink-3)]"><span class="h-px flex-1 bg-[var(--line)]"></span>ou<span class="h-px flex-1 bg-[var(--line)]"></span></div>
                 <a href="<?= e(cart_whatsapp_link($cart)) ?>" target="_blank" rel="noopener" data-testid="whatsapp-checkout-button" data-cart-whatsapp
-                   class="btn-pill btn-ghost w-full <?= $empty ? 'pointer-events-none opacity-40' : '' ?>"><?= icon('message-circle', 16) ?> Commander sur WhatsApp</a>
+                   class="btn-pill btn-ghost w-full <?= $empty ? 'pointer-events-none opacity-40' : '' ?>"><?= brand_icon('whatsapp', 16) ?> Commander sur WhatsApp</a>
             </div>
         </div>
     </div>

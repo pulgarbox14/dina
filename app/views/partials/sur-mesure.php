@@ -52,7 +52,7 @@ $waText = 'Bonjour Secondina ! Je souhaite une pièce sur mesure : ';
         </ul>
 
         <div data-reveal style="--delay: .3s" class="mt-10 flex flex-wrap gap-3">
-            <a href="<?= e(whatsapp_link($waText)) ?>" target="_blank" rel="noopener" data-testid="sur-mesure-whatsapp" class="btn-pill btn-dark"><?= icon('message-circle', 16) ?> Décrire mon idée sur WhatsApp</a>
+            <a href="<?= e(whatsapp_link($waText)) ?>" target="_blank" rel="noopener" data-testid="sur-mesure-whatsapp" class="btn-pill btn-dark"><?= brand_icon('whatsapp', 16) ?> Décrire mon idée sur WhatsApp</a>
             <a href="<?= e(url('/contact')) ?>" data-testid="sur-mesure-contact" class="btn-pill btn-ghost">Écrire un message</a>
         </div>
     </div>
