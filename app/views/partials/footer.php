@@ -56,7 +56,7 @@ $form = App\Session::takeForm('newsletter');
             <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
                 <span data-testid="footer-copyright">© <?= date('Y') ?> <?= e(brand('name')) ?>. Tous droits réservés.</span>
                 <span class="hidden sm:inline" aria-hidden="true">·</span>
-                <span data-testid="footer-credit">Développé par <span class="font-semibold text-[var(--ink-2)]">Pascal Carmel GUEZO</span></span>
+                <span data-testid="footer-credit">Développé par <a href="https://pascalcarmel.com" target="_blank" rel="noopener" class="link-underline font-semibold text-[var(--ink-2)] hover:text-[var(--rose-deep)] transition-colors">Pascal Carmel GUEZO</a></span>
             </div>
             <div class="flex flex-wrap gap-2">
                 <?php foreach ([['hand', '100 % fait main'], ['truck', 'Livraison Afrique & monde'], ['shield-check', 'MTN MoMo · Moov Money · Livraison']] as [$ic, $t]): ?>
