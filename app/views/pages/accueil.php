@@ -110,7 +110,10 @@ $miniCard = static function (array $p, float $delay): string {
         </div>
     </section>
 
-    <?= View::partial('partials/marquee') ?>
+    <?php /* Espace entre le héros et le bandeau défilant. */ ?>
+    <div class="mt-6 sm:mt-10 lg:mt-14">
+        <?= View::partial('partials/marquee') ?>
+    </div>
 
     <?php /* ——— Sélection (bento) ——— */ ?>
     <?php [$a, $b, $c, $d, $f] = array_pad($featured, 5, null); ?>
