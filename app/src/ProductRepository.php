@@ -3,9 +3,17 @@ declare(strict_types=1);
 
 namespace App;
 
-/** Lecture du catalogue dans MySQL. */
+/**
+ * Lecture du catalogue dans MySQL.
+ *
+ * Si la base ne répond pas (serveur arrêté, tables absentes…), les lectures renvoient
+ * un catalogue vide au lieu de faire planter la page : seules les zones produits
+ * affichent alors un message, le reste du site reste consultable.
+ */
 final class ProductRepository
 {
+    private static bool $unavailable = false;
+
     public const CATEGORIES = [
         'tous'   => 'Tout',
         'sacs'   => 'Sacs',
@@ -13,8 +21,29 @@ final class ProductRepository
         'bijoux' => 'Parures & bijoux',
     ];
 
+    /** Vrai si une lecture du catalogue a échoué pendant cette requête. */
+    public static function unavailable(): bool
+    {
+        return self::$unavailable;
+    }
+
     /** @return list<array<string, mixed>> */
     public static function all(?string $category = null, ?bool $featured = null): array
+    {
+        return self::guard(fn () => self::queryAll($category, $featured), []);
+    }
+
+    public static function find(string $id): ?array
+    {
+        return self::guard(function () use ($id) {
+            $stmt = Database::pdo()->prepare('SELECT * FROM products WHERE id = :id AND active = 1');
+            $stmt->execute(['id' => $id]);
+            $row = $stmt->fetch();
+            return $row ? self::withImages([$row])[0] : null;
+        }, null);
+    }
+
+    private static function queryAll(?string $category, ?bool $featured): array
     {
         $sql = 'SELECT * FROM products WHERE active = 1';
         $params = [];
@@ -33,14 +62,6 @@ final class ProductRepository
         return self::withImages($stmt->fetchAll());
     }
 
-    public static function find(string $id): ?array
-    {
-        $stmt = Database::pdo()->prepare('SELECT * FROM products WHERE id = :id AND active = 1');
-        $stmt->execute(['id' => $id]);
-        $row = $stmt->fetch();
-        return $row ? self::withImages([$row])[0] : null;
-    }
-
     /**
      * Prix et noms à jour pour une liste d'identifiants : c'est la seule source de vérité
      * pour calculer un total (jamais les prix envoyés par le navigateur).
@@ -54,14 +75,30 @@ final class ProductRepository
         if ($ids === []) {
             return [];
         }
-        $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $stmt = Database::pdo()->prepare("SELECT * FROM products WHERE active = 1 AND id IN ($placeholders)");
-        $stmt->execute($ids);
-        $out = [];
-        foreach (self::withImages($stmt->fetchAll()) as $p) {
-            $out[$p['id']] = $p;
+        return self::guard(function () use ($ids) {
+            $placeholders = implode(',', array_fill(0, count($ids), '?'));
+            $stmt = Database::pdo()->prepare("SELECT * FROM products WHERE active = 1 AND id IN ($placeholders)");
+            $stmt->execute($ids);
+            $out = [];
+            foreach (self::withImages($stmt->fetchAll()) as $p) {
+                $out[$p['id']] = $p;
+            }
+            return $out;
+        }, []);
+    }
+
+    /** Exécute une lecture ; en cas d'erreur MySQL, la journalise et renvoie $fallback. */
+    private static function guard(callable $read, mixed $fallback): mixed
+    {
+        try {
+            return $read();
+        } catch (\PDOException $e) {
+            if (!self::$unavailable) {
+                error_log('Catalogue indisponible : ' . $e->getMessage());
+            }
+            self::$unavailable = true;
+            return $fallback;
         }
-        return $out;
     }
 
     /** Ajoute `images` (liste d'URL) et convertit `featured` en booléen. */

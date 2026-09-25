@@ -20,7 +20,9 @@ final class CartController
     {
         $product = ProductRepository::find(Http::input('product_id'));
         if ($product === null) {
-            self::respond(false, 'Produit introuvable.', 404);
+            ProductRepository::unavailable()
+                ? self::respond(false, 'Service momentanément indisponible, réessayez dans un instant.', 503)
+                : self::respond(false, 'Produit introuvable.', 404);
             return;
         }
         Cart::add($product['id'], max(1, (int) Http::input('qty', '1')));

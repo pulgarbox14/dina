@@ -7,6 +7,11 @@ declare(strict_types=1);
  * 1. Base de test :  mysql -e "CREATE DATABASE dina_test" && mysql dina_test < database/schema.sql && mysql dina_test < database/seed.sql
  * 2. Serveur      :  DB_NAME=dina_test php -S 127.0.0.1:8080 -t public app/dev-router.php
  * 3. Tests        :  php tests/http_test.php http://127.0.0.1:8080
+ *
+ * Optionnel — site branché sur une base SANS tables, pour vérifier qu'il reste consultable :
+ *    mysql -e "CREATE DATABASE dina_vide"
+ *    DB_NAME=dina_vide php -S 127.0.0.1:8082 -t public app/dev-router.php
+ *    php tests/http_test.php http://127.0.0.1:8080 http://127.0.0.1:8082
  */
 
 $base = rtrim($argv[1] ?? 'http://127.0.0.1:8080', '/');
@@ -163,6 +168,23 @@ $c->post('/panier/ajouter', ['product_id' => 'sac-lune-nacre']);
 $c->post('/commande', ['customer_name' => '<script>alert(1)</script>', 'phone' => 'x', 'address' => ''], false);
 $panier = $c->get('/panier')['body'];
 check('saisie réaffichée échappée', !str_contains($panier, '<script>alert(1)</script>') && str_contains($panier, '&lt;script&gt;'));
+
+$degradedBase = $argv[2] ?? null;
+if ($degradedBase !== null) {
+    echo "Base de données sans tables\n";
+    $d = new Client(rtrim($degradedBase, '/'));
+    foreach (['/artisane', '/a-propos', '/contact', '/panier'] as $path) {
+        check("GET $path reste accessible (200)", $d->get($path)['status'] === 200);
+    }
+    foreach (['/', '/boutique'] as $path) {
+        $r = $d->get($path);
+        check("GET $path : 200 + message catalogue", $r['status'] === 200 && str_contains($r['body'], 'data-testid="catalog-unavailable"'));
+    }
+    check('fiche produit → 503 (pas 404)', $d->get('/produit/sac-lune-nacre')['status'] === 503);
+    check('ajout au panier → 503', $d->post('/panier/ajouter', ['product_id' => 'sac-lune-nacre'])['status'] === 503);
+    $r = $d->post('/contact', ['name' => 'Test', 'email' => 't@example.com', 'subject' => 'Salut', 'message' => 'Bonjour test']);
+    check('contact → 503 avec message', $r['status'] === 503 && str_contains($r['json']['message'] ?? '', 'indisponible'));
+}
 
 echo "\n" . $passed . ' réussis, ' . count($failed) . " échoués\n";
 exit($failed === [] ? 0 : 1);

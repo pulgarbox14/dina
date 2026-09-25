@@ -36,6 +36,11 @@ final class PageController
     public static function produit(string $id): void
     {
         $product = ProductRepository::find($id);
+        if ($product === null && ProductRepository::unavailable()) {
+            http_response_code(503);
+            echo View::render('pages/erreur', ['title' => 'Catalogue indisponible', 'code' => 503]);
+            return;
+        }
         if ($product === null) {
             http_response_code(404);
             echo View::render('pages/erreur', ['title' => 'Produit introuvable', 'code' => 404, 'productNotFound' => true]);

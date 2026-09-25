@@ -102,6 +102,7 @@ $miniCard = static function (array $p, float $delay): string {
                 <a href="<?= e(url('/boutique')) ?>" data-testid="featured-view-all-link" class="btn-pill btn-ghost">Toute la boutique <?= icon('arrow-up-right', 16) ?></a>
             </div>
         </div>
+        <?php if (App\ProductRepository::unavailable()) echo View::partial('partials/catalog-unavailable'); ?>
         <?php if ($featured): ?>
             <div class="grid grid-cols-1 md:grid-cols-6 gap-6 lg:gap-8">
                 <?php foreach ([[$a, 'md:col-span-3', 0, 'aspect-[4/5]'], [$b, 'md:col-span-3', .1, 'aspect-[4/5]'], [$c, 'md:col-span-2', .05, 'aspect-[3/4]'], [$d, 'md:col-span-2', .1, 'aspect-[3/4]'], [$e2, 'md:col-span-2', .15, 'aspect-[3/4]']] as [$p, $span, $delay, $aspect]): ?>

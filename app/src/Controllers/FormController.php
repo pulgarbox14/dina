@@ -7,12 +7,15 @@ use App\Cart;
 use App\Http;
 use App\MessageRepository;
 use App\OrderRepository;
+use App\ProductRepository;
 use App\Session;
 use App\Validator;
 
 /** Formulaires : commande, contact, newsletter. */
 final class FormController
 {
+    private const UNAVAILABLE = 'Service momentanément indisponible. Réessayez dans un instant ou écrivez-nous sur WhatsApp.';
+
     public static function commande(): void
     {
         $data = [
@@ -30,6 +33,9 @@ final class FormController
             ->optional('note', 'La précision', 2000);
 
         $cart = Cart::summary();
+        if (ProductRepository::unavailable()) {
+            self::unavailable('checkout', $data, '/panier');
+        }
         if ($cart['items'] === []) {
             Session::flash('error', 'Votre panier est vide.');
             Http::redirect('/panier');
@@ -40,10 +46,15 @@ final class FormController
             Http::redirect('/panier');
         }
 
-        $order = OrderRepository::create($data, array_map(
-            static fn (array $i): array => ['id' => $i['id'], 'name' => $i['name'], 'price' => $i['price'], 'qty' => $i['qty']],
-            $cart['items']
-        ));
+        try {
+            $order = OrderRepository::create($data, array_map(
+                static fn (array $i): array => ['id' => $i['id'], 'name' => $i['name'], 'price' => $i['price'], 'qty' => $i['qty']],
+                $cart['items']
+            ));
+        } catch (\PDOException $e) {
+            error_log('Commande non enregistrée : ' . $e->getMessage());
+            self::unavailable('checkout', $data, '/panier');
+        }
         Cart::clear();
         Session::put('last_order', [
             'id'            => $order['id'],
@@ -73,7 +84,13 @@ final class FormController
             return;
         }
         if (!self::isBot()) {
-            MessageRepository::createContact($data['name'], $data['email'], $data['subject'], $data['message']);
+            try {
+                MessageRepository::createContact($data['name'], $data['email'], $data['subject'], $data['message']);
+            } catch (\PDOException $e) {
+                error_log('Message de contact non enregistré : ' . $e->getMessage());
+                self::fail('contact', $data, [], self::UNAVAILABLE, 503);
+                return;
+            }
         }
         self::succeed('Message envoyé. Nous répondons sous 24 h.', '/contact');
     }
@@ -87,7 +104,13 @@ final class FormController
             return;
         }
         if (!self::isBot()) {
-            MessageRepository::subscribe($data['email']);
+            try {
+                MessageRepository::subscribe($data['email']);
+            } catch (\PDOException $e) {
+                error_log('Inscription newsletter non enregistrée : ' . $e->getMessage());
+                self::fail('newsletter', $data, [], self::UNAVAILABLE, 503);
+                return;
+            }
         }
         self::succeed('Merci ! Vous recevrez nos nouvelles créations en avant-première.');
     }
@@ -98,10 +121,18 @@ final class FormController
         return Http::input('website') !== '';
     }
 
-    private static function fail(string $form, array $data, array $errors, string $message): void
+    /** Base de données injoignable : on garde la saisie et on propose WhatsApp. */
+    private static function unavailable(string $form, array $data, string $redirect): never
+    {
+        Session::flashForm($form, $data, []);
+        Session::flash('error', self::UNAVAILABLE);
+        Http::redirect($redirect);
+    }
+
+    private static function fail(string $form, array $data, array $errors, string $message, int $status = 422): void
     {
         if (Http::wantsJson()) {
-            Http::json(['ok' => false, 'message' => $message, 'errors' => $errors], 422);
+            Http::json(['ok' => false, 'message' => $message, 'errors' => $errors], $status);
             return;
         }
         Session::flashForm($form, $data, $errors);

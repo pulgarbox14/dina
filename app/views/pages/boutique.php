@@ -27,6 +27,7 @@ ob_start(); ?>
             <span data-testid="products-count"><?= count($products) ?> création<?= count($products) > 1 ? 's' : '' ?></span>
             <span>Prix en FCFA</span>
         </div>
+        <?php if (ProductRepository::unavailable()) echo View::partial('partials/catalog-unavailable'); ?>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14" data-testid="products-grid">
             <?php foreach ($products as $i => $p): ?>
                 <div data-reveal style="--delay: <?= ($i % 3) * 0.08 ?>s">

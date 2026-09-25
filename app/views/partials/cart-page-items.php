@@ -1,5 +1,7 @@
 <?php /** @var array $cart  liste des articles de la page Panier (remplacée en direct par le JavaScript) */ ?>
-<?php if ($cart['items'] === []): ?>
+<?php if (App\ProductRepository::unavailable()): ?>
+    <?= App\View::partial('partials/catalog-unavailable') ?>
+<?php elseif ($cart['items'] === []): ?>
     <div data-testid="cart-page-empty" class="border border-dashed border-[var(--line)] p-16 text-center">
         <p class="text-[var(--ink-2)]">Votre panier est vide.</p>
         <a href="<?= e(url('/boutique')) ?>" data-testid="cart-page-empty-link" class="btn-pill btn-ghost mt-6">Découvrir la boutique</a>

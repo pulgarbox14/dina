@@ -37,14 +37,14 @@ public/                  ← SEUL dossier exposé sur le web
   .htaccess              réécriture d'URL (Apache)
   assets/                CSS, JS et bibliothèques compilés
 resources/               sources du CSS et de la 3D (à recompiler après modification)
-tests/http_test.php      tests de bout en bout (42 vérifications)
+tests/http_test.php      tests de bout en bout (51 vérifications)
 ```
 
 ## Pages et URL
 
 | URL | Contenu |
 |---|---|
-| `/` | Accueil : héros, sélection, configurateur 3D, savoir-faire, avis |
+| `/` | Accueil : héros, sélection, configurateur 3D, commander en 3 étapes, avis |
 | `/boutique?categorie=sacs\|minis\|bijoux` | Catalogue filtré |
 | `/produit/{id}` | Fiche produit : photos, vue 3D, quantité, panier, WhatsApp |
 | `/artisane`, `/a-propos` | Pages de présentation |
@@ -118,6 +118,11 @@ mysql -u root -e "CREATE DATABASE dina_test"
 mysql -u root dina_test < database/schema.sql && mysql -u root dina_test < database/seed.sql
 DB_NAME=dina_test php -S 127.0.0.1:8080 -t public app/dev-router.php &
 php tests/http_test.php http://127.0.0.1:8080
+
+# Optionnel : vérifier que le site reste consultable si la base n'a pas de tables
+mysql -u root -e "CREATE DATABASE dina_vide"
+DB_NAME=dina_vide php -S 127.0.0.1:8082 -t public app/dev-router.php &
+php tests/http_test.php http://127.0.0.1:8080 http://127.0.0.1:8082
 ```
 
 ## Sécurité
@@ -128,6 +133,7 @@ php tests/http_test.php http://127.0.0.1:8080
 - Champ piège anti-spam sur les formulaires de contact et de newsletter.
 - Les commandes ne sont **pas** consultables publiquement : ni `GET /api/orders` ni autre liste exposée.
 - `.env` hors du dossier web et ignoré par Git ; un `.htaccess` racine le bloque si le domaine pointe par erreur sur la racine du projet.
+- **Tolérance aux pannes** : si MySQL ne répond pas, seules les zones produits affichent un message (avec lien WhatsApp) ; les autres pages restent consultables et les formulaires répondent « service indisponible » en gardant la saisie.
 - Les erreurs sont enregistrées dans le journal PHP, jamais affichées aux visiteurs (sauf `debug => true`).
 
 ## À faire
