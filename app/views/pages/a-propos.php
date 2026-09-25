@@ -34,7 +34,7 @@ $pillars = [
         </div>
     </section>
 
-    <?= View::partial('partials/process') ?>
+    <?= View::partial('partials/order-steps') ?>
 
     <section class="max-w-[1440px] mx-auto px-6 lg:px-12 py-32 text-center">
         <div data-reveal>

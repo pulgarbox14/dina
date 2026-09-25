@@ -168,6 +168,6 @@ $miniCard = static function (array $p, float $delay): string {
         </div>
     </section>
 
-    <?= View::partial('partials/process') ?>
+    <?= View::partial('partials/order-steps') ?>
     <?= View::partial('partials/testimonials') ?>
 </div>
