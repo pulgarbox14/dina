@@ -17,12 +17,15 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
 ?>
 <div data-testid="artisane-page">
     <section data-testid="artisan-hero" class="relative pt-[100px] lg:pt-[120px] overflow-hidden bg-white">
+        <?php /* Pastille en tête de page, au-dessus du portrait. */ ?>
+        <div class="text-center px-6 mb-4 lg:mb-6">
+            <span data-reveal style="--delay: .15s; --y: 24px" data-testid="artisan-badge" class="inline-flex items-center gap-2 bg-[var(--bg-elevated)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
+                <?= icon('sparkles', 12) ?> L'artisane · Fondatrice
+            </span>
+        </div>
         <div class="flex flex-col-reverse">
             <div class="relative w-full max-w-[1280px] mx-auto px-6 text-center mt-4 lg:mt-8">
-                <span data-reveal style="--delay: .15s; --y: 24px" class="inline-flex items-center gap-2 bg-[var(--bg-elevated)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
-                    <?= icon('sparkles', 12) ?> L'artisane · Fondatrice
-                </span>
-                <h1 class="font-display text-3xl sm:text-5xl lg:text-[clamp(2.75rem,3.6vw,4rem)] leading-[1.08] tracking-[-0.03em] mt-5 max-w-5xl mx-auto">
+                <h1 class="font-display text-3xl sm:text-5xl lg:text-[clamp(2.75rem,3.6vw,4rem)] leading-[1.08] tracking-[-0.03em] max-w-5xl mx-auto">
                     <?= View::partial('partials/line-reveal', ['lines' => [brand('artisan'), 'tisse chaque perle à la main.'], 'delay' => 0.3, 'highlight' => 'à la main.']) ?>
                 </h1>
                 <p data-reveal style="--delay: .9s; --y: 24px" class="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
