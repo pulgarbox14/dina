@@ -303,6 +303,55 @@
         );
     }
 
+    /* ——— Avis clientes : un clic sur une carte ouvre l'avis complet et la pièce achetée ——— */
+    function initReviews() {
+        const root = $("[data-reviews]");
+        const dialog = $("[data-review-dialog]", root || document);
+        if (!root || !dialog || typeof dialog.showModal !== "function") return;
+        let reviews;
+        try {
+            reviews = JSON.parse($("[data-reviews-data]", root).textContent);
+        } catch (_) {
+            return;
+        }
+        const product = $("[data-review-product]", dialog);
+        const cta = $("[data-review-cta]", dialog);
+        const shopUrl = cta.getAttribute("href");
+
+        root.addEventListener("click", (e) => {
+            const card = e.target.closest("[data-review]");
+            if (!card) return;
+            const r = reviews[Number(card.dataset.review)];
+            if (!r) return;
+            $("[data-review-text]", dialog).textContent = `« ${r.text} »`;
+            $("[data-review-name]", dialog).textContent = r.name;
+            $("[data-review-city]", dialog).textContent = r.city;
+            if (r.product) {
+                product.hidden = false;
+                product.href = r.product.url;
+                $("[data-review-product-image]", dialog).src = r.product.image;
+                $("[data-review-product-image]", dialog).alt = r.product.name;
+                $("[data-review-product-name]", dialog).textContent = r.product.name;
+                $("[data-review-product-price]", dialog).textContent = r.product.price;
+                cta.href = r.product.url;
+                cta.firstChild.textContent = "Voir la pièce ";
+            } else {
+                product.hidden = true;
+                cta.href = shopUrl;
+                cta.firstChild.textContent = "Voir la boutique ";
+            }
+            lenis?.stop();
+            dialog.showModal();
+        });
+        const close = () => dialog.close();
+        $$("[data-review-close]", dialog).forEach((b) => b.addEventListener("click", close));
+        // Clic sur le fond assombri (en dehors de la fenêtre) : fermeture.
+        dialog.addEventListener("click", (e) => {
+            if (e.target === dialog) close();
+        });
+        dialog.addEventListener("close", () => lenis?.start());
+    }
+
     /* ——— Vitrine produits de l'accueil : flèches, miniatures, clavier ——— */
     function initVitrine() {
         const root = $("[data-vitrine]");
@@ -371,6 +420,7 @@
         initAjaxForms();
         initProductPage();
         initVitrine();
+        initReviews();
         showFlashes();
     });
 })();

@@ -349,6 +349,42 @@ summary:focus-visible {
     }
 }
 
+/* Cartes d'avis cliquables et fenêtre de détail */
+.review-card {
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+.review-card:hover,
+.review-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 30px 60px -30px rgba(236, 72, 153, 0.45);
+}
+.review-card:hover .review-more,
+.review-card:focus-visible .review-more {
+    background: var(--accent-gradient);
+    color: #fff;
+}
+.review-dialog {
+    border: 0;
+    max-height: 90vh;
+    overflow: auto;
+}
+.review-dialog[open] {
+    animation: review-in 0.35s var(--ease-out);
+}
+.review-dialog::backdrop {
+    background: rgba(18, 19, 22, 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+@keyframes review-in {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+}
+
 /* ——— Vitrine produits (accueil) ——— */
 @keyframes spin-slow {
     to {
