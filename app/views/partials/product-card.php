@@ -10,7 +10,7 @@ $aspect ??= 'aspect-[4/5]';
         <div class="relative overflow-hidden rounded-[22px] <?= e($aspect) ?> img-zoom bg-[var(--luster)]">
             <img src="<?= e($product['images'][0] ?? '') ?>" alt="<?= e($product['name']) ?>" loading="lazy" class="h-full w-full object-cover">
             <?php if (!empty($product['tag'])): ?>
-                <span class="absolute top-4 left-4 bg-white/85 backdrop-blur px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em]"><?= e($product['tag']) ?></span>
+                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--rose-deep)]"><?= e($product['tag']) ?></span>
             <?php endif; ?>
         </div>
         <div class="pt-5 pb-3 px-2 flex justify-between gap-4">

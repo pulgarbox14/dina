@@ -20,7 +20,7 @@ $channels = [
 <div data-testid="contact-page">
     <?= View::partial('partials/page-hero', [
         'eyebrow'   => 'Contact',
-        'titleHtml' => 'Parlons de votre <em class="font-light">prochaine pièce.</em>',
+        'titleHtml' => 'Parlons de votre <em class="not-italic text-gradient">prochaine pièce.</em>',
         'text'      => "Une question, une commande sur mesure, une collaboration ? L'atelier vous répond sous 24 heures.",
     ]) ?>
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 pb-32">

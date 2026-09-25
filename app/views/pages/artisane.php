@@ -2,12 +2,12 @@
 use App\View;
 
 $badges = [
-    ['hand', '100 % main', 'Aucune machine', 'hidden md:flex left-[8%] lg:left-[16%] top-[18%]', 1.2, -6, '#7c3aed'],
-    ['clock', '16 à 30 h', 'par pièce tissée', 'hidden md:flex left-[4%] lg:left-[12%] bottom-[22%]', 1.35, 4, '#ea580c'],
-    ['award', '+200 pièces', 'depuis 2019', 'hidden md:flex right-[8%] lg:right-[16%] top-[14%]', 1.3, 5, '#D4AF37'],
-    ['map-pin', explode(',', brand('city'))[0], 'Atelier & formation', 'hidden md:flex right-[4%] lg:right-[12%] bottom-[26%]', 1.45, -4, '#0ea5e9'],
+    ['hand', '100 % main', 'Aucune machine', 'hidden md:flex left-[8%] lg:left-[16%] top-[18%]', 1.2, -6, '#ec4899'],
+    ['clock', '16 à 30 h', 'par pièce tissée', 'hidden md:flex left-[4%] lg:left-[12%] bottom-[22%]', 1.35, 4, '#f97316'],
+    ['award', '+200 pièces', 'depuis 2019', 'hidden md:flex right-[8%] lg:right-[16%] top-[14%]', 1.3, 5, '#f43f5e'],
+    ['map-pin', explode(',', brand('city'))[0], 'Atelier & formation', 'hidden md:flex right-[4%] lg:right-[12%] bottom-[26%]', 1.45, -4, '#db2777'],
 ];
-$stats = [['+200', 'pièces créées', 'award', '#D4AF37'], ['6 ans', "d'atelier", 'clock', '#ea580c'], ['3', 'pays livrés', 'map-pin', '#0ea5e9']];
+$stats = [['+200', 'pièces créées', 'award', '#f43f5e'], ['6 ans', "d'atelier", 'clock', '#f97316'], ['3', 'pays livrés', 'map-pin', '#ec4899']];
 $values = [
     ['Tout à la main', "Aucune machine n'intervient. Le fil, l'aiguille et des milliers de gestes répétés."],
     ['Une pièce, une personne', 'Secondina tisse chaque commande elle-même, du premier nœud aux finitions.'],
@@ -23,7 +23,7 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
                     <?= icon('sparkles', 12) ?> L'artisane · Fondatrice
                 </span>
                 <h1 class="font-display text-3xl sm:text-5xl lg:text-[4.6vw] leading-[1.08] tracking-[-0.03em] mt-5 max-w-5xl mx-auto">
-                    <?= View::partial('partials/line-reveal', ['lines' => [brand('artisan'), 'tisse chaque perle à la main.'], 'delay' => 0.3]) ?>
+                    <?= View::partial('partials/line-reveal', ['lines' => [brand('artisan'), 'tisse chaque perle à la main.'], 'delay' => 0.3, 'highlight' => 'à la main.']) ?>
                 </h1>
                 <p data-reveal style="--delay: .9s; --y: 24px" class="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
                     Fondatrice de Dina Perles, elle conçoit, dessine et tisse chaque sac elle-même dans son atelier de <?= e(brand('city')) ?>.

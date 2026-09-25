@@ -27,7 +27,7 @@ $accordions = [
                     <div data-view-panel="photo" class="aspect-[4/5] overflow-hidden rounded-[28px] bg-[var(--luster)]">
                         <img data-main-image data-testid="product-main-image" src="<?= e($p['images'][0] ?? '') ?>" alt="<?= e($p['name']) ?>" class="h-full w-full object-cover">
                     </div>
-                    <div data-view-panel="3d" data-testid="product-3d-viewer" class="hidden relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[radial-gradient(ellipse_at_50%_40%,#ffffff_0%,#f2f2f4_70%,#e6e6ea_100%)]">
+                    <div data-view-panel="3d" data-testid="product-3d-viewer" class="hidden relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[radial-gradient(ellipse_at_50%_40%,#ffffff_0%,#fff1ea_65%,#fde2ee_100%)]">
                         <div id="product-scene" class="absolute inset-0" data-pearl-scene data-shape="<?= e($model['shape']) ?>" data-accent="<?= e($model['accent'] ?? '') ?>"
                              data-camera="<?= $model['shape'] === 'necklace' ? '7.6' : '7' ?>" data-testid="product-3d-canvas"></div>
                         <div class="absolute top-5 left-5 glass rounded-full px-4 h-9 flex items-center gap-2 text-xs font-medium"><?= icon('rotate-ccw', 13) ?> Glissez pour faire tourner</div>

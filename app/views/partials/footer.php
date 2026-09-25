@@ -6,11 +6,11 @@ $cols = [
 $form = App\Session::takeForm('newsletter');
 ?>
 <footer data-testid="footer" class="px-3 sm:px-5 pb-5 mt-28">
-    <div class="rounded-[40px] bg-[var(--bg-elevated)] px-6 sm:px-10 lg:px-16 pt-14 pb-8 overflow-hidden relative">
+    <div class="rounded-[40px] bg-warm px-6 sm:px-10 lg:px-16 pt-14 pb-8 overflow-hidden relative">
         <div class="grid lg:grid-cols-12 gap-10 items-end pb-12 border-b border-[var(--line)]">
             <div class="lg:col-span-7">
                 <span class="eyebrow">Dina Perles</span>
-                <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.02] mt-4">Une pièce unique <br class="hidden sm:block"> vous attend.</h2>
+                <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.02] mt-4">Une pièce <span class="text-gradient">unique</span> <br class="hidden sm:block"> vous attend.</h2>
             </div>
             <div class="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
                 <a href="<?= e(url('/boutique')) ?>" data-testid="footer-cta-boutique" class="btn-pill btn-dark">Voir la boutique <?= icon('arrow-up-right', 16) ?></a>
@@ -47,7 +47,7 @@ $form = App\Session::takeForm('newsletter');
                     <?= honeypot_field() ?>
                     <input data-testid="newsletter-email-input" type="email" name="email" required maxlength="190" aria-label="Votre e-mail"
                            value="<?= e($form['old']['email'] ?? '') ?>" placeholder="votre@email.com" class="!border-0 !py-2 text-sm">
-                    <button data-testid="newsletter-submit-button" class="h-10 px-5 rounded-full bg-[var(--ink)] text-white text-sm shrink-0 hover:bg-[var(--gold)] hover:text-[var(--ink)] transition-colors">S'inscrire</button>
+                    <button data-testid="newsletter-submit-button" class="h-10 px-5 rounded-full bg-[var(--ink)] text-white text-sm shrink-0 hover:bg-[image:var(--accent-gradient)] transition-colors">S'inscrire</button>
                 </form>
             </div>
         </div>

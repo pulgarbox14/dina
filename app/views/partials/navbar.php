@@ -26,7 +26,7 @@ $links = [
                class="relative h-11 w-11 rounded-full bg-white border border-[var(--line)] flex items-center justify-center hover:bg-[var(--ink)] hover:text-[var(--pearl)] transition-colors duration-300">
                 <?= icon('shopping-bag', 18, 1.6) ?>
                 <span data-cart-count data-testid="cart-count-badge"
-                      class="absolute -top-1 -right-1 h-5 min-w-5 px-1 rounded-full bg-[var(--gold)] text-[var(--ink)] text-[11px] font-semibold flex items-center justify-center <?= $count > 0 ? '' : 'hidden' ?>"><?= $count ?></span>
+                      class="absolute -top-1 -right-1 h-5 min-w-5 px-1 rounded-full bg-[image:var(--accent-gradient)] text-white text-[11px] font-semibold flex items-center justify-center <?= $count > 0 ? '' : 'hidden' ?>"><?= $count ?></span>
             </a>
             <button type="button" data-menu-toggle data-testid="mobile-menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"
                     class="md:hidden h-11 w-11 rounded-full bg-white border border-[var(--line)] flex items-center justify-center">

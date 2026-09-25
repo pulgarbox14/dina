@@ -33,18 +33,20 @@ $miniCard = static function (array $p, float $delay): string {
 
     <?php /* ——— Héros éditorial ——— */ ?>
     <section data-testid="hero-section" class="px-3 sm:px-5 pt-[92px]">
-        <div class="relative rounded-[32px] sm:rounded-[40px] overflow-hidden min-h-[860px] sm:min-h-[640px] h-[calc(100svh-110px)] max-h-[900px] bg-[var(--bg-elevated)] border border-[var(--line)]">
+        <div class="relative rounded-[32px] sm:rounded-[40px] overflow-hidden min-h-[860px] sm:min-h-[640px] h-[calc(100svh-110px)] max-h-[900px] bg-warm border border-[#fbe3ea]">
+            <div class="pointer-events-none absolute -top-24 right-[18%] h-[420px] w-[420px] rounded-full bg-[#fdba74] opacity-40 blur-3xl"></div>
+            <div class="pointer-events-none absolute bottom-[-120px] right-[34%] h-[460px] w-[460px] rounded-full bg-[#f9a8d4] opacity-40 blur-3xl"></div>
             <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_100%,#ffffff_0%,transparent_60%)]"></div>
             <img src="<?= e(url('artisan-cutout.png')) ?>" alt="L'artisane et son sac en perles" data-reveal style="--y: 40px; --dur: 1.6s"
                  class="artisan-mask absolute right-[-8%] sm:right-[4%] lg:right-[31%] bottom-0 h-[40%] sm:h-[80%] lg:h-[96%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_40px_80px_rgba(20,20,20,0.18)] z-0">
-            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--bg-elevated)] via-[var(--bg-elevated)]/70 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#fdeef6] via-[#fdeef6]/70 to-transparent"></div>
 
             <div class="absolute left-6 sm:left-10 lg:left-14 top-[7%] lg:top-[12%] max-w-[92%] lg:max-w-[46%] text-[var(--ink)]">
                 <span data-reveal style="--delay: .2s; --y: 24px" class="inline-flex items-center gap-2 bg-white border border-[var(--line)] rounded-full px-4 h-8 text-[11px] uppercase tracking-[0.22em] text-[var(--ink-2)]">
                     <?= icon('sparkles', 12) ?> Haute perlerie · Cotonou
                 </span>
                 <h1 class="font-display text-[12vw] sm:text-[8vw] lg:text-[4.9vw] leading-[0.98] tracking-[-0.035em] mt-6">
-                    <?= View::partial('partials/line-reveal', ['lines' => ['Portez la', 'lumière, perle', 'après perle.'], 'delay' => 0.35]) ?>
+                    <?= View::partial('partials/line-reveal', ['lines' => ['Portez la', 'lumière, perle', 'après perle.'], 'delay' => 0.35, 'highlight' => 'lumière']) ?>
                 </h1>
                 <p data-reveal style="--delay: .95s; --y: 24px" class="mt-6 max-w-[78%] sm:max-w-sm text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
                     Sacs et parures en perles nacrées, entièrement tissés à la main dans notre atelier. Une seule pièce par modèle.
@@ -97,7 +99,7 @@ $miniCard = static function (array $p, float $delay): string {
     <?php [$a, $b, $c, $d, $e2, $f] = array_pad($featured, 6, null); ?>
     <section data-testid="featured-section" class="max-w-[1440px] mx-auto px-6 lg:px-12 py-24">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-            <?= View::partial('partials/section-heading', ['eyebrow' => 'Sélection', 'titleHtml' => 'Les pièces du moment', 'text' => "Une sélection courte : chaque modèle n'existe qu'en quelques exemplaires."]) ?>
+            <?= View::partial('partials/section-heading', ['eyebrow' => 'Sélection', 'titleHtml' => 'Les pièces du <span class="text-gradient">moment</span>', 'text' => "Une sélection courte : chaque modèle n'existe qu'en quelques exemplaires."]) ?>
             <div data-reveal style="--delay: .1s">
                 <a href="<?= e(url('/boutique')) ?>" data-testid="featured-view-all-link" class="btn-pill btn-ghost">Toute la boutique <?= icon('arrow-up-right', 16) ?></a>
             </div>
@@ -133,14 +135,14 @@ $miniCard = static function (array $p, float $delay): string {
 
     <?php /* ——— Atelier 3D interactif ——— */ ?>
     <section data-testid="atelier-3d-section" class="max-w-[1440px] mx-auto px-6 lg:px-12 py-28 grid lg:grid-cols-12 gap-12 items-center">
-        <div data-reveal class="lg:col-span-7 relative aspect-[5/4] rounded-[36px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#ffffff_0%,#f3f3f5_65%,#e7e7eb_100%)]">
+        <div data-reveal class="lg:col-span-7 relative aspect-[5/4] rounded-[36px] overflow-hidden bg-[radial-gradient(ellipse_at_50%_45%,#ffffff_0%,#fff1ea_60%,#fde2ee_100%)]">
             <div id="atelier-scene" class="absolute inset-0" data-pearl-scene data-shape="round" data-accent="#f97316" data-testid="atelier-3d-canvas"></div>
             <div class="absolute top-6 left-6 glass rounded-full px-4 h-9 flex items-center text-xs font-medium">Interactif · glissez pour tourner</div>
         </div>
         <div class="lg:col-span-5">
             <div data-reveal>
                 <span class="eyebrow">Composez votre pièce</span>
-                <h2 class="font-display text-4xl sm:text-5xl leading-[1.02] tracking-tight mt-4">Choisissez la forme, choisissez la fleur.</h2>
+                <h2 class="font-display text-4xl sm:text-5xl leading-[1.02] tracking-tight mt-4">Choisissez la forme, <span class="text-gradient">choisissez la fleur.</span></h2>
                 <p class="text-[var(--ink-2)] mt-6 leading-relaxed">Chaque sac est tissé à la commande. Jouez avec les formes et les accents de couleur, puis demandez votre modèle sur mesure.</p>
             </div>
             <div data-reveal style="--delay: .1s" class="mt-8">

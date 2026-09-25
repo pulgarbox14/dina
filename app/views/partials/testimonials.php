@@ -13,7 +13,7 @@ $reviews = [
                 <div data-tilt class="tilt-card relative card-3d p-9 flex flex-col justify-between min-h-[280px]">
                     <p class="font-display text-xl leading-snug font-normal">« <?= e($text) ?> »</p>
                     <div class="mt-8 flex items-center gap-3">
-                        <span class="pearl-dot h-9 w-9 rounded-full"></span>
+                        <span class="pearl-dot <?= $i % 2 ? 'pearl-dot-rose' : 'pearl-dot-warm' ?> h-9 w-9 rounded-full"></span>
                         <div>
                             <div class="text-sm font-medium"><?= e($name) ?></div>
                             <div class="text-xs text-[var(--ink-3)]"><?= e($city) ?> · Achat vérifié</div>

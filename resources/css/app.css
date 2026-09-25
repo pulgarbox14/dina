@@ -3,6 +3,38 @@
  * + animations autrefois gérées par framer-motion, désormais en CSS pur.
  * Compilation : npm run build:css  →  public/assets/css/app.css
  */
+/* ——— Polices auto-hébergées (licence SIL OFL, voir public/assets/fonts/) ——— */
+@font-face {
+    font-family: "Syne";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400 800;
+    src: url("../fonts/syne-latin-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Syne";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400 800;
+    src: url("../fonts/syne-latin-ext-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url("../fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url("../fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,9 +49,15 @@
     --pearl: #ffffff;
     --luster: #f0f0f2;
     --gold: #d4af37;
-    --violet: #7c3aed;
-    --orange: #ea580c;
     --line: #e6e6e9;
+
+    /* Touches de couleur : orange corail et rose */
+    --orange: #f97316;
+    --orange-deep: #ea580c;
+    --rose: #ec4899;
+    --rose-deep: #db2777;
+    --accent-gradient: linear-gradient(120deg, #f97316 0%, #f43f5e 55%, #ec4899 100%);
+    --warm-gradient: linear-gradient(135deg, #fff4ea 0%, #fff1f3 55%, #fdeef6 100%);
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -53,21 +91,36 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: "Poppins", system-ui, sans-serif;
+    font-family: "Syne", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
 
 ::selection {
-    background: var(--ink);
-    color: var(--pearl);
+    background: var(--rose);
+    color: #fff;
 }
 
 .font-display {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-family: "Syne", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+/* Mot mis en valeur dans un titre (dégradé orange → rose). */
+.text-gradient {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+/* Fond chaud pour les grands blocs (héros, étapes, footer). */
+.bg-warm {
+    background: var(--warm-gradient);
 }
 
 .card-3d {
@@ -85,8 +138,8 @@ body {
 }
 
 .eyebrow {
-    @apply text-[11px] uppercase tracking-[0.28em] font-medium;
-    color: var(--ink-3);
+    @apply text-[11px] uppercase tracking-[0.28em] font-semibold;
+    color: var(--rose-deep);
 }
 
 .glass {
@@ -109,7 +162,8 @@ body {
 }
 .btn-dark:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 30px -12px rgba(18, 19, 22, 0.45);
+    background: var(--accent-gradient);
+    box-shadow: 0 14px 30px -12px rgba(236, 72, 153, 0.55);
 }
 .btn-ghost {
     border: 1px solid var(--line);
@@ -132,7 +186,7 @@ body {
     bottom: -3px;
     height: 1px;
     width: 100%;
-    background: currentColor;
+    background: var(--accent-gradient);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.4s var(--ease-out);
@@ -185,6 +239,13 @@ body {
     background: radial-gradient(circle at 35% 30%, #fff 0%, #f2f2f4 45%, #d6d6da 100%);
     box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.08);
 }
+/* Perles colorées (bandeau défilant, avis) : alternance orange / rose. */
+.pearl-dot-warm {
+    background: radial-gradient(circle at 35% 30%, #fff 0%, #fdba74 40%, #f97316 100%);
+}
+.pearl-dot-rose {
+    background: radial-gradient(circle at 35% 30%, #fff 0%, #f9a8d4 40%, #ec4899 100%);
+}
 
 input,
 textarea {
@@ -203,7 +264,7 @@ textarea[aria-invalid="true"] {
 button:focus-visible,
 a:focus-visible,
 summary:focus-visible {
-    outline: 2px solid var(--ink);
+    outline: 2px solid var(--rose);
     outline-offset: 3px;
 }
 
@@ -294,7 +355,11 @@ summary:focus-visible {
 }
 
 /* ——— Boutons à état (forme/accent 3D, photo/3D, miniatures) ——— */
-.pearl-option[aria-pressed="true"],
+.pearl-option[aria-pressed="true"] {
+    background: var(--accent-gradient);
+    color: #fff;
+    border-color: transparent;
+}
 .view-toggle[aria-pressed="true"] {
     background: var(--ink);
     color: #fff;
@@ -304,7 +369,7 @@ summary:focus-visible {
     background: #fff;
 }
 .pearl-swatch-option[aria-pressed="true"] {
-    border-color: var(--ink);
+    border-color: var(--rose);
 }
 .pearl-swatch[aria-pressed="true"] {
     border-color: var(--ink);
@@ -318,7 +383,7 @@ summary:focus-visible {
 
 /* ——— Toasts ——— */
 .toast {
-    font-family: "Manrope", system-ui, sans-serif;
+    font-family: "Syne", system-ui, sans-serif;
     animation: toast-in 0.35s var(--ease-out);
 }
 .toast.is-leaving {

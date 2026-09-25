@@ -10,7 +10,7 @@ $pillars = [
 <div data-testid="a-propos-page">
     <?= View::partial('partials/page-hero', [
         'eyebrow'   => 'À propos',
-        'titleHtml' => 'Une maison de <em class="font-light">haute perlerie</em> née au Bénin.',
+        'titleHtml' => 'Une maison de <em class="not-italic text-gradient">haute perlerie</em> née au Bénin.',
         'text'      => "Dina Perles est une marque d'accessoires faits main : sacs, pochettes et parures en perles nacrées, tissés un par un dans notre atelier.",
     ]) ?>
 

@@ -18,7 +18,7 @@ ob_start(); ?>
 <div data-testid="boutique-page">
     <?= View::partial('partials/page-hero', [
         'eyebrow'   => 'Boutique',
-        'titleHtml' => 'Pièces uniques, tissées pour vous.',
+        'titleHtml' => 'Pièces uniques, tissées <span class="text-gradient">pour vous.</span>',
         'text'      => 'Chaque création est fabriquée à la main dans notre atelier. Les quantités sont volontairement limitées.',
         'extra'     => $filters,
     ]) ?>
