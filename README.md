@@ -35,6 +35,7 @@ database/
   migrations/            modifications à appliquer sur une base déjà créée
   avis-clientes.exemple.csv  modèle pour importer les avis réels des clientes
 bin/
+  sql.php                exécute des fichiers SQL avec la connexion du .env
   importer-avis.php      import des avis réels depuis un fichier CSV
 public/                  ← SEUL dossier exposé sur le web
   index.php              point d'entrée unique
@@ -102,7 +103,13 @@ cp .env.example .env   # puis éditer (APP_DEBUG=true en local)
 php -S localhost:8000 -t public app/dev-router.php
 ```
 
-Base créée avant le 26/09/2026 : lancer aussi `mysql -u root dina_perles < database/migrations/001-avis-sans-piece.sql` (avis sur l'atelier sans pièce associée).
+Base créée avant le 26/09/2026 : lancer aussi `database/migrations/001-avis-sans-piece.sql` (avis sur l'atelier sans pièce associée).
+
+Si le client `mysql` refuse l'accès (« Access denied »), passez par le site lui-même, qui utilise les identifiants du `.env` :
+
+```bash
+php bin/sql.php database/schema.sql database/migrations/001-avis-sans-piece.sql database/avis.sql
+```
 
 `schema.sql` est réexécutable : après une mise à jour qui ajoute une table (par exemple `reviews`), il suffit de le relancer, les tables existantes et leurs données ne sont pas touchées.
 
