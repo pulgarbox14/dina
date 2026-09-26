@@ -7,8 +7,7 @@ $badges = [
     ['award', '+200 pièces', 'depuis 2019', 'hidden md:flex right-[8%] lg:right-[16%] top-[14%]', 1.3, 5, '#f43f5e'],
     ['map-pin', explode(',', brand('city'))[0], 'Atelier & formation', 'hidden md:flex right-[4%] lg:right-[12%] bottom-[26%]', 1.45, -4, '#db2777'],
 ];
-// [chiffre, libellé, précision]
-$stats = [['+200', 'pièces créées', 'tissées à la main'], ['6 ans', 'de perlage', 'après 2 ans de formation'], ['3', 'pays livrés', 'depuis Cotonou']];
+$stats = [['+200', 'pièces créées', 'award', '#f43f5e'], ['6 ans', 'de perlage', 'clock', '#f97316'], ['48 h', 'de livraison', 'truck', '#ec4899']];
 $values = [
     ['Tout à la main', "Aucune machine n'intervient. Le fil, l'aiguille et des milliers de gestes répétés."],
     ['Une pièce, une personne', 'Je tisse chaque commande moi-même, du premier nœud aux finitions.'],
@@ -57,15 +56,15 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
         </div>
 
         <div class="relative max-w-[1100px] mx-auto px-6 lg:px-12 mt-14 pb-6">
-            <dl data-reveal style="--delay: 1.4s; --y: 24px" data-testid="artisan-stats" class="card-3d grid grid-cols-3 divide-x divide-[var(--line)] py-6 sm:py-8">
-                <?php foreach ($stats as [$n, $l, $d]): ?>
-                    <div class="px-3 sm:px-8 flex flex-col items-center text-center">
-                        <dt class="order-2 text-sm sm:text-base font-semibold mt-3"><?= e($l) ?></dt>
-                        <dd class="order-1 font-display text-3xl sm:text-5xl lg:text-6xl leading-none tracking-tight whitespace-nowrap text-gradient"><?= e($n) ?></dd>
-                        <dd class="order-3 hidden sm:block text-xs text-[var(--ink-3)] mt-1"><?= e($d) ?></dd>
+            <div class="grid grid-cols-3 gap-3 sm:gap-5">
+                <?php foreach ($stats as $i => [$n, $l, $ic, $color]): ?>
+                    <div data-reveal style="--delay: <?= 1.4 + $i * 0.1 ?>s; --y: 24px" class="card-3d p-5 sm:p-7 flex flex-col items-center text-center gap-3">
+                        <span class="icon-tile h-10 w-10 rounded-full" style="--c: <?= $color ?>" aria-hidden="true"><?= icon($ic, 18, 1.8) ?></span>
+                        <div class="font-display text-2xl sm:text-5xl leading-none whitespace-nowrap"><?= e($n) ?></div>
+                        <div class="eyebrow"><?= e($l) ?></div>
                     </div>
                 <?php endforeach; ?>
-            </dl>
+            </div>
         </div>
     </section>
 
