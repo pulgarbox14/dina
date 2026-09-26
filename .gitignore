@@ -93,3 +93,6 @@ credentials.json
 
 # Avis réels des clientes (noms, villes) : restent sur votre ordinateur et le serveur
 database/avis-clientes.csv
+
+# Binaire autonome de Tailwind CSS (téléchargé à la racine, sans Node)
+/tailwindcss
