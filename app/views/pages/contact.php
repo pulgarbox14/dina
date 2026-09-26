@@ -14,7 +14,9 @@ $channels = [
     // [pastille (HTML), libellé, valeur, lien, data-testid]
     ['<span class="social-badge social-whatsapp h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . brand_icon('whatsapp', 20) . '</span>', 'WhatsApp', '+' . brand('whatsapp'), whatsapp_link('Bonjour Dina Perles !'), 'contact-whatsapp-link'],
     ['<span class="social-badge social-mail h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . icon('mail', 18, 2) . '</span>', 'E-mail', brand('email'), 'mailto:' . brand('email'), 'contact-email-link'],
-    ['<span class="social-badge social-instagram h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . brand_icon('instagram', 19) . '</span>', 'Instagram', brand('instagram'), '#', 'contact-instagram-link'],
+    ['<span class="social-badge social-instagram h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . brand_icon('instagram', 19) . '</span>', 'Instagram', brand('instagram'), social_url('instagram'), 'contact-instagram-link'],
+    ['<span class="social-badge social-facebook h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . brand_icon('facebook', 19) . '</span>', 'Facebook', brand('facebook'), social_url('facebook'), 'contact-facebook-link'],
+    ['<span class="social-badge social-tiktok h-11 w-11 rounded-full flex items-center justify-center shrink-0">' . brand_icon('tiktok', 19) . '</span>', 'TikTok', brand('tiktok'), social_url('tiktok'), 'contact-tiktok-link'],
     ['<span class="h-11 w-11 rounded-full border border-[var(--line)] flex items-center justify-center shrink-0">' . icon('map-pin', 17, 1.6) . '</span>', 'Atelier', brand('city'), null, 'contact-address'],
 ];
 ?>

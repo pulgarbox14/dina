@@ -20,6 +20,9 @@ final class Config
         'DB_PASSWORD'    => 'db.password',
         'BRAND_WHATSAPP' => 'brand.whatsapp',
         'BRAND_EMAIL'    => 'brand.email',
+        'INSTAGRAM_URL'  => 'social.instagram',
+        'FACEBOOK_URL'   => 'social.facebook',
+        'TIKTOK_URL'     => 'social.tiktok',
     ];
 
     private static array $values = [

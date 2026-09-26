@@ -22,8 +22,10 @@ $form = App\Session::takeForm('newsletter');
             <div class="lg:col-span-4">
                 <?= App\View::partial('partials/logo') ?>
                 <p class="text-sm text-[var(--ink-2)] mt-6 max-w-xs leading-relaxed">Sacs et parures en perles nacrées, tissés à la main à <?= e(brand('city')) ?>. Chaque perle est posée une à une.</p>
-                <div class="flex gap-3 mt-6">
-                    <a href="#" target="_blank" rel="noopener" data-testid="footer-instagram" aria-label="Instagram" class="social-badge social-instagram h-11 w-11 rounded-full flex items-center justify-center"><?= brand_icon('instagram', 19) ?></a>
+                <div class="flex flex-wrap gap-3 mt-6">
+                    <?php foreach (['instagram' => 'Instagram', 'facebook' => 'Facebook', 'tiktok' => 'TikTok'] as $net => $label): ?>
+                        <a href="<?= e(social_url($net)) ?>" target="_blank" rel="noopener" data-testid="footer-<?= $net ?>" aria-label="<?= $label ?>" class="social-badge social-<?= $net ?> h-11 w-11 rounded-full flex items-center justify-center"><?= brand_icon($net, 19) ?></a>
+                    <?php endforeach; ?>
                     <a href="<?= e(whatsapp_link('Bonjour !')) ?>" target="_blank" rel="noopener" data-testid="footer-whatsapp-icon" aria-label="WhatsApp" class="social-badge social-whatsapp h-11 w-11 rounded-full flex items-center justify-center"><?= brand_icon('whatsapp', 20) ?></a>
                     <a href="mailto:<?= e(brand('email')) ?>" data-testid="footer-mail" aria-label="E-mail" class="social-badge social-mail h-11 w-11 rounded-full flex items-center justify-center"><?= icon('mail', 18, 2) ?></a>
                 </div>

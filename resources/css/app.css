@@ -481,6 +481,12 @@ summary:focus-visible {
 .social-whatsapp {
     background: #25d366;
 }
+.social-facebook {
+    background: #1877f2;
+}
+.social-tiktok {
+    background: #111;
+}
 .social-mail {
     background: var(--accent-gradient);
 }

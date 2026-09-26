@@ -115,8 +115,17 @@ function brand(string $key): string
         'whatsapp'  => (string) Config::get('brand.whatsapp'),
         'email'     => (string) Config::get('brand.email'),
         'instagram' => '@dina.perles',
+        'facebook'  => 'Dina Perles',
+        'tiktok'    => '@dina.perles',
     ];
     return $brand[$key] ?? '';
+}
+
+/** Lien vers un réseau social (instagram, facebook, tiktok) défini dans .env, « # » tant qu'il n'est pas renseigné. */
+function social_url(string $network): string
+{
+    $url = trim((string) Config::get('social.' . $network, ''));
+    return $url !== '' ? $url : '#';
 }
 
 function whatsapp_link(string $text): string
