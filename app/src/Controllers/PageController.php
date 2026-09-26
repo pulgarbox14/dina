@@ -36,32 +36,53 @@ final class PageController
 
     public static function produit(string $id): void
     {
-        $product = ProductRepository::find($id);
-        if ($product === null && ProductRepository::unavailable()) {
-            http_response_code(503);
-            echo View::render('pages/erreur', ['title' => 'Catalogue indisponible', 'code' => 503]);
-            return;
-        }
+        $product = self::productOrError($id);
         if ($product === null) {
-            http_response_code(404);
-            echo View::render('pages/erreur', ['title' => 'Produit introuvable', 'code' => 404, 'productNotFound' => true]);
             return;
         }
         $related = array_values(array_filter(ProductRepository::all(), fn (array $p) => $p['id'] !== $id));
-
-        // Avis : filtre facultatif par nombre d'étoiles (?note=5) et affichage complet (?avis=tous).
-        $note = (int) Http::query('note', '0');
-        $note = $note >= 1 && $note <= 5 ? $note : null;
         echo View::render('pages/produit', [
             'title'       => $product['name'],
             'description' => $product['subtitle'] . ' — ' . $product['description'],
             'product'     => $product,
             'related'     => array_slice($related, 0, 4),
             'reviewStats' => ReviewRepository::stats($id),
+        ]);
+    }
+
+    /** Tous les avis d'une pièce, avec filtre facultatif par nombre d'étoiles (?note=5). */
+    public static function avis(string $id): void
+    {
+        $product = self::productOrError($id);
+        if ($product === null) {
+            return;
+        }
+        $note = (int) Http::query('note', '0');
+        $note = $note >= 1 && $note <= 5 ? $note : null;
+        echo View::render('pages/avis', [
+            'title'       => 'Avis · ' . $product['name'],
+            'product'     => $product,
+            'reviewStats' => ReviewRepository::stats($id),
             'reviews'     => ReviewRepository::forProduct($id, $note),
             'reviewNote'  => $note,
-            'reviewsAll'  => Http::query('avis', '') === 'tous',
         ]);
+    }
+
+    /** Charge un produit, ou affiche la page d'erreur adaptée (503 si la base est indisponible, sinon 404). */
+    private static function productOrError(string $id): ?array
+    {
+        $product = ProductRepository::find($id);
+        if ($product !== null) {
+            return $product;
+        }
+        if (ProductRepository::unavailable()) {
+            http_response_code(503);
+            echo View::render('pages/erreur', ['title' => 'Catalogue indisponible', 'code' => 503]);
+        } else {
+            http_response_code(404);
+            echo View::render('pages/erreur', ['title' => 'Produit introuvable', 'code' => 404, 'productNotFound' => true]);
+        }
+        return null;
     }
 
     public static function artisane(): void

@@ -113,12 +113,13 @@ check('fiche produit : sans vue 3D', !str_contains($p, 'Vue 3D') && !str_contain
 $home = $c->get('/')['body'];
 check('accueil : vitrine avec 6 pièces', str_contains($home, 'data-testid="vitrine-section"') && substr_count($home, 'data-vitrine-go=') === 6);
 check('accueil : bloc sur mesure conservé', str_contains($home, 'data-testid="sur-mesure-section"'));
-check('fiche produit : section avis clientes', str_contains($p, 'id="avis"') && str_contains($p, 'data-testid="reviews-section"'));
+check('fiche produit : note sous le titre, sans liste d\'avis', str_contains($p, 'data-testid="product-rating"') && !str_contains($p, 'data-testid="review-item"') && str_contains($p, '/produit/sac-lune-nacre/avis'));
+$a = $c->get('/produit/sac-lune-nacre/avis');
+check('page avis du produit', $a['status'] === 200 && str_contains($a['body'], 'data-testid="reviews-page"') && str_contains($a['body'], 'Le Sac Lune Nacre'));
 $items = static fn (string $html): int => substr_count($html, 'data-testid="review-item"');
-check('fiche produit : 5 avis au plus avant « voir tout »', $items($p) <= 5);
-check('avis : « voir tout » affiche au moins autant', $items($c->get('/produit/sac-lune-nacre?avis=tous')['body']) >= $items($p));
-$bad = $c->get('/produit/sac-lune-nacre?note=%27%20OR%201=1--');
-check('avis : filtre de note invalide ignoré', $bad['status'] === 200 && $items($bad['body']) === $items($p));
+$bad = $c->get('/produit/sac-lune-nacre/avis?note=%27%20OR%201=1--');
+check('avis : filtre de note invalide ignoré', $bad['status'] === 200 && $items($bad['body']) === $items($a['body']));
+check('avis : produit inconnu → 404', $c->get('/produit/nonexistent-xyz/avis')['status'] === 404);
 check('parure ambre : 2 photos', substr_count($c->get('/produit/parure-ambre')['body'], 'data-testid="product-thumb-') === 2);
 
 echo "Sécurité CSRF\n";
@@ -191,6 +192,7 @@ if ($degradedBase !== null) {
     }
     check('vitrine masquée sans catalogue', !str_contains($d->get('/')['body'], 'data-testid="vitrine-section"'));
     check('fiche produit → 503 (pas 404)', $d->get('/produit/sac-lune-nacre')['status'] === 503);
+    check('page avis → 503 (pas 404)', $d->get('/produit/sac-lune-nacre/avis')['status'] === 503);
     check('ajout au panier → 503', $d->post('/panier/ajouter', ['product_id' => 'sac-lune-nacre'])['status'] === 503);
     $r = $d->post('/contact', ['name' => 'Test', 'email' => 't@example.com', 'subject' => 'Salut', 'message' => 'Bonjour test']);
     check('contact → 503 avec message', $r['status'] === 503 && str_contains($r['json']['message'] ?? '', 'indisponible'));

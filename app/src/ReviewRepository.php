@@ -11,9 +11,6 @@ namespace App;
  */
 final class ReviewRepository
 {
-    /** Nombre d'avis affichés avant le lien « Voir tous les avis ». */
-    public const PREVIEW = 5;
-
     /** @var array<string, array{count: int, average: float}>|null */
     private static ?array $summaries = null;
 

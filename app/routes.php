@@ -12,6 +12,7 @@ $router = new Router();
 $router->get('/', [PageController::class, 'home']);
 $router->get('/boutique', [PageController::class, 'boutique']);
 $router->get('/produit/{id}', [PageController::class, 'produit']);
+$router->get('/produit/{id}/avis', [PageController::class, 'avis']);
 $router->get('/artisane', [PageController::class, 'artisane']);
 $router->get('/a-propos', [PageController::class, 'aPropos']);
 $router->get('/contact', [PageController::class, 'contact']);

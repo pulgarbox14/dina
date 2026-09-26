@@ -303,7 +303,7 @@
         );
     }
 
-    /* ——— Note produit : le panneau de répartition se ferme au clic extérieur, avec Échap ou en allant aux avis ——— */
+    /* ——— Note produit : le panneau de répartition se ferme au clic extérieur ou avec Échap ——— */
     function initRatingPopover() {
         const pop = $("[data-rating-pop]");
         if (!pop) return;
@@ -317,7 +317,6 @@
                 $("summary", pop).focus();
             }
         });
-        $$("[data-rating-close]", pop).forEach((a) => a.addEventListener("click", close));
     }
 
     /* ——— Avis clientes : un clic sur une carte ouvre l'avis complet et la pièce achetée ——— */
