@@ -86,11 +86,12 @@ CREATE TABLE IF NOT EXISTS newsletter_subscribers (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Avis clientes. Seuls les avis au statut « publie » s'affichent sur le site.
+-- product_id vide = avis sur l'atelier en général (affiché sur l'accueil seulement).
 -- order_item_id relie l'avis à la ligne de commande achetée : c'est ce qui prouve
 -- l'achat (« Achat vérifié »), et la clé unique empêche deux avis pour le même achat.
 CREATE TABLE IF NOT EXISTS reviews (
     id            INT UNSIGNED     NOT NULL AUTO_INCREMENT,
-    product_id    VARCHAR(80)      NOT NULL,
+    product_id    VARCHAR(80)      NULL,
     order_item_id INT UNSIGNED     NULL,
     author_name   VARCHAR(120)     NOT NULL,
     city          VARCHAR(120)     NULL,

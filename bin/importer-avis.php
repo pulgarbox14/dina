@@ -7,7 +7,8 @@ declare(strict_types=1);
  * Usage :  php bin/importer-avis.php database/avis-clientes.csv
  *
  * Colonnes : produit;nom;ville;note;titre;avis;date
- *   - produit : identifiant de la pièce (celui de l'adresse /produit/…), ex. sac-lune-nacre
+ *   - produit : identifiant de la pièce (celui de l'adresse /produit/…), ex. sac-lune-nacre ;
+ *               vide pour un avis sur l'atelier en général (affiché sur l'accueil seulement)
  *   - note    : 1 à 5
  *   - ville, titre et date (AAAA-MM-JJ) sont facultatifs
  *
@@ -44,7 +45,7 @@ while (($cols = fgetcsv($handle, 0, ';', '"', '')) !== false) {
     [$product, $name, $city, $rating, $title, $body, $date] = array_map('trim', array_pad($cols, 7, ''));
 
     $problems = [];
-    if (!in_array($product, $products, true)) {
+    if ($product !== '' && !in_array($product, $products, true)) {
         $problems[] = "pièce « $product » inconnue";
     }
     if ($name === '') {
@@ -64,7 +65,7 @@ while (($cols = fgetcsv($handle, 0, ';', '"', '')) !== false) {
         continue;
     }
     $rows[] = [
-        'product_id'   => $product,
+        'product_id'   => $product !== '' ? $product : null,
         'author_name'  => mb_substr($name, 0, 120),
         'city'         => $city !== '' ? mb_substr($city, 0, 120) : null,
         'rating'       => (int) $rating,
@@ -80,7 +81,7 @@ if ($errors !== []) {
     exit(1);
 }
 
-$exists = $pdo->prepare('SELECT 1 FROM reviews WHERE product_id = ? AND author_name = ? AND body = ? LIMIT 1');
+$exists = $pdo->prepare('SELECT 1 FROM reviews WHERE product_id <=> ? AND author_name = ? AND body = ? LIMIT 1');
 $insert = $pdo->prepare(
     "INSERT INTO reviews (product_id, author_name, city, rating, title, body, status, published_at)
      VALUES (:product_id, :author_name, :city, :rating, :title, :body, 'publie', :published_at)"

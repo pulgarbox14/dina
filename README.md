@@ -31,7 +31,8 @@ app/
 database/
   schema.sql             création des tables
   seed.sql               les 9 créations de départ (réexécutable)
-  demo-avis.sql          avis fictifs pour voir le rendu en local (jamais en ligne)
+  avis.sql               avis réels des clientes (réexécutable)
+  migrations/            modifications à appliquer sur une base déjà créée
   avis-clientes.exemple.csv  modèle pour importer les avis réels des clientes
 bin/
   importer-avis.php      import des avis réels depuis un fichier CSV
@@ -92,8 +93,7 @@ location ~ \.php$ { include fastcgi_params; fastcgi_param SCRIPT_FILENAME $docum
 mysql -u root -e "CREATE DATABASE dina_perles CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
 mysql -u root dina_perles < database/schema.sql
 mysql -u root dina_perles < database/seed.sql
-# (facultatif) avis fictifs pour voir le rendu des avis en local
-mysql -u root dina_perles < database/demo-avis.sql
+mysql -u root dina_perles < database/avis.sql
 
 # 2. Configuration
 cp .env.example .env   # puis éditer (APP_DEBUG=true en local)
@@ -101,6 +101,8 @@ cp .env.example .env   # puis éditer (APP_DEBUG=true en local)
 # 3. Serveur PHP intégré
 php -S localhost:8000 -t public app/dev-router.php
 ```
+
+Base créée avant le 26/09/2026 : lancer aussi `mysql -u root dina_perles < database/migrations/001-avis-sans-piece.sql` (avis sur l'atelier sans pièce associée).
 
 `schema.sql` est réexécutable : après une mise à jour qui ajoute une table (par exemple `reviews`), il suffit de le relancer, les tables existantes et leurs données ne sont pas touchées.
 
@@ -112,7 +114,7 @@ Pour publier les avis que Secondina a déjà reçus (WhatsApp, messages, appels�
 
 1. Copier le modèle : `cp database/avis-clientes.exemple.csv database/avis-clientes.csv`
 2. Remplir une ligne par avis, dans un tableur ou un éditeur de texte (séparateur `;`, enregistrer en CSV UTF-8) :
-   `produit;nom;ville;note;titre;avis;date` : `produit` est l'identifiant de l'adresse `/produit/…`, `note` va de 1 à 5, `ville`, `titre` et `date` (AAAA-MM-JJ) sont facultatifs.
+   `produit;nom;ville;note;titre;avis;date` : `produit` est l'identifiant de l'adresse `/produit/…` (vide pour un avis sur l'atelier en général, affiché sur l'accueil seulement), `note` va de 1 à 5, `ville`, `titre` et `date` (AAAA-MM-JJ) sont facultatifs.
 3. Lancer : `php bin/importer-avis.php database/avis-clientes.csv`
 
 Le fichier est vérifié en entier avant tout import : à la moindre erreur, rien n'est enregistré et la ligne fautive est indiquée. Relancer l'import ne crée pas de doublons. `database/avis-clientes.csv` contient des noms de clientes : il est ignoré par Git.

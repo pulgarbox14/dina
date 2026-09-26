@@ -341,9 +341,12 @@
             if (!r) return;
             $("[data-review-text]", dialog).textContent = `« ${r.text} »`;
             $("[data-review-name]", dialog).textContent = r.name;
-            $("[data-review-city]", dialog).textContent = r.city;
+            $("[data-review-meta]", dialog).textContent = [r.city, r.verified ? "Achat vérifié" : ""].filter(Boolean).join(" · ");
+            const stars = $("[data-review-stars] .rating-stars", dialog);
+            stars.setAttribute("aria-label", `${r.rating} sur 5`);
+            $(".rating-stars-fill", stars).style.width = `${(r.rating / 5) * 100}%`;
             if (r.product) {
-                product.hidden = false;
+                product.classList.replace("hidden", "flex");
                 product.href = r.product.url;
                 $("[data-review-product-image]", dialog).src = r.product.image;
                 $("[data-review-product-image]", dialog).alt = r.product.name;
@@ -352,7 +355,8 @@
                 cta.href = r.product.url;
                 cta.firstChild.textContent = "Voir la pièce ";
             } else {
-                product.hidden = true;
+                // Classe et non attribut « hidden » : la classe « flex » de l'encart l'emporterait sur l'attribut.
+                product.classList.replace("flex", "hidden");
                 cta.href = shopUrl;
                 cta.firstChild.textContent = "Voir la boutique ";
             }

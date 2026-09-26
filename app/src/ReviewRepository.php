@@ -92,6 +92,30 @@ final class ReviewRepository
         }, []);
     }
 
+    /**
+     * Derniers avis publiés, toutes pièces confondues (carrousel de l'accueil).
+     *
+     * @return list<array<string, mixed>>
+     */
+    public static function latest(int $limit = 12): array
+    {
+        return self::guard(static function () use ($limit): array {
+            $stmt = Database::pdo()->prepare(
+                "SELECT id, product_id, author_name, city, rating, title, body, order_item_id,
+                        COALESCE(published_at, created_at) AS date
+                 FROM reviews WHERE status = 'publie'
+                 ORDER BY date DESC, id DESC LIMIT :limit"
+            );
+            $stmt->bindValue('limit', $limit, \PDO::PARAM_INT);
+            $stmt->execute();
+            return array_map(static function (array $r): array {
+                $r['rating'] = (int) $r['rating'];
+                $r['verified'] = $r['order_item_id'] !== null;
+                return $r;
+            }, $stmt->fetchAll());
+        }, []);
+    }
+
     private static function guard(callable $read, mixed $fallback): mixed
     {
         try {
