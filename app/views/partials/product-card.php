@@ -4,6 +4,7 @@
  * @var string|null $aspect
  */
 $aspect ??= 'aspect-[4/5]';
+$rating = App\ReviewRepository::summary((string) $product['id']);
 ?>
 <div data-tilt class="tilt-card relative group card-3d h-full p-2 sm:p-3 max-sm:!rounded-[20px]" data-testid="product-card-<?= e($product['id']) ?>">
     <a href="<?= e(url('/produit/' . $product['id'])) ?>" class="block">
@@ -17,6 +18,13 @@ $aspect ??= 'aspect-[4/5]';
             <div>
                 <h3 class="font-display text-sm sm:text-xl leading-tight"><?= e($product['name']) ?></h3>
                 <p class="hidden sm:block text-sm text-[var(--ink-3)] mt-1"><?= e($product['subtitle']) ?></p>
+                <?php if ($rating['count'] > 0): ?>
+                    <span class="flex items-center gap-1.5 mt-1.5 text-xs text-[var(--ink-2)]" data-testid="card-rating-<?= e($product['id']) ?>">
+                        <?= rating_stars($rating['average'], 12) ?>
+                        <span class="font-semibold"><?= e(rating_value($rating['average'])) ?></span>
+                        <span class="text-[var(--ink-3)]">(<?= $rating['count'] ?>)</span>
+                    </span>
+                <?php endif; ?>
             </div>
             <span class="font-mono text-xs sm:text-sm sm:mt-1 whitespace-nowrap" data-testid="product-price-<?= e($product['id']) ?>"><?= price((int) $product['price']) ?></span>
         </div>

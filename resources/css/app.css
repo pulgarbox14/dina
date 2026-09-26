@@ -552,3 +552,40 @@ summary:focus-visible {
         transform: translateY(12px);
     }
 }
+
+/* ——— Notes en étoiles (avis produits) ——— */
+.rating-stars {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    line-height: 0;
+}
+.rating-stars-empty {
+    display: inline-flex;
+    gap: 1px;
+    color: #e7e1dc;
+}
+.rating-stars-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    display: inline-flex;
+    gap: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--orange);
+}
+.rating-bar {
+    background: #f1ece8;
+}
+.rating-bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent-gradient);
+}
+.rating-pop[open] > summary .rating-chevron {
+    transform: rotate(180deg);
+}
+.rating-pop > summary::-webkit-details-marker {
+    display: none;
+}

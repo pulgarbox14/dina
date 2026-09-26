@@ -113,6 +113,12 @@ check('fiche produit : sans vue 3D', !str_contains($p, 'Vue 3D') && !str_contain
 $home = $c->get('/')['body'];
 check('accueil : vitrine avec 6 pièces', str_contains($home, 'data-testid="vitrine-section"') && substr_count($home, 'data-vitrine-go=') === 6);
 check('accueil : bloc sur mesure conservé', str_contains($home, 'data-testid="sur-mesure-section"'));
+check('fiche produit : section avis clientes', str_contains($p, 'id="avis"') && str_contains($p, 'data-testid="reviews-section"'));
+$items = static fn (string $html): int => substr_count($html, 'data-testid="review-item"');
+check('fiche produit : 5 avis au plus avant « voir tout »', $items($p) <= 5);
+check('avis : « voir tout » affiche au moins autant', $items($c->get('/produit/sac-lune-nacre?avis=tous')['body']) >= $items($p));
+$bad = $c->get('/produit/sac-lune-nacre?note=%27%20OR%201=1--');
+check('avis : filtre de note invalide ignoré', $bad['status'] === 200 && $items($bad['body']) === $items($p));
 check('parure ambre : 2 photos', substr_count($c->get('/produit/parure-ambre')['body'], 'data-testid="product-thumb-') === 2);
 
 echo "Sécurité CSRF\n";

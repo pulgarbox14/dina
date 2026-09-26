@@ -52,6 +52,35 @@ function price(int $amount): string
     return number_format($amount, 0, ',', "\u{202F}") . ' FCFA';
 }
 
+/** 4.7 → « 4,7 » (note moyenne à la française). */
+function rating_value(float $value): string
+{
+    return number_format($value, 1, ',', '');
+}
+
+/**
+ * Cinq étoiles remplies au prorata de la note (4,7 → 94 %), comme sur les grandes boutiques en ligne.
+ * Une rangée grise en fond, une rangée colorée par-dessus, coupée à la bonne largeur.
+ */
+function rating_stars(float $value, int $size = 16): string
+{
+    $star = '<svg width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
+    $row = str_repeat($star, 5);
+    $pct = max(0, min(100, $value / 5 * 100));
+    return '<span class="rating-stars" role="img" aria-label="' . e(rating_value($value)) . ' sur 5">'
+        . '<span class="rating-stars-empty">' . $row . '</span>'
+        . '<span class="rating-stars-fill" style="width: ' . round($pct, 1) . '%">' . $row . '</span>'
+        . '</span>';
+}
+
+/** « 2026-09-12 10:00:00 » → « 12 septembre 2026 ». */
+function date_fr(string $datetime): string
+{
+    static $months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+    $ts = strtotime($datetime);
+    return $ts === false ? '' : date('j', $ts) . ' ' . $months[(int) date('n', $ts) - 1] . ' ' . date('Y', $ts);
+}
+
 /** Icône Lucide en SVG inline. */
 function icon(string $name, int $size = 16, float $stroke = 2, string $class = ''): string
 {

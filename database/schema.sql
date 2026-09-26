@@ -84,3 +84,28 @@ CREATE TABLE IF NOT EXISTS newsletter_subscribers (
     PRIMARY KEY (id),
     UNIQUE KEY uq_newsletter_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Avis clientes. Seuls les avis au statut « publie » s'affichent sur le site.
+-- order_item_id relie l'avis à la ligne de commande achetée : c'est ce qui prouve
+-- l'achat (« Achat vérifié »), et la clé unique empêche deux avis pour le même achat.
+CREATE TABLE IF NOT EXISTS reviews (
+    id            INT UNSIGNED     NOT NULL AUTO_INCREMENT,
+    product_id    VARCHAR(80)      NOT NULL,
+    order_item_id INT UNSIGNED     NULL,
+    author_name   VARCHAR(120)     NOT NULL,
+    city          VARCHAR(120)     NULL,
+    rating        TINYINT UNSIGNED NOT NULL,
+    title         VARCHAR(160)     NULL,
+    body          TEXT             NOT NULL,
+    status        VARCHAR(20)      NOT NULL DEFAULT 'en_attente' COMMENT 'en_attente, publie ou refuse',
+    created_at    DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    published_at  DATETIME         NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_reviews_order_item (order_item_id),
+    KEY idx_reviews_product (product_id, status, published_at),
+    CONSTRAINT chk_reviews_rating CHECK (rating BETWEEN 1 AND 5),
+    CONSTRAINT fk_reviews_product FOREIGN KEY (product_id)
+        REFERENCES products (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_reviews_order_item FOREIGN KEY (order_item_id)
+        REFERENCES order_items (id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

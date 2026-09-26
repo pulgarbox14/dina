@@ -303,6 +303,23 @@
         );
     }
 
+    /* ——— Note produit : le panneau de répartition se ferme au clic extérieur, avec Échap ou en allant aux avis ——— */
+    function initRatingPopover() {
+        const pop = $("[data-rating-pop]");
+        if (!pop) return;
+        const close = () => pop.removeAttribute("open");
+        document.addEventListener("click", (e) => {
+            if (pop.open && !pop.contains(e.target)) close();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && pop.open) {
+                close();
+                $("summary", pop).focus();
+            }
+        });
+        $$("[data-rating-close]", pop).forEach((a) => a.addEventListener("click", close));
+    }
+
     /* ——— Avis clientes : un clic sur une carte ouvre l'avis complet et la pièce achetée ——— */
     function initReviews() {
         const root = $("[data-reviews]");
@@ -430,6 +447,7 @@
         initProductPage();
         initVitrine();
         initReviews();
+        initRatingPopover();
         showFlashes();
     });
 })();

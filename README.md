@@ -31,6 +31,7 @@ app/
 database/
   schema.sql             création des tables
   seed.sql               les 9 créations de départ (réexécutable)
+  demo-avis.sql          avis fictifs pour voir le rendu en local (jamais en ligne)
 public/                  ← SEUL dossier exposé sur le web
   index.php              point d'entrée unique
   .htaccess              réécriture d'URL (Apache)
@@ -88,6 +89,8 @@ location ~ \.php$ { include fastcgi_params; fastcgi_param SCRIPT_FILENAME $docum
 mysql -u root -e "CREATE DATABASE dina_perles CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
 mysql -u root dina_perles < database/schema.sql
 mysql -u root dina_perles < database/seed.sql
+# (facultatif) avis fictifs pour voir le rendu des avis en local
+mysql -u root dina_perles < database/demo-avis.sql
 
 # 2. Configuration
 cp .env.example .env   # puis éditer (APP_DEBUG=true en local)
@@ -95,6 +98,8 @@ cp .env.example .env   # puis éditer (APP_DEBUG=true en local)
 # 3. Serveur PHP intégré
 php -S localhost:8000 -t public app/dev-router.php
 ```
+
+`schema.sql` est réexécutable : après une mise à jour qui ajoute une table (par exemple `reviews`), il suffit de le relancer, les tables existantes et leurs données ne sont pas touchées.
 
 Une variable d'environnement du serveur (ex. `DB_NAME=dina_test`) a priorité sur la même clé du `.env`.
 

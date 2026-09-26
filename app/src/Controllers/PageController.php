@@ -6,6 +6,7 @@ namespace App\Controllers;
 use App\Cart;
 use App\Http;
 use App\ProductRepository;
+use App\ReviewRepository;
 use App\Session;
 use App\View;
 
@@ -47,11 +48,19 @@ final class PageController
             return;
         }
         $related = array_values(array_filter(ProductRepository::all(), fn (array $p) => $p['id'] !== $id));
+
+        // Avis : filtre facultatif par nombre d'étoiles (?note=5) et affichage complet (?avis=tous).
+        $note = (int) Http::query('note', '0');
+        $note = $note >= 1 && $note <= 5 ? $note : null;
         echo View::render('pages/produit', [
             'title'       => $product['name'],
             'description' => $product['subtitle'] . ' — ' . $product['description'],
             'product'     => $product,
             'related'     => array_slice($related, 0, 4),
+            'reviewStats' => ReviewRepository::stats($id),
+            'reviews'     => ReviewRepository::forProduct($id, $note),
+            'reviewNote'  => $note,
+            'reviewsAll'  => Http::query('avis', '') === 'tous',
         ]);
     }
 
