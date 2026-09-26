@@ -3,7 +3,7 @@ use App\View;
 
 $badges = [
     ['hand', '100 % main', 'Aucune machine', 'hidden md:flex left-[8%] lg:left-[16%] top-[18%]', 1.2, -6, '#ec4899'],
-    ['clock', '16 à 30 h', 'par pièce tissée', 'hidden md:flex left-[4%] lg:left-[12%] bottom-[22%]', 1.35, 4, '#f97316'],
+    ['clock', '6 ans', "d'expérience", 'hidden md:flex left-[4%] lg:left-[12%] bottom-[22%]', 1.35, 4, '#f97316'],
     ['award', '+200 pièces', 'depuis 2019', 'hidden md:flex right-[8%] lg:right-[16%] top-[14%]', 1.3, 5, '#f43f5e'],
     ['map-pin', explode(',', brand('city'))[0], 'Atelier & formation', 'hidden md:flex right-[4%] lg:right-[12%] bottom-[26%]', 1.45, -4, '#db2777'],
 ];
