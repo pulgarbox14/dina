@@ -10,8 +10,8 @@ $badges = [
 $stats = [['+200', 'pièces créées', 'award', '#f43f5e'], ['6 ans', 'de perlage', 'clock', '#f97316'], ['3', 'pays livrés', 'map-pin', '#ec4899']];
 $values = [
     ['Tout à la main', "Aucune machine n'intervient. Le fil, l'aiguille et des milliers de gestes répétés."],
-    ['Une pièce, une personne', 'Secondina tisse chaque commande elle-même, du premier nœud aux finitions.'],
-    ['Un savoir-faire certifié', "Formée deux ans auprès d'une patronne puis diplômée d'État (CQM), Secondina applique une technique maîtrisée à chaque pièce."],
+    ['Une pièce, une personne', 'Je tisse chaque commande moi-même, du premier nœud aux finitions.'],
+    ['Un savoir-faire certifié', "Formée deux ans auprès d'une patronne puis diplômée d'État (CQM), j'applique une technique maîtrisée à chaque pièce."],
 ];
 $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'trio', 'orangeTote', 'ringSet'];
 ?>
@@ -30,10 +30,10 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
                     <?= View::partial('partials/line-reveal', ['lines' => [$artisan], 'delay' => 0.3, 'highlight' => $artisan]) ?>
                 </h1>
                 <p data-reveal style="--delay: .9s; --y: 24px" class="mt-6 max-w-lg mx-auto text-[var(--ink-2)] leading-relaxed">
-                    Fondatrice de Dina Perles, diplômée d'État (CQM), elle conçoit, dessine et tisse chaque pièce elle-même dans son atelier de <?= e(brand('city')) ?>.
+                    Je suis la fondatrice de Dina Perles, diplômée d'État (CQM). Je conçois, je dessine et je tisse chaque pièce moi-même dans mon atelier de <?= e(brand('city')) ?>.
                 </p>
                 <div data-reveal style="--delay: 1.05s; --y: 24px" class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <a href="<?= e(url('/boutique')) ?>" data-testid="artisan-cta-boutique" class="btn-pill btn-dark">Voir ses créations <?= icon('arrow-up-right', 16) ?></a>
+                    <a href="<?= e(url('/boutique')) ?>" data-testid="artisan-cta-boutique" class="btn-pill btn-dark">Voir mes créations <?= icon('arrow-up-right', 16) ?></a>
                     <a href="<?= e(url('/contact')) ?>" data-testid="artisan-cta-contact-hero" class="btn-pill btn-ghost">Commander sur mesure</a>
                 </div>
             </div>
@@ -80,8 +80,8 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
                 <p class="font-display text-2xl sm:text-3xl leading-snug">Deux ans d'apprentissage, un diplôme d'État, <span class="text-gradient">six ans de perlage.</span></p>
             </div>
             <div data-reveal style="--delay: .1s">
-                <p class="text-[var(--ink-2)] leading-relaxed">Secondina a appris le perlage au cours d'une formation professionnelle de deux ans, auprès d'une patronne qui lui a transmis les gestes du métier. Elle a ensuite obtenu son CQM, le Certificat de Qualification aux Métiers : un diplôme d'État, délivré avec son attestation.</p>
-                <p class="text-[var(--ink-2)] leading-relaxed mt-5">Voilà maintenant environ six ans qu'elle perle. Elle imagine ses propres modèles (la fleur orange, la fleur d'améthyste, la trame nacrée) et tisse chaque commande elle-même, perle après perle, dans son atelier de Cotonou.</p>
+                <p class="text-[var(--ink-2)] leading-relaxed">J'ai appris le perlage au cours d'une formation professionnelle de deux ans, auprès d'une patronne qui m'a transmis les gestes du métier. J'ai ensuite passé mon CQM, le Certificat de Qualification aux Métiers : un diplôme d'État, que j'ai obtenu avec son attestation.</p>
+                <p class="text-[var(--ink-2)] leading-relaxed mt-5">Voilà maintenant environ six ans que je perle. J'imagine mes propres modèles (la fleur orange, la fleur d'améthyste, la trame nacrée) et je tisse chaque commande moi-même, perle après perle, dans mon atelier de Cotonou.</p>
             </div>
             <?php /* Parcours de l'artisane (informations fournies par Secondina). */ ?>
             <ol data-reveal style="--delay: .12s" class="grid sm:grid-cols-3 gap-3" data-testid="artisan-parcours">
@@ -106,7 +106,7 @@ $journal = ['classique', 'orangeRound', 'whiteSet', 'purple', 'amberPlate', 'tri
     </section>
 
     <section class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20">
-        <?= View::partial('partials/section-heading', ['eyebrow' => "Journal d'atelier", 'titleHtml' => 'Quelques pièces sorties de ses mains']) ?>
+        <?= View::partial('partials/section-heading', ['eyebrow' => "Journal d'atelier", 'titleHtml' => 'Quelques pièces sorties de mes mains']) ?>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14" data-testid="atelier-gallery">
             <?php foreach ($journal as $i => $g): ?>
                 <div data-reveal style="--delay: <?= ($i % 4) * 0.08 ?>s" class="img-zoom overflow-hidden rounded-[24px] bg-[var(--luster)] <?= $i % 3 === 0 ? 'row-span-2 aspect-[3/5]' : 'aspect-[3/4]' ?>">
