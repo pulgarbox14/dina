@@ -32,6 +32,9 @@ database/
   schema.sql             création des tables
   seed.sql               les 9 créations de départ (réexécutable)
   demo-avis.sql          avis fictifs pour voir le rendu en local (jamais en ligne)
+  avis-clientes.exemple.csv  modèle pour importer les avis réels des clientes
+bin/
+  importer-avis.php      import des avis réels depuis un fichier CSV
 public/                  ← SEUL dossier exposé sur le web
   index.php              point d'entrée unique
   .htaccess              réécriture d'URL (Apache)
@@ -102,6 +105,19 @@ php -S localhost:8000 -t public app/dev-router.php
 `schema.sql` est réexécutable : après une mise à jour qui ajoute une table (par exemple `reviews`), il suffit de le relancer, les tables existantes et leurs données ne sont pas touchées.
 
 Une variable d'environnement du serveur (ex. `DB_NAME=dina_test`) a priorité sur la même clé du `.env`.
+
+### Importer les avis des clientes
+
+Pour publier les avis que Secondina a déjà reçus (WhatsApp, messages, appels…) :
+
+1. Copier le modèle : `cp database/avis-clientes.exemple.csv database/avis-clientes.csv`
+2. Remplir une ligne par avis, dans un tableur ou un éditeur de texte (séparateur `;`, enregistrer en CSV UTF-8) :
+   `produit;nom;ville;note;titre;avis;date` : `produit` est l'identifiant de l'adresse `/produit/…`, `note` va de 1 à 5, `ville`, `titre` et `date` (AAAA-MM-JJ) sont facultatifs.
+3. Lancer : `php bin/importer-avis.php database/avis-clientes.csv`
+
+Le fichier est vérifié en entier avant tout import : à la moindre erreur, rien n'est enregistré et la ligne fautive est indiquée. Relancer l'import ne crée pas de doublons. `database/avis-clientes.csv` contient des noms de clientes : il est ignoré par Git.
+
+Uniquement de vrais avis, avec l'accord des clientes : les faux avis sont interdits (pratique commerciale trompeuse) et les clientes l'ont vite repéré.
 
 ### Modifier le style
 

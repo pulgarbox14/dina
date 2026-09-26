@@ -90,3 +90,6 @@ credentials.json
 
 # Le modèle de configuration est versionné, pas le vrai .env
 !.env.example
+
+# Avis réels des clientes (noms, villes) : restent sur votre ordinateur et le serveur
+database/avis-clientes.csv

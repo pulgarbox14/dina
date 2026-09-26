@@ -31,6 +31,10 @@ ini_set('display_errors', $debug ? '1' : '0');
 error_reporting(E_ALL);
 
 set_exception_handler(static function (Throwable $e) use ($debug): void {
+    if (PHP_SAPI === 'cli') {
+        fwrite(STDERR, 'Erreur : ' . $e->getMessage() . "\n");
+        exit(1);
+    }
     error_log((string) $e);
     if (!headers_sent()) {
         http_response_code(500);
@@ -52,4 +56,7 @@ set_exception_handler(static function (Throwable $e) use ($debug): void {
     }
 });
 
-App\Session::start();
+// Pas de session pour les scripts en ligne de commande (ex. import des avis).
+if (PHP_SAPI !== 'cli') {
+    App\Session::start();
+}

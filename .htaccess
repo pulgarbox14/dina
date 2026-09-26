@@ -3,4 +3,4 @@
 <FilesMatch "^\.">
     Require all denied
 </FilesMatch>
-RedirectMatch 404 ^/(app|database|resources|tests|node_modules)(/|$)
+RedirectMatch 404 ^/(app|bin|database|resources|tests|node_modules)(/|$)

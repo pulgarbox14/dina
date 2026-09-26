@@ -113,7 +113,7 @@ check('fiche produit : sans vue 3D', !str_contains($p, 'Vue 3D') && !str_contain
 $home = $c->get('/')['body'];
 check('accueil : vitrine avec 6 pièces', str_contains($home, 'data-testid="vitrine-section"') && substr_count($home, 'data-vitrine-go=') === 6);
 check('accueil : bloc sur mesure conservé', str_contains($home, 'data-testid="sur-mesure-section"'));
-check('fiche produit : note sous le titre, sans liste d\'avis', str_contains($p, 'data-testid="product-rating"') && !str_contains($p, 'data-testid="review-item"') && str_contains($p, '/produit/sac-lune-nacre/avis'));
+check('fiche produit : pas de liste d\'avis sur la fiche', !str_contains($p, 'data-testid="review-item"'));
 $a = $c->get('/produit/sac-lune-nacre/avis');
 check('page avis du produit', $a['status'] === 200 && str_contains($a['body'], 'data-testid="reviews-page"') && str_contains($a['body'], 'Le Sac Lune Nacre'));
 $items = static fn (string $html): int => substr_count($html, 'data-testid="review-item"');

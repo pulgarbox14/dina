@@ -44,7 +44,7 @@ $accordions = [
             <div data-reveal style="--delay: .1s" class="lg:col-span-5 lg:col-start-8 lg:sticky lg:top-32 self-start">
                 <?php if (!empty($p['tag'])): ?><span class="eyebrow"><?= e($p['tag']) ?></span><?php endif; ?>
                 <h1 data-testid="product-name" class="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1] tracking-tight mt-3"><?= e($p['name']) ?></h1>
-                <?php /* Note façon grandes boutiques : « 4,7 ★★★★½ ˅ (12) ». Le chevron ouvre la répartition, le nombre ouvre la page des avis. */ ?>
+                <?php /* Note façon grandes boutiques : « 4,7 ★★★★½ ˅ (12) ». Le chevron ouvre la répartition, le nombre ouvre la page des avis. Rien n'est affiché tant que la pièce n'a pas d'avis. */ ?>
                 <?php if ($rs['count'] > 0): ?>
                     <div class="mt-3 flex items-center gap-2 text-sm" data-testid="product-rating">
                         <details class="rating-pop relative" data-rating-pop>
@@ -62,10 +62,6 @@ $accordions = [
                         </details>
                         <a href="<?= e($reviewsUrl) ?>" data-testid="product-rating-count" class="text-[var(--rose-deep)] hover:underline" aria-label="Voir les <?= $evaluations($rs['count']) ?>">(<?= $rs['count'] ?>)</a>
                     </div>
-                <?php else: ?>
-                    <a href="<?= e($reviewsUrl) ?>" data-testid="product-rating" class="mt-3 inline-flex items-center gap-2 text-sm text-[var(--ink-3)] hover:text-[var(--ink)]">
-                        <?= rating_stars(0, 16) ?> Aucun avis pour l'instant
-                    </a>
                 <?php endif; ?>
                 <p class="text-[var(--ink-2)] mt-3"><?= e($p['subtitle']) ?></p>
                 <div data-testid="product-price" class="font-mono text-2xl mt-8"><?= price((int) $p['price']) ?></div>
